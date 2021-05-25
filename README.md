@@ -1,4 +1,4 @@
-# Lead generator calculator
+# Lead Generator Calculator
 
 <div align="center">
     <img src="" width="500"> IMAGE
@@ -26,6 +26,8 @@
 
 # Project Overview
 
+A site designed to assist those making strategic marketing decisions with knowledge regarding the value provided by marketing campaigns.
+
 # User Experience Design
 
 ## Strategy
@@ -44,40 +46,77 @@ Small-Medium Enterprises (SMEs) that may not have a sophisticated Customer Relat
 
 **First-time visitors**
 
-    *As a first-time visitor I want to quickly understand the purpose of the site
-    *As a first-time visitor I want to easily register an account
-    *As a first-time visitor I want to see data comparable data from other companies
-    *As a first-time visitor I want to feel confident that the data I enter is secure
-    *As a first-time visitor I want to understand any cost associated with registration
-    *As a first-time visitor I want to quickly create a new campaign 
-    *As a first-time visitor I want to easily extract benchmark data
+    a. As a first-time visitor I want to quickly understand the purpose of the site
+    b. As a first-time visitor I want to easily register an account
+    c. As a first-time visitor I want to feel confident that the data I enter is secure
+    d. As a first-time visitor I want to understand any cost associated with registration
+    e. As a first-time visitor I want to quickly create a new campaign 
+    f. As a first-time visitor I want to easily obtain comparitive benchmark data
 
 **Returning visitors**
 
-    *As a returning visitor I want to quickly and easily log into my account profile
-    *As a returning visitor I want to see all open / live and closed campaigns
-    *As a returning visitor I want to quickly create a new campaign
-    *As a returning visitor I want to read existing campaign data
-    *As a returning visitor I want to easily update existing campaign and / or account profile data
-    *As a returning visitor I want to delete campaign information with confidence
+    a. As a returning visitor I want to quickly and easily log into my account profile
+    b. As a returning visitor I want to see all open / live and closed campaigns
+    c. As a returning visitor I want to quickly create a new campaign
+    d. As a returning visitor I want to read existing campaign data
+    e. As a returning visitor I want to easily update existing campaign and / or account profile data
+    f. As a returning visitor I want to delete campaign information with confidence
 
 **Site administrator**
 
-    *As a site administrator I want to quicky and easily log into the admin area
-    *As a site administrator I want to create a new industry / communications platform category
-    *As a site administrator I want to read information about existing categories
-    *As a site administrator I want to easily update existing category information
-    *As a site administrator I want to delete category information with ease
+    a. As a site administrator I want to quicky and easily log into the admin area
+    b. As a site administrator I want to create a new industry / communications platform category
+    c. As a site administrator I want to read information about existing categories
+    d. As a site administrator I want to easily update existing category information
+    e. As a site administrator I want to delete category information with ease
 
 ## Scope
 
+### Features
+
+| Feature  | Details  |
+|---|---|
+| Nav bar|  |
+| Favicon |  |
+| Footer |   |
+| Contact form |   |
+| Log in / Sign up form |   |
+| Create a new campaign form |   |
+| Edit / Delete campaign information |   |
+| Create a new category listing |   |
+| Edit / Delete category listings |   |
+| Calculate currency exchange |   |
+| Benchmark data display |   |
+
 ## Structure
+
+### Site map
 
 ## Skeleton
 
+For wireframes see separate SKELETON.md file.
+
+Database schema.
+
 ## Surface
 
+### Typography
+
+### Imagery
+
+### Color Scheme
+
 # Technologies Used
+
+The project uses the following languages;
+
+* HTML5
+* CSS
+* JavaScript
+* jQuery
+* Python
+
+The project was created 
 
 # Testing
 
