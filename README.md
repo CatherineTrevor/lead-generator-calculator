@@ -26,21 +26,23 @@
 
 # Project Overview
 
-A site designed to assist those making strategic marketing decisions with knowledge regarding the value provided by marketing campaigns.
+A site to assist people involved in strategic marketing decisions. Manage core marketing campaign data and the subsequent number of leads generated to obtain information about the cost per lead. This data provides invaluable insight into the value provided by marketing campaigns.
+
+Site users also have access to average cost per lead information from other companies using the site.
 
 # User Experience Design
 
 ## Strategy
 
-The site is designed for those involved in strategic marketing decisions to be better informed about the cost per marketing lead, and cost per converted sales lead per marketing activity / campaign that they conduct.
+Developed for those involved in strategic marketing decisions, the site allows for better-informed decisions about the cost per marketing lead, and cost per converted sales lead per marketing activity / campaign that they conduct.
 
-Companies open an account and create a campaign profile, which includes the cost of the campaign, number of Marketing Qualified Leads (MQL) and number of converted or Sales Qualified Leads (SQL). They are then presented with the cost per MQL and SQL, as well as a hit rate. This information gives the foundation for better informed decisions for marketing strategies and budget planning.
+Companies open an account and create a campaign profile, which includes the cost of the campaign, number of Marketing Qualified Leads (MQL) and number of converted or Sales Qualified Leads (SQL). They are then presented with the cost per MQL and SQL, as well as a conversion hit rate to understand which activities provide converted leads. This information gives the foundation for better-informed decisions for marketing strategies and budget planning.
 
-The user will also have access to comparible external data, and that from other companies using the site, so they have a benchmark.
+Site users will have access to anonymous comparable data, so they have a benchmark.
 
 ### Target audience
 
-Small-Medium Enterprises (SMEs) that may not have a sophisticated Customer Relationship Management (CRM) tool, or are relying on a spreadsheet to manage this information. The site will be a source of information that can be updated as a campaign continues to run, and then presented to stakeholders as needed.
+Small-Medium Enterprises (SMEs) that may not have a Customer Relationship Management (CRM) tool, or are relying on spreadsheets to manage this information. The site will be a source of information that can be updated as a campaign continues to run and then presented to stakeholders as needed.
 
 ### User stories
 
@@ -51,7 +53,7 @@ Small-Medium Enterprises (SMEs) that may not have a sophisticated Customer Relat
     c. As a first-time visitor I want to feel confident that the data I enter is secure
     d. As a first-time visitor I want to understand any cost associated with registration
     e. As a first-time visitor I want to quickly create a new campaign 
-    f. As a first-time visitor I want to easily obtain comparitive benchmark data
+    f. As a first-time visitor I want to easily obtain comparative benchmark data
 
 **Returning visitors**
 
@@ -64,7 +66,7 @@ Small-Medium Enterprises (SMEs) that may not have a sophisticated Customer Relat
 
 **Site administrator**
 
-    a. As a site administrator I want to quicky and easily log into the admin area
+    a. As a site administrator I want to quickly and easily log into the admin area
     b. As a site administrator I want to create a new industry / communications platform category
     c. As a site administrator I want to read information about existing categories
     d. As a site administrator I want to easily update existing category information
@@ -74,29 +76,41 @@ Small-Medium Enterprises (SMEs) that may not have a sophisticated Customer Relat
 
 ### Features
 
-| Feature  | Details  |
-|---|---|
-| Nav bar|  |
-| Favicon |  |
-| Footer |   |
-| Contact form |   |
-| Log in / Sign up form |   |
-| Create a new campaign form |   |
-| Edit / Delete campaign information |   |
-| Create a new category listing |   |
-| Edit / Delete category listings |   |
-| Calculate currency exchange |   |
-| Benchmark data display |   |
+| Feature  | Details  | Internal Links |
+|---|---|---|
+| Nav bar | Consistent on each file using Jinga templating | Home - About - Benchmark data - Log In - Sign Up |
+| Favicon | Consistent on each file using Jinga templating | Home |
+| Footer | Consistent on each file using Jinga templating. Copyright info | N/A |
+| Contact form | Pop-up form accessible at the bottom of every page. Floating action button. | N/A |
+| About | General site info and FAQs | Log In / Sign Up links |
+| Benchmark Data | Graphs to display data from companies using the site, including helpful links from external sources about lead generation and cost | Log In / Sign up links |
+| Log In page | Email address and password required. Also used for Admin log in  | Sign up page link |
+| Sign Up page | Email address and password only required  | Log in page link |
+| Administration profile | Category management: create, read, edit and delete | Create new category link |
+| Create a new category | Save new category listing or edit existing listing   | N/A |
+| Account profile | Campaign management: create, read, edit and delete | Create new campaign link |
+| Create a new campaign | Save new category listing or edit existing listing  | N/A |
+| Currency exchange | For comparison purposes, data displayed on benchmark-data.html will be converted into Euros using an API. It will therefore be converted in the back-end before displayed in the front-end  | N/A |
 
 ## Structure
 
 ### Site map
 
+![sitemap](https://user-images.githubusercontent.com/76033080/119633678-474f4c00-be12-11eb-8d83-54129e340f32.jpg)
+
 ## Skeleton
 
-For wireframes see separate SKELETON.md file.
+For wireframes see separate [SKELETON.md file](SKELETON.md).
 
-Database schema.
+**Database schema**
+
+Using [Creately](https://creately.com/) to generate a database schema, few company details are required. Industry and country are dropdown fields to reduce the risk of misspellings - this data is required to populate graphs displayed on benchmark-data.html, so they must be uniform. The Industry listing will be managed by Administration who will have access to create, edit and delete the industry options.
+
+The Country field is dropdown using the [Exchange Rate API](https://www.exchangerate-api.com/docs/supported-currencies) who maintain country and currency code listings. Again the importance of pre-defined fields for these options must be stressed, so the countries can be used for data comparison in benchmark-data.html. Free text fields will not allow for such data comparison (for example Sweden, Sverige, SWE or SE are all common terms, but cannot be grouped as the same country so the risk is they are appear as four different countries where the data should be displayed as one).
+
+[Exchange Rate API](https://www.exchangerate-api.com/docs/supported-currencies) also provides currency exchange. At present the site is focused on European businesses, therefore all data for comparison purposes will be converted into Euros.
+
+![database_schema](https://user-images.githubusercontent.com/76033080/119633631-3b638a00-be12-11eb-8377-2c917a91c63f.jpg)
 
 ## Surface
 
