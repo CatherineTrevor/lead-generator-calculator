@@ -3,8 +3,6 @@ from flask import Flask
 if os.path.exists("env.py"):
     import env
 
-print("Hello world")
-
 
 app = Flask(__name__)
 
