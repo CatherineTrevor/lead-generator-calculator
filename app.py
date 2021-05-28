@@ -42,14 +42,30 @@ def log_in():
 def account():
     return render_template("account.html")
 
+
 @app.route("/sign_up")
 def sign_up():
     return render_template("sign_up.html")
 
 
+@app.route("/admin")
+def admin():
+    return render_template("admin.html")
+
+
+@app.route("/create_campaign")
+def create_campaign():
+    return render_template("create_campaign.html")
+
+
+@app.route("/create_category")
+def create_category():
+    return render_template("create_category.html")
+
+
 @app.route("/log_out")
 def log_out():
-    return render_template("log_out.html")
+    return redirect(url_for("log_in"))
 
 
 if __name__ == "__main__":
