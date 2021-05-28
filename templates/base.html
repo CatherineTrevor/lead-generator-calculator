@@ -1,12 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>YO PEEPS</h1>
-</body>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/materialize.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="{{ url_for('static', filename='css/style.css') }}" type="text/css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/314e917aa2.js" crossorigin="anonymous"></script>
+    <title>Lead Generator Calculator</title>    
+  </head>
+  <body>
+      {% block content %}
+      {% endblock %}
+    <!-- top navbar-->
+    <nav class="blue-grey lighten-3" role="navigation">
+      <div class="nav-wrapper container">
+        <a id="logo-container" href="{{ url_for('homepage') }}" class="brand-logo">
+          <i class="fas fa-database"></i>
+        </a>
+        <ul class="right hide-on-med-and-down">
+          <li><a class="nav-link blue-grey-text" href="#">Home</a></li>
+          <li><a class="nav-link blue-grey-text" href="#">About</a></li>
+          <li><a class="nav-link blue-grey-text" href="#">Benchmark Data</a></li>
+          <li><a class="nav-link blue-grey-text" href="#">Log In</a></li>
+          <li><a class="nav-link blue-grey-text" href="#">Sign Up</a></li> 
+          <li><a class="nav-link blue-grey-text" href="#">Log Out</a></li>                                        
+        </ul>
+        <!--mobile navbar-->
+        <ul id="nav-mobile" class="sidenav">
+          <li><a href="#">Navbar Link</a></li>
+        </ul>
+        <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      </div>
+    </nav>
+    <!--main content-->
+    <main class="container">
+        <h1>Content here</h1>
+    </main>
+    <!--footer-->
+    <footer class="page-footer blue-grey">
+      <div class="container">
+        <div class="row">
+          <div class="col l6 s12">
+            <h5 class="white-text">Lead Generation Calculator</h5>
+            <p class="grey-text text-lighten-4">
+              Lead Generator Calculator is built to aid those involved in making strategic marketing decisions.
+              If you have any comments or suggestions, get in touch.
+            </p>
+          </div>
+          <div class="col l6 sm12">
+            <a class="icons" href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-square"></i></a>                
+            <a class="icons" href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter-square"></i></a>         
+            <a class="icons" href="https://www.linkedin.com/in/catherinetrevor/" target="_blank"><i class="fab fa-linkedin"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <div class="container">
+        Made by <a class="brown-text text-lighten-3" href="https://github.com/CatherineTrevor" target="_blank">Catherine Trevor</a>
+        </div>
+      </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/js"></script>
+    <script src="{{ url_for('static', filename='js/init.js') }}" type="text/js"></script>
+    <script src="{{ url_for('static', filename='js/materialize.js') }}" type="text/js"></script>    
+    </body>
 </html>
