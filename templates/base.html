@@ -7,24 +7,24 @@
     <link href="{{ url_for('static', filename='css/materialize.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="{{ url_for('static', filename='css/style.css') }}" type="text/css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/314e917aa2.js" crossorigin="anonymous"></script>
-    <title>Lead Generator Calculator</title>    
+    {% block styles %}
+    {% endblock %}    
+    <title>Lead Generator Calculator</title> 
   </head>
   <body>
-      {% block content %}
-      {% endblock %}
     <!-- top navbar-->
     <nav class="blue-grey lighten-3" role="navigation">
       <div class="nav-wrapper container">
-        <a id="logo-container" href="{{ url_for('homepage') }}" class="brand-logo">
+        <a id="logo-container" href="{{ url_for('index') }}" class="brand-logo">
           <i class="fas fa-database"></i>
         </a>
         <ul class="right hide-on-med-and-down">
-          <li><a class="nav-link blue-grey-text" href="#">Home</a></li>
-          <li><a class="nav-link blue-grey-text" href="#">About</a></li>
-          <li><a class="nav-link blue-grey-text" href="#">Benchmark Data</a></li>
-          <li><a class="nav-link blue-grey-text" href="#">Log In</a></li>
-          <li><a class="nav-link blue-grey-text" href="#">Sign Up</a></li> 
-          <li><a class="nav-link blue-grey-text" href="#">Log Out</a></li>                                        
+          <li><a class="nav-link blue-grey-text" href="{{ url_for('index') }}">Home</a></li>
+          <li><a class="nav-link blue-grey-text" href="{{ url_for('about') }}">About</a></li>
+          <li><a class="nav-link blue-grey-text" href="{{ url_for('benchmark_data') }}">Benchmark Data</a></li>
+          <li><a class="nav-link blue-grey-text" href="{{ url_for('log_in') }}">Log In</a></li>
+          <li><a class="nav-link blue-grey-text" href="{{ url_for('sign_up') }}">Sign Up</a></li> 
+          <li><a class="nav-link blue-grey-text" href="{{ url_for('log_out') }}">Log Out</a></li>                                        
         </ul>
         <!--mobile navbar-->
         <ul id="nav-mobile" class="sidenav">
@@ -35,8 +35,22 @@
     </nav>
     <!--main content-->
     <main class="container">
-        <h1>Content here</h1>
+      {% block content %}
+      <h1>Home page</h1>
+      {% endblock%}
     </main>
+    <!--floating action button: contact-->
+    <div class="fixed-action-btn">
+      <a class="btn-floating btn-large red">
+        <i class="large material-icons">mode_edit</i>
+      </a>
+      <ul>
+        <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
+        <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
+        <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
+        <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
+      </ul>
+    </div>
     <!--footer-->
     <footer class="page-footer blue-grey">
       <div class="container">
@@ -63,6 +77,9 @@
     </footer>
     <script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/js"></script>
     <script src="{{ url_for('static', filename='js/init.js') }}" type="text/js"></script>
-    <script src="{{ url_for('static', filename='js/materialize.js') }}" type="text/js"></script>    
+    <script src="{{ url_for('static', filename='js/materialize.js') }}" type="text/js"></script>  
+    <script src="{{ url_for('static', filename='js/script.js') }}" type="text/js"></script>    
+    {% block scripts %}
+    {% endblock %}        
     </body>
 </html>

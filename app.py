@@ -18,8 +18,38 @@ mongo = PyMongo(app)
 
 
 @app.route("/")
-def homepage():
+@app.route("/index")
+def index():
     return render_template("base.html")
+
+
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
+
+@app.route("/benchmark_data")
+def benchmark_data():
+    return render_template("benchmark_data.html")
+
+
+@app.route("/log_in")
+def log_in():
+    return render_template("log_in.html")
+
+
+@app.route("/account")
+def account():
+    return render_template("account.html")
+
+@app.route("/sign_up")
+def sign_up():
+    return render_template("sign_up.html")
+
+
+@app.route("/log_out")
+def log_out():
+    return render_template("log_out.html")
 
 
 if __name__ == "__main__":
