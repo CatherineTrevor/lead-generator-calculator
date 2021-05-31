@@ -1,4 +1,47 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Sign Up</h1>
+<div class="row">
+    <h1 class="header center blue-grey-text text-lighten-2">
+        Sign-up
+    </h1>
+    <div class="row center">
+        <h5 class="header col s12 blue-grey-text">
+            Create your free account and start monitoring your marketing campaigns
+        </h5>
+    </div>
+</div>        
+    <div class="container container__signup__form">
+        <form class="col s6">
+            <div class="row">
+                <div class="input-field col s12 center-align blue-grey-text">
+                    <i class="material-icons prefix">mail</i>
+                    <input id="email" type="email" class="validate">
+                    <label for="email">
+                        Email Address
+                    </label>
+                    <span class="helper-text" data-error="That doesn't look right, try again" data-success="That's great!">
+                        Sign-up using your email address
+                    </span>                      
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 center-align blue-grey-text">
+                    <i class="material-icons prefix">lock_outline</i>
+                    <input id="password" type="password" class="validate" minlength="5" maxlength="15">
+                    <label for="password">
+                        Password
+                    </label>
+                    <span class="helper-text" data-error="Your password must match the specified requirements" data-success="That's great!">
+                        Password must be between 5 and 15 characters
+                    </span>                    
+                </div>
+            </div>
+            <div class="row center">
+                <a href="{{ url_for('account') }}" id="download-button" class="btn-large waves-effect waves-light blue-grey lighten-1">Create Account</a>
+              </div>            
+        </form>
+        <span class="blue-grey-text">
+            Already have an account? Click here to log in
+        </span>
+    </div>
 {% endblock %}
