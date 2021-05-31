@@ -11,7 +11,7 @@
     </div>
 </div>        
     <div class="container container__signup__form">
-        <form class="col s6">
+        <form class="col s6" method="POST" action="{{ url_for('log_in') }}">
             <div class="row">
                 <div class="input-field col s12 center-align blue-grey-text">
                     <i class="material-icons prefix">mail</i>
@@ -27,7 +27,7 @@
             <div class="row">
                 <div class="input-field col s12 center-align blue-grey-text">
                     <i class="material-icons prefix">lock_outline</i>
-                    <input id="password" type="password" class="validate" minlength="5" maxlength="15">
+                    <input id="password" type="password" class="validate" minlength="5" maxlength="15" required pattern="^[a-zA-Z0-9]{5,15}$">
                     <label for="password">
                         Password
                     </label>
@@ -36,8 +36,10 @@
                 </div>
             </div>
             <div class="row center">
-                <a href="{{ url_for('account') }}" id="download-button" class="btn-large waves-effect waves-light blue-grey lighten-1">Log In</a>
-              </div>            
+                <button type="submit" class="btn-large waves-effect waves-light blue-grey lighten-1">
+                    Log in
+                </button>
+            </div>                        
         </form>
         <a href="{{ url_for('sign_up') }}">
             <p class="blue-grey-text center">

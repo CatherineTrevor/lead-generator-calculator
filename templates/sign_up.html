@@ -11,12 +11,12 @@
     </div>
 </div>        
     <div class="container container__signup__form">
-        <form class="col s6">
+        <form class="col s6" method="POST" action="{{ url_for('sign_up') }}">
             <div class="row">
                 <div class="input-field col s12 center-align blue-grey-text">
                     <i class="material-icons prefix">mail</i>
-                    <input id="email" type="email" class="validate">
-                    <label for="email">
+                    <input id="username" type="email" class="validate">
+                    <label for="username">
                         Email Address
                     </label>
                     <span class="helper-text" data-error="That doesn't look right, try again" data-success="That's great!">
@@ -37,8 +37,10 @@
                 </div>
             </div>
             <div class="row center">
-                <a href="{{ url_for('account') }}" id="download-button" class="btn-large waves-effect waves-light blue-grey lighten-1">Create Account</a>
-              </div>            
+                <button type="submit" class="btn-large waves-effect waves-light blue-grey lighten-1">
+                    Create Account
+                </button>
+            </div>           
         </form>
         <a href="{{ url_for('log_in') }}">
             <p class="blue-grey-text center">

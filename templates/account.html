@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
 <h1>My Account</h1>
+    <h1>
+        {{ username }}'s Profile
+    </h1>
 <a class="nav-link blue-grey-text" href="{{ url_for('create_campaign') }}">Create new campaign</a> 
 <a class="nav-link blue-grey-text" href="{{ url_for('log_out') }}">Log out</a> 
 {% endblock %}

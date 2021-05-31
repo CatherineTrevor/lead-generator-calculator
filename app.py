@@ -33,14 +33,19 @@ def benchmark_data():
     return render_template("benchmark_data.html")
 
 
-@app.route("/log_in")
+@app.route("/log_in", methods=["GET", "POST"])
 def log_in():
+    if request.method == "POST":
+        # check if username exists in db
+        existing_user = mongo.db.users.find_one(
+            {"username": request.form.get("username")})
+        if existing_user:
+            return redirect(url_for(
+                23"account", username=session["user"]))
+        else:
+            return redirect(url_for("log_in"))
+
     return render_template("log_in.html")
-
-
-@app.route("/account")
-def account():
-    return render_template("account.html")
 
 
 @app.route("/sign_up", methods=["GET", "POST"])
@@ -48,23 +53,27 @@ def sign_up():
     if request.method == "POST":
         # check if username exists in database
         existing_user = mongo.db.users.find_one(
-            {"username": request.form.get("username").lower()})
+            {"username": request.form.get("username")})
 
         if existing_user:
             flash("Username already exists")
             return redirect(url_for("sign_up"))
 
         register = {
-            "username": request.form.get("username").lower(),
-            "password": generate_password_hash(request.form.get("password"))
+            "username": request.form.get("username"),
+            "password": request.form.get("password")
         }
         mongo.db.users.insert_one(register)
 
         # put the new user into 'session' cookie
-        session["user"] = request.form.get("username").lower()
-        flash("Registration Successful!")
+        session["user"] = request.form.get("username")
         return redirect(url_for("account", username=session["user"]))
     return render_template("sign_up.html")
+
+
+@app.route("/account")
+def account():
+    return render_template("account.html")
 
 
 @app.route("/admin")
