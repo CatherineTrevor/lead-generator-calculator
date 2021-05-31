@@ -34,11 +34,88 @@
       </div>
     </nav>
     <!--main content-->
-    <main class="container">
       {% block content %}
-      <h1>Home page</h1>
+      <div id="index-banner" class="parallax-container">
+        <div class="section no-pad-bot">
+          <div class="container">
+            <h1 class="header center teal-text text-lighten-2">Lead Generator Calculator</h1>
+            <div class="row center">
+              <h5 class="header col s12 light">A free calculation tool to help those making stratgic marketing decisions</h5>
+            </div>
+            <div class="row center">
+              <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Get Started</a>
+            </div>
+          </div>
+        </div>
+        <div class="parallax"><img src="{{ url_for('static', filename='assets/backgroundImage1.jpg') }}" alt="Unsplashed background img 1"></div>
+      </div>
+      <div class="container">
+        <div class="section">
+          <!--   Icon Section   -->
+          <div class="row">
+            <div class="col s12 m4">
+              <div class="icon-block">
+                <h2 class="center brown-text"><i class="material-icons">flash_on</i></h2>
+                <h5 class="center">About</h5>
+                <p class="light">
+                  Create an account, enter basic information your marketing campaigns, including the cost and start date. Include the number of qualified marketing and converted sales leads 
+                  each campaign has generated, then let us give you the cost per marketing lead and converted lead, giving you a clear overview of which campaigns are yielding the best results.
+                </p>
+              </div>
+            </div>
+            <div class="col s12 m4">
+              <div class="icon-block">
+                <h2 class="center brown-text"><i class="material-icons">group</i></h2>
+                <h5 class="center">How to use</h5>
+                <p class="light">Without worrying about email copy, or which hashtags to use, entering only the numbers allows you to focus on the value of each campaign. 
+                  Enter the number of leads and cost, we provide the cost per lead and conversion rate, and from there you can make qualified, strategic marketing decisions.</p>
+              </div>
+            </div>
+            <div class="col s12 m4">
+              <div class="icon-block">
+                <h2 class="center brown-text"><i class="material-icons">settings</i></h2>
+                <h5 class="center">Wondering how you compare?</h5>
+                <p class="light">
+                  Wonder whether your leads cost you more than the competition? Take a look at comparative data from other companies. All data is confidential, so you can only see an average 
+                  per industry, but it will give you an idea on how your activities are performing.
+                </p>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+      <div class="parallax-container valign-wrapper">
+        <div class="section no-pad-bot">
+          <div class="container">
+            <div class="row center">
+              <h5 class="header col s12 light">Comparative lead generation cost data</h5>
+            </div>
+          </div>
+        </div>
+        <div class="parallax"><img src="{{ url_for('static', filename='assets/backgroundImage2.jpg') }}" alt="Unsplashed background img 2"></div>
+      </div>           
+      <div class="container">
+        <div class="section">
+          <div class="row">
+            <div class="col s12 center">
+              <h3><i class="mdi-content-send brown-text"></i></h3>
+              <h4>Contact Us</h4>
+              <p class="left-align light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo, ullamcorper a sapien id, viverra ultrices eros. Morbi sem neque, posuere et pretium eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis nisl maximus sed. Nulla imperdiet semper molestie. Morbi massa odio, condimentum sed ipsum ac, gravida ultrices erat. Nullam eget dignissim mauris, non tristique erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="parallax-container valign-wrapper">
+        <div class="section no-pad-bot">
+          <div class="container">
+            <div class="row center">
+              <h5 class="header col s12 light">Comparative lead generation cost data</h5>
+            </div>
+          </div>
+        </div>
+        <div class="parallax"><img src="{{ url_for('static', filename='assets/backgroundImage3.jpg') }}" alt="Unsplashed background img 2"></div>
+      </div>                      
       {% endblock%}
-    </main>
     <!--floating action button: contact-->
     <div class="fixed-action-btn">
       <a class="btn-floating btn-large red">
@@ -76,9 +153,11 @@
       </div>
     </footer>
     <script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/js"></script>
-    <script src="{{ url_for('static', filename='js/init.js') }}" type="text/js"></script>
+    <!--<script src="{{ url_for('static', filename='js/init.js') }}" type="text/js"></script>
     <script src="{{ url_for('static', filename='js/materialize.js') }}" type="text/js"></script>  
-    <script src="{{ url_for('static', filename='js/script.js') }}" type="text/js"></script>    
+    <script src="{{ url_for('static', filename='js/script.js') }}" type="text/js"></script>-->
+    <script src="/static/js/init.js" type="text/js"></script>    
+    <script src="/static/js/materialize.js" type="text/js"></script>        
     {% block scripts %}
     {% endblock %}        
     </body>
