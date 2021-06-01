@@ -4,13 +4,13 @@
         <div class="section no-pad-bot">
             <div class="container">
                 {% for account in accounts %}
-                {% if session.user == account.username %}                
-                <h1 class="header center blue-grey-text text-lighten-2">
-                    Welcome
-                </h1>
-                <h1 class="header center blue-grey-text text-lighten-2">
-                    {{ account.username }}
-                </h1>                
+                    {% if session.user == account.username %}                
+                    <h1 class="header center blue-grey-text text-lighten-2">
+                        Welcome
+                    </h1>
+                    <h1 class="header center blue-grey-text text-lighten-2">
+                        {{ account.username }}
+                    </h1>                
             </div>
         </div>
         <div class="parallax">
@@ -185,57 +185,56 @@
     <div class="container">
         <div class="section">
             <ul class="collapsible">
-                <li>
-                    <div class="collapsible-header">
-                        <i class="material-icons">expand_more</i>
-                            Campaign Name            
-                    </div>
-                    <div class="collapsible-body">
-                        <div class="row">
-                            <span>
-                                Campaign info
-                            </span>
-                        </div>
-                        <div class="row edit__campaign__icon">
-                            <i class="material-icons">edit</i>
-                            <i class="material-icons">delete_forever</i>                                 
-                        </div>                           
-                    </div>
+                {% for campaign in campaigns %}
+                    {% if session.user == campaign.owning_account %}                
+                        <li>
+                            <div class="collapsible-header">
+                                <i class="material-icons">expand_more</i>
+                                    {{ campaign.campaign_name }}            
+                            </div>
+                            <div class="collapsible-body">
+                                <div class="row">
+                                </div>
+                                <div class="input-field col s12">
+                                    <input value="{{ campaign.campaign_name }}" id="campaign_name" type="text" class="validate">
+                                    <label for="campaign_name">Campaign Name</label>
+                               </div>
+                               <div class="input-field col s6">
+                                <input value ="{{ campaign.campaign_type }}" id="campaign_type" name="campaign_type" type="text" class="validate">
+                                <label class="active" for="campaign_type">Campaign Type</label>
+                            </div>  
+                            <div class="input-field col s6">
+                                <input id="communication_platform" name="communication_platform" type="text" class="validate">
+                                <label class="active" for="communication_platform">Communication Platform</label>
+                            </div>                                 
+                            <div class="input-field col s6">
+                                <input id="start_date" name="start_date" type="date" class=" datepicker validate">
+                                <label class="active" for="start_date">Start Date</label>
+                            </div> 
+                            <div class="input-field col s6">
+                                <input id="end_date" name="end_date" type="date" class=" datepicker validate">
+                                <label class="active" for="end_date">End Date</label>
+                            </div>  
+                            <div class="input-field col s6">
+                                <input id="marketing_qualified_leads" name="marketing_qualified_leads" type="number" class="validate">
+                                <label class="active" for="marketing_qualified_leads">Marketing Qualified Leads</label>
+                            </div>    
+                            <div class="input-field col s6">
+                                <input id="sales_qualified_leads" name="sales_qualified_leads" type="number" class="validate">
+                                <label class="active" for="sales_qualified_leads">Sales Qualified Leads</label>
+                            </div>             
+                            <div class="input-field col s6">
+                                <input id="total_campaign_cost" name="total_campaign_cost" type="number" class="validate">
+                                <label class="active" for="total_campaign_cost">Total Campaign Cost</label>
+                            </div>                                              
+                                <div class="row edit__campaign__icon">
+                                    <i class="material-icons">edit</i>
+                                    <i class="material-icons">delete_forever</i>                                 
+                                </div>                           
+                            </div>
+                        {% endif %}
+                    {% endfor %}
                 </li>
-                <li>
-                    <div class="collapsible-header">
-                    <i class="material-icons">expand_more</i>
-                    Campaign name
-                    </div>
-                    <div class="collapsible-body">
-                        <div class="row">
-                            <span>
-                                Campaign info
-                            </span>
-                        </div>
-                        <div class="row edit__campaign__icon">
-                            <i class="material-icons">edit</i>
-                            <i class="material-icons">delete_forever</i>                                 
-                        </div>                           
-                    </div>
-                </li>
-                <li>
-                    <div class="collapsible-header">
-                    <i class="material-icons">expand_more</i>
-                    Campaign name
-                    </div>
-                    <div class="collapsible-body">
-                        <div class="row">
-                            <span>
-                                Campaign info
-                            </span>
-                        </div>
-                        <div class="row edit__campaign__icon">
-                            <i class="material-icons">edit</i>
-                            <i class="material-icons">delete_forever</i>                                 
-                        </div>                           
-                    </div>
-                </li>                                
             </ul>
         </div>
     </div>

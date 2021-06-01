@@ -87,7 +87,9 @@ def sign_up():
 @app.route("/account_profile")
 def get_account_profile():
     accounts = list(mongo.db.accounts.find())
-    return render_template("account.html", accounts=accounts)
+    campaigns = list(mongo.db.campaigns.find())
+    return render_template("account.html",
+                            accounts=accounts, campaigns=campaigns)
 
 
 @app.route("/account<username>", methods=["GET", "POST"])
@@ -105,12 +107,6 @@ def account(username):
 @app.route("/admin")
 def admin():
     return render_template("admin.html")
-
-
-@app.route("/account_profile")
-def get_account_profile():
-    accounts = list(mongo.db.accounts.find())
-    return render_template("account.html", accounts=accounts)
 
 
 @app.route("/create_campaign", methods=["GET", "POST"])
