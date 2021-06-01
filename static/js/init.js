@@ -3,6 +3,7 @@
 
     $('.sidenav').sidenav();
     $('.parallax').parallax();
+    $('.fixed-action-btn').floatingActionButton();
     $('.collapsible').collapsible();    
 
   }); // end of document ready
