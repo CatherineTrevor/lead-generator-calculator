@@ -18,161 +18,163 @@
     <div class="container">
         <div class="section">
             <!--   Icon Section   -->
-            <div class="col s12 m4">
-                <div class="row">
-                    <div class="icon-block">
-                        <h2 class="center blue-grey-text">
-                            <i class="material-icons">group</i>
-                        </h2>
-                        <h5 class="center">
-                            Account info table
-                        </h5>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input value="FlexLink AB" id="company_name" type="text" class="validate">
-                        <label class="active" for="company_name">Company Name</label>
+            <div class="row">
+                <div class="col s12 m4">
+                    <div class="row">
+                        <div class="icon-block">
+                            <h2 class="center blue-grey-text">
+                                <i class="material-icons">group</i>
+                            </h2>
+                            <h5 class="center">
+                                Account info table
+                            </h5>
                         </div>
-                        <div class="input-field col s6">
-                        <input value="Catherine Trevor" id="owner_name" type="text" class="validate">
-                        <label class="active" for="owner_name">Account Owner</label>
-                        </div>  
-                        <div class="input-field col s6">
-                        <input value="{{ username }}" id="username" type="text" class="validate">
-                        <label class="active" for="username">Username</label>
-                        </div>                                 
-                        <div class="input-field col s6">
-                        <input value="Sweden" id="country" type="text" class="validate">
-                        <label class="active" for="country">Country</label>
-                        </div> 
-                        <div class="input-field col s6">
-                        <input value="SEK" id="currency" type="text" class="validate">
-                        <label class="active" for="currency">Currency</label>
-                        </div>  
-                        <div class="input-field col s6">
-                        <input value="Manufacturing" id="industry" type="text" class="validate">
-                        <label class="active" for="industry">Industry</label>
-                        </div>                                                                                                      
-                </div>                    
-            </div>
-            <div class="col s12 m4">
-                <div class="row">
-                    <div class="icon-block">
-                        <h2 class="center blue-grey-text">
-                            <i class="material-icons">data_usage</i>
-                        </h2>
-                        <h5 class="center">
-                            Campaign overview table
-                        </h5>
                     </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input value="FlexLink AB" id="company_name" type="text" class="validate">
+                            <label class="active" for="company_name">Company Name</label>
+                            </div>
+                            <div class="input-field col s6">
+                            <input value="Catherine Trevor" id="owner_name" type="text" class="validate">
+                            <label class="active" for="owner_name">Account Owner</label>
+                            </div>  
+                            <div class="input-field col s6">
+                            <input value="{{ username }}" id="username" type="text" class="validate">
+                            <label class="active" for="username">Username</label>
+                            </div>                                 
+                            <div class="input-field col s6">
+                            <input value="Sweden" id="country" type="text" class="validate">
+                            <label class="active" for="country">Country</label>
+                            </div> 
+                            <div class="input-field col s6">
+                            <input value="SEK" id="currency" type="text" class="validate">
+                            <label class="active" for="currency">Currency</label>
+                            </div>  
+                            <div class="input-field col s6">
+                            <input value="Manufacturing" id="industry" type="text" class="validate">
+                            <label class="active" for="industry">Industry</label>
+                            </div>                                                                                                      
+                    </div>                    
                 </div>
-                <div class="row">
-                    <table class="account__table">
-                        <tr>
-                            <th>                                
-                                No of open campaigns
-                            </th>
-                            <td>
-                                10
-                                <i class="tiny material-icons">lock</i>                                        
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>
-                                Total Marketing Spend
-                            </th>
-                            <td>
-                                £1,250
-                                <i class="tiny material-icons">lock</i>        
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>
-                                Total Marketing Leads
-                            </th>
-                            <td>
-                                15
-                                <i class="tiny material-icons">lock</i>                                        
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>
-                                Total Sales Leads
-                            </th>
-                            <td>
-                                6
-                                <i class="tiny material-icons">lock</i>                                        
-                            </td>
-                        </tr>  
-                        <tr>
-                            <th>
-                                Av. cost per MQL
-                            </th>
-                            <td>
-                                £10
-                                <i class="tiny material-icons">lock</i>                                        
-                            </td>
-                        </tr>   
-                        <tr>
-                            <th>
-                                Av. cost per SQL
-                            </th>
-                            <td>
-                                £36
-                                <i class="tiny material-icons">lock</i>                                        
-                            </td>
-                        </tr>                                                                                  
-                        </table>
-                </div>                    
-            </div>
-            <div class="col s12 m4">
-                <div class="row">
-                    <div class="icon-block">
-                        <h2 class="center blue-grey-text">
-                            <i class="material-icons">input</i>
-                        </h2>
-                        <h5 class="center">
-                            Actions table
-                        </h5>
-                    </div>
-                </div>
-                <div class="row center">
-                    <a href="{{ url_for('create_campaign') }}" id="download-button" class="btn-large waves-effect waves-light blue-grey lighten-1">
-                        Create new campaign
-                        <i class="tiny material-icons">edit</i>                                  
-                    </a>
-                </div>
-                <div class="row">
-                    <div class="col l12">
-                        <h4>
-                            Filter campaign view
-                        </h4>
-                    </div>
-                    <div class="col">
-                        <div class="chip">
-                            New product
-                            <i class="close material-icons">close</i>
+                <div class="col s12 m4">
+                    <div class="row">
+                        <div class="icon-block">
+                            <h2 class="center blue-grey-text">
+                                <i class="material-icons">data_usage</i>
+                            </h2>
+                            <h5 class="center">
+                                Campaign overview table
+                            </h5>
                         </div>
-                        <div class="chip">
-                            Price promotion
-                            <i class="close material-icons">close</i>
-                        </div>
-                        <div class="chip">
-                            General
-                            <i class="close material-icons">close</i>
-                        </div>
-                        <div class="chip">
-                            Social media
-                            <i class="close material-icons">close</i>
-                        </div>                                                                                        
                     </div>
+                    <div class="row">
+                        <table class="account__table">
+                            <tr>
+                                <th>                                
+                                    No of open campaigns
+                                </th>
+                                <td>
+                                    10
+                                    <i class="tiny material-icons">lock</i>                                        
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    Total Marketing Spend
+                                </th>
+                                <td>
+                                    £1,250
+                                    <i class="tiny material-icons">lock</i>        
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    Total Marketing Leads
+                                </th>
+                                <td>
+                                    15
+                                    <i class="tiny material-icons">lock</i>                                        
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    Total Sales Leads
+                                </th>
+                                <td>
+                                    6
+                                    <i class="tiny material-icons">lock</i>                                        
+                                </td>
+                            </tr>  
+                            <tr>
+                                <th>
+                                    Av. cost per MQL
+                                </th>
+                                <td>
+                                    £10
+                                    <i class="tiny material-icons">lock</i>                                        
+                                </td>
+                            </tr>   
+                            <tr>
+                                <th>
+                                    Av. cost per SQL
+                                </th>
+                                <td>
+                                    £36
+                                    <i class="tiny material-icons">lock</i>                                        
+                                </td>
+                            </tr>                                                                                  
+                            </table>
+                    </div>                    
                 </div>
-                <div class="row center">
-                    <a href="{{ url_for('benchmark_data') }}" id="download-button" class="btn-large waves-effect waves-light blue-grey lighten-1">
-                        Looking for comparative data? Click here                                 
-                    </a>
-                </div>                    
+                <div class="col s12 m4">
+                    <div class="row">
+                        <div class="icon-block">
+                            <h2 class="center blue-grey-text">
+                                <i class="material-icons">input</i>
+                            </h2>
+                            <h5 class="center">
+                                Actions table
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="row center">
+                        <a href="{{ url_for('create_campaign') }}" id="download-button" class="btn-large waves-effect waves-light blue-grey lighten-1">
+                            Create new campaign
+                            <i class="tiny material-icons">edit</i>                                  
+                        </a>
+                    </div>
+                    <div class="row">
+                        <div class="col l12">
+                            <h4>
+                                Filter campaign view
+                            </h4>
+                        </div>
+                        <div class="col">
+                            <div class="chip">
+                                New product
+                                <i class="close material-icons">close</i>
+                            </div>
+                            <div class="chip">
+                                Price promotion
+                                <i class="close material-icons">close</i>
+                            </div>
+                            <div class="chip">
+                                General
+                                <i class="close material-icons">close</i>
+                            </div>
+                            <div class="chip">
+                                Social media
+                                <i class="close material-icons">close</i>
+                            </div>                                                                                        
+                        </div>
+                    </div>
+                    <div class="row center">
+                        <a href="{{ url_for('benchmark_data') }}" id="download-button" class="btn-large waves-effect waves-light blue-grey lighten-1">
+                            Looking for comparative data? Click here                                 
+                        </a>
+                    </div>                    
+                </div>
             </div>
         </div>
     </div>          

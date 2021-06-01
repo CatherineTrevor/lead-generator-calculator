@@ -107,15 +107,23 @@ def get_account_profile():
     return render_template("account.html", accounts=accounts)
 
 
-@app.route("/create_campaign")
+@app.route("/create_campaign", methods=["GET", "POST"])
 def create_campaign():
-    campaigns = list(mongo.db.campaigns.find())
+    if request.method == "POST":
+        campaign = {
+            "campaign_name": request.form.get("campaign_name"),
+            "campaign_type": request.form.get("campaign_type"),
+            "communication_platform": request.form.get("communication_platform"),
+            "start_date": request.form.get("start_date"),
+            "end_date": request.form.get("end_date"),
+            "marketing_qualified_leads": request.form.get("marketing_qualified_leads"),
+            "sales_qualified_leads": request.form.get("sales_qualified_leads"),
+            "total_campaign_cost": request.form.get("total_campaign_cost"),
+            "owning_account": session["user"]
+        }
+        mongo.db.campaigns.insert_one(campaign)
+        return redirect(url_for("get_account_profile"))
     return render_template("create_campaign.html", campaigns=campaigns)
-
-
-@app.route("/create_category")
-def create_category():
-    return render_template("create_category.html")
 
 
 @app.route("/log_out")
