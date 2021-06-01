@@ -15,8 +15,8 @@
             <div class="row">
                 <div class="input-field col s12 center-align blue-grey-text">
                     <i class="material-icons prefix">mail</i>
-                    <input id="email" type="email" class="validate">
-                    <label for="email">
+                    <input id="username" name="username" type="text" class="validate" required pattern="^[a-zA-Z0-9]{5,15}$">
+                    <label for="username">
                         Email Address
                     </label>
                     <span class="helper-text" data-error="That doesn't look right, try again" data-success="That's great!">
@@ -27,7 +27,7 @@
             <div class="row">
                 <div class="input-field col s12 center-align blue-grey-text">
                     <i class="material-icons prefix">lock_outline</i>
-                    <input id="password" type="password" class="validate" minlength="5" maxlength="15" required pattern="^[a-zA-Z0-9]{5,15}$">
+                    <input id="password" name="password" type="password" class="validate" minlength="5" maxlength="15" required pattern="^[a-zA-Z0-9]{5,15}$">
                     <label for="password">
                         Password
                     </label>
