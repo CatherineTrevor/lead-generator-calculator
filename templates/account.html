@@ -4,8 +4,11 @@
         <div class="section no-pad-bot">
             <div class="container">
                 <h1 class="header center blue-grey-text text-lighten-2">
-                    Welcome {{ username }}
+                    Welcome
                 </h1>
+                <h1 class="header center blue-grey-text text-lighten-2">
+                    {{ username }}
+                </h1>                
             </div>
         </div>
         <div class="parallax">
@@ -35,7 +38,11 @@
                           <div class="input-field col s6">
                             <input value="Catherine Trevor" id="owner_name" type="text" class="validate">
                             <label class="active" for="owner_name">Account Owner</label>
-                          </div>       
+                          </div>  
+                          <div class="input-field col s6">
+                            <input value="{{ username }}" id="username" type="text" class="validate">
+                            <label class="active" for="username">Username</label>
+                          </div>                                 
                           <div class="input-field col s6">
                             <input value="Sweden" id="country" type="text" class="validate">
                             <label class="active" for="country">Country</label>
