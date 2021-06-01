@@ -113,17 +113,22 @@ def create_campaign():
         campaign = {
             "campaign_name": request.form.get("campaign_name"),
             "campaign_type": request.form.get("campaign_type"),
-            "communication_platform": request.form.get("communication_platform"),
+            "communication_platform": request.form.get(
+                "communication_platform"),
             "start_date": request.form.get("start_date"),
             "end_date": request.form.get("end_date"),
-            "marketing_qualified_leads": request.form.get("marketing_qualified_leads"),
-            "sales_qualified_leads": request.form.get("sales_qualified_leads"),
+            "marketing_qualified_leads": request.form.get(
+                "marketing_qualified_leads"),
+            "sales_qualified_leads": request.form.get(
+                "sales_qualified_leads"),
             "total_campaign_cost": request.form.get("total_campaign_cost"),
             "owning_account": session["user"]
         }
         mongo.db.campaigns.insert_one(campaign)
+        flash("Task succesfully added")
         return redirect(url_for("get_account_profile"))
-    return render_template("create_campaign.html", campaigns=campaigns)
+
+    return render_template("create_campaign.html")
 
 
 @app.route("/log_out")

@@ -5,49 +5,47 @@
             Update campaign profile
         </h2>
     </div>
-    {% for campaign in campaigns %}
-        {% if session.user == campaign.owning_user %}
             <div class="container">
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input value="Enter" id="campaign_name" type="text" class="validate">
-                        <label class="active" for="campaign_name">Campaign Name</label>
+                <form class="col l6" method="POST" action="{{ url_for('create_campaign') }}">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="campaign_name" name="campaign_name" type="text" class="validate">
+                            <label class="active" for="campaign_name">Campaign Name</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="campaign_type" name="campaign_type" type="text" class="validate">
+                            <label class="active" for="campaign_type">Campaign Type</label>
+                        </div>  
+                        <div class="input-field col s6">
+                            <input id="communication_platform" name="communication_platform" type="text" class="validate">
+                            <label class="active" for="communication_platform">Communication Platform</label>
+                        </div>                                 
+                        <div class="input-field col s6">
+                            <input id="start_date" name="start_date" type="date" class=" datepicker validate">
+                            <label class="active" for="start_date">Start Date</label>
+                        </div> 
+                        <div class="input-field col s6">
+                            <input id="end_date" name="end_date" type="date" class=" datepicker validate">
+                            <label class="active" for="end_date">End Date</label>
+                        </div>  
+                        <div class="input-field col s6">
+                            <input id="marketing_qualified_leads" name="marketing_qualified_leads" type="number" class="validate">
+                            <label class="active" for="marketing_qualified_leads">Marketing Qualified Leads</label>
+                        </div>    
+                        <div class="input-field col s6">
+                            <input id="sales_qualified_leads" name="sales_qualified_leads" type="number" class="validate">
+                            <label class="active" for="sales_qualified_leads">Sales Qualified Leads</label>
+                        </div>             
+                        <div class="input-field col s6">
+                            <input id="total_campaign_cost" name="total_campaign_cost" type="number" class="validate">
+                            <label class="active" for="total_campaign_cost">Total Campaign Cost</label>
+                        </div>                                                                                                                               
                     </div>
-                    <div class="input-field col s6">
-                        <input value="Enter" id="campaign_type" type="text" class="validate">
-                        <label class="active" for="campaign_type">Campaign Type</label>
-                    </div>  
-                    <div class="input-field col s6">
-                        <input value="Enter" id="communication_platform" type="text" class="validate">
-                        <label class="active" for="communication_platform">Communication Platform</label>
-                    </div>                                 
-                    <div class="input-field col s6">
-                        <input value="Enter" id="start_date" type="date" class="validate">
-                        <label class="active" for="start_date">Start Date</label>
-                    </div> 
-                    <div class="input-field col s6">
-                        <input value="Enter" id="end_date" type="date" class="validate">
-                        <label class="active" for="end_date">End Date</label>
-                    </div>  
-                    <div class="input-field col s6">
-                        <input value="Enter" id="marketing_qualified_leads" type="number" class="validate">
-                        <label class="active" for="marketing_qualified_leads">Marketing Qualified Leads</label>
-                    </div>    
-                    <div class="input-field col s6">
-                        <input value="Enter" id="sales_qualified_leads" type="number" class="validate">
-                        <label class="active" for="sales_qualified_leads">Sales Qualified Leads</label>
-                    </div>             
-                    <div class="input-field col s6">
-                        <input value="Campaign cost" id="total_campaign_cost" type="number" class="validate">
-                        <label class="active" for="total_campaign_cost">Total Campaign Cost</label>
-                    </div>                                                                                                                               
-                </div>
-                <div class="row center">
-                    <button type="submit" class="btn-large waves-effect waves-light blue-grey lighten-1">
-                        Save
-                    </button>
-                </div>         
+                    <div class="row center">
+                        <button type="submit" class="btn-large waves-effect waves-light blue-grey lighten-1">
+                            Save
+                        </button>
+                    </div>            
+                </form>    
             </div>
-        {% endif %}
-    {% endfor %}        
 {% endblock %}
