@@ -3,11 +3,13 @@
     <div id="index-banner" class="parallax-container">
         <div class="section no-pad-bot">
             <div class="container">
+                {% for account in accounts %}
+                {% if session.user == account.username %}                
                 <h1 class="header center blue-grey-text text-lighten-2">
                     Welcome
                 </h1>
                 <h1 class="header center blue-grey-text text-lighten-2">
-                    {{ username }}
+                    {{ account.username }}
                 </h1>                
             </div>
         </div>
@@ -32,30 +34,32 @@
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <input value="FlexLink AB" id="company_name" type="text" class="validate">
+                            <input value="{{ account.company_name }}" id="company_name" type="text" class="validate">
                             <label class="active" for="company_name">Company Name</label>
-                            </div>
-                            <div class="input-field col s6">
-                            <input value="Catherine Trevor" id="owner_name" type="text" class="validate">
+                          </div>
+                          <div class="input-field col s6">
+                            <input value="{{ account.first_name }} {{ account.last_name }} " id="owner_name" type="text" class="validate">
                             <label class="active" for="owner_name">Account Owner</label>
-                            </div>  
-                            <div class="input-field col s6">
-                            <input value="{{ username }}" id="username" type="text" class="validate">
+                          </div>  
+                          <div class="input-field col s6">
+                            <input value="{{ account.username }}" id="username" type="text" class="validate">
                             <label class="active" for="username">Username</label>
-                            </div>                                 
-                            <div class="input-field col s6">
-                            <input value="Sweden" id="country" type="text" class="validate">
+                          </div>                                 
+                          <div class="input-field col s6">
+                            <input value="{{ account.company_country_name }}" id="country" type="text" class="validate">
                             <label class="active" for="country">Country</label>
-                            </div> 
-                            <div class="input-field col s6">
-                            <input value="SEK" id="currency" type="text" class="validate">
+                          </div> 
+                          <div class="input-field col s6">
+                            <input value="{{ account.currency }}" id="currency" type="text" class="validate">
                             <label class="active" for="currency">Currency</label>
-                            </div>  
-                            <div class="input-field col s6">
-                            <input value="Manufacturing" id="industry" type="text" class="validate">
+                          </div>  
+                          <div class="input-field col s6">
+                            <input value="{{ account.company_industry }}" id="industry" type="text" class="validate">
                             <label class="active" for="industry">Industry</label>
-                            </div>                                                                                                      
-                    </div>                    
+                          </div>                                                                                                      
+                    </div>  
+                        {% endif %}
+                    {% endfor %}                  
                 </div>
                 <div class="col s12 m4">
                     <div class="row">

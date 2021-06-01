@@ -84,6 +84,12 @@ def sign_up():
     return render_template("sign_up.html")
 
 
+@app.route("/account_profile")
+def get_account_profile():
+    accounts = list(mongo.db.accounts.find())
+    return render_template("account.html", accounts=accounts)
+
+
 @app.route("/account<username>", methods=["GET", "POST"])
 def account(username):
     # grab the session user's username from db
