@@ -1,4 +1,39 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Create campaign</h1>
+    {% for campaign in campaigns %}
+    <div class="row">
+        <div class="input-field col s12">
+            <input value="Campaign 1" id="campaign_name" type="text" class="validate">
+            <label class="active" for="campaign_name">Campaign Name</label>
+        </div>
+        <div class="input-field col s6">
+            <input value="Product promotion" id="campaign_type" type="text" class="validate">
+            <label class="active" for="campaign_type">Campaign Type</label>
+        </div>  
+        <div class="input-field col s6">
+            <input value="Email" id="communication_platform" type="text" class="validate">
+            <label class="active" for="communication_platform">Communication Platform</label>
+        </div>                                 
+        <div class="input-field col s6">
+            <input value="01 06 2021" id="start_date" type="date" class="validate">
+            <label class="active" for="start_date">Start Date</label>
+        </div> 
+        <div class="input-field col s6">
+            <input value="01 07 2021" id="end_date" type="date" class="validate">
+            <label class="active" for="end_date">End Date</label>
+        </div>  
+        <div class="input-field col s6">
+            <input value="1000" id="total_campaign_cost" type="number" class="validate">
+            <label class="active" for="total_campaign_cost">Total Campaign Cost</label>
+        </div> 
+        <div class="input-field col s6">
+            <input value="20" id="marketing_qualified_leads" type="number" class="validate">
+            <label class="active" for="marketing_qualified_leads">Marketing Qualified Leads</label>
+        </div>    
+        <div class="input-field col s6">
+            <input value="7" id="sales_qualified_leads" type="number" class="validate">
+            <label class="active" for="sales_qualified_leads">Sales Qualified Leads</label>
+        </div>                                                                                                                               
+    </div>
+    {% endfor %}
 {% endblock %}

@@ -103,6 +103,7 @@ def admin():
 
 @app.route("/create_campaign")
 def create_campaign():
+    campaign = mongo.db.campaigns.find()
     return render_template("create_campaign.html")
 
 
