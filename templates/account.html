@@ -57,9 +57,7 @@
                             <input value="{{ account.company_industry }}" id="industry" type="text" class="validate">
                             <label class="active" for="industry">Industry</label>
                           </div>                                                                                                      
-                    </div>  
-                        {% endif %}
-                    {% endfor %}                  
+                    </div>   
                 </div>
                 <div class="col s12 m4">
                     <div class="row">
@@ -187,54 +185,56 @@
             <ul class="collapsible">
                 {% for campaign in campaigns %}
                     {% if session.user == campaign.owning_account %}                
-                        <li>
-                            <div class="collapsible-header">
-                                <i class="material-icons">expand_more</i>
-                                    {{ campaign.campaign_name }}            
-                            </div>
-                            <div class="collapsible-body">
-                                <div class="row">
+                            <li>
+                                <div class="collapsible-header">
+                                    <i class="material-icons">expand_more</i>
+                                        {{ campaign.campaign_name }}            
                                 </div>
-                                <div class="input-field col s12">
-                                    <input value="{{ campaign.campaign_name }}" id="campaign_name" type="text" class="validate">
-                                    <label for="campaign_name">Campaign Name</label>
-                               </div>
-                               <div class="input-field col s6">
-                                <input value ="{{ campaign.campaign_type }}" id="campaign_type" name="campaign_type" type="text" class="validate">
-                                <label class="active" for="campaign_type">Campaign Type</label>
-                            </div>  
-                            <div class="input-field col s6">
-                                <input id="communication_platform" name="communication_platform" type="text" class="validate">
-                                <label class="active" for="communication_platform">Communication Platform</label>
-                            </div>                                 
-                            <div class="input-field col s6">
-                                <input id="start_date" name="start_date" type="date" class=" datepicker validate">
-                                <label class="active" for="start_date">Start Date</label>
-                            </div> 
-                            <div class="input-field col s6">
-                                <input id="end_date" name="end_date" type="date" class=" datepicker validate">
-                                <label class="active" for="end_date">End Date</label>
-                            </div>  
-                            <div class="input-field col s6">
-                                <input id="marketing_qualified_leads" name="marketing_qualified_leads" type="number" class="validate">
-                                <label class="active" for="marketing_qualified_leads">Marketing Qualified Leads</label>
-                            </div>    
-                            <div class="input-field col s6">
-                                <input id="sales_qualified_leads" name="sales_qualified_leads" type="number" class="validate">
-                                <label class="active" for="sales_qualified_leads">Sales Qualified Leads</label>
-                            </div>             
-                            <div class="input-field col s6">
-                                <input id="total_campaign_cost" name="total_campaign_cost" type="number" class="validate">
-                                <label class="active" for="total_campaign_cost">Total Campaign Cost</label>
-                            </div>                                              
-                                <div class="row edit__campaign__icon">
-                                    <i class="material-icons">edit</i>
-                                    <i class="material-icons">delete_forever</i>                                 
-                                </div>                           
-                            </div>
-                        {% endif %}
-                    {% endfor %}
-                </li>
+                                <div class="collapsible-body">
+                                    <div class="row">
+                                        <div class="input-field col l6 s6">
+                                            <input value ="{{ campaign.campaign_type }}" id="campaign_type" name="campaign_type" type="text" class="validate">
+                                            <label class="active" for="campaign_type">Campaign Type</label>
+                                        </div>  
+                                        <div class="input-field col l6 s6">
+                                            <input value="{{ campaign.communication_platform }}" name="communication_platform" type="text" class="validate">
+                                            <label class="active" for="communication_platform">Communication Platform</label>
+                                        </div> 
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col l6 s6">
+                                            <input value="{{ campaign.start_date }}" name="start_date" type="date" class=" datepicker validate">
+                                            <label class="active" for="start_date">Start Date</label>
+                                        </div> 
+                                        <div class="input-field col l6 s6">
+                                            <input value="{{ campaign.end_date }}" name="end_date" type="date" class=" datepicker validate">
+                                            <label class="active" for="end_date">End Date</label>
+                                        </div>  
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col l3 s6">
+                                                <input value="{{ campaign.marketing_qualified_leads }}" name="marketing_qualified_leads" type="number" class="validate">
+                                                <label class="active" for="marketing_qualified_leads">Marketing Qualified Leads</label>
+                                        </div>    
+                                        <div class="input-field col l3 s6">
+                                                <input value="{{ campaign.sales_qualified_leads }}" name="sales_qualified_leads" type="number" class="validate">
+                                                <label class="active" for="sales_qualified_leads">Sales Qualified Leads</label>
+                                        </div>             
+                                        <div class="input-field col l3 s6">
+                                                <input value="{{ account.currency }} {{ campaign.total_campaign_cost }}" name="total_campaign_cost" type="text" class="validate">
+                                                <label class="active" for="total_campaign_cost">Total Campaign Cost</label>
+                                        </div>        
+                                    </div>
+                                    <div class="row edit__campaign__icon">
+                                        <i class="material-icons">edit</i>
+                                        <i class="material-icons">delete_forever</i>                                 
+                                    </div>                           
+                                </div>
+                            </li>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}                            
+                {% endfor %}                        
             </ul>
         </div>
     </div>
