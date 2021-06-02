@@ -142,7 +142,7 @@ def calculate_results():
 
         total_campaign_cost = int(request.form.get("total_campaign_cost"))
         mql = int(request.form.get("marketing_qualified_leads"))
-        sql = int(request.form.get("sales_qualified_leads"))        
+        sql = int(request.form.get("sales_qualified_leads"))
         calc_cost_mql = int(total_campaign_cost / mql)
         calc_cost_sql = int(total_campaign_cost / sql)
         calc_hit_rate = int(sql / mql * 100)
@@ -153,16 +153,23 @@ def calculate_results():
             "marketing_qualified_leads": request.form.get(
                 "marketing_qualified_leads"),
             "sales_qualified_leads": request.form.get(
-                "sales_qualified_leads"),                
+                "sales_qualified_leads"),
             "cost_per_marketing_lead": calc_cost_mql,
             "cost_per_sales_lead": calc_cost_sql,
-            "hit_rate": calc_hit_rate                        
+            "hit_rate": calc_hit_rate
         }
         mongo.db.calculations.insert_one(calculation)
         return redirect(url_for("get_account_profile"))
 
     calculations = mongo.db.calculations.find()
     return render_template('account.html', calculations=calculations)
+
+
+@app.route("/delete_campaign/<campaign_id>")
+def delete_campaign(campaign_id):
+    mongo.db.campaigns.remove({"_id": ObjectId(campaign_id)})
+    flash("Task deleted")
+    return redirect(url_for("get_account_profile"))
 
 
 @app.route("/log_out")

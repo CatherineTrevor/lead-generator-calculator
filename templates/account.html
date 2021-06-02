@@ -192,9 +192,9 @@
                                 </div>
                                 <div class="collapsible-body">
                                     <div class="row">
-                                        <div class="input-field col l6 s6">
-                                            <input value ="{{ campaign.campaign_type }}" id="campaign_type" name="campaign_type" type="text" class="validate">
-                                            <label class="active" for="campaign_type">Campaign Type</label>
+                                        <div class="col l6 s6">
+                                            <p value="{{ campaign.campaign_type }}" id="campaign_type" name="campaign_type" type="text" class="validate"></p>
+                                            <label for="campaign_type">Campaign Type</label>
                                         </div>  
                                         <div class="input-field col l6 s6">
                                             <input value="{{ campaign.communication_platform }}" name="communication_platform" type="text" class="validate">
@@ -245,10 +245,12 @@
                                             </form>
                                         {% endif %}
                                     {% endfor %}
-                                    <div class="row edit__campaign__icon">
-                                        <i class="material-icons">edit</i>
-                                        <i class="material-icons">delete_forever</i>                                 
-                                    </div>                           
+                                    {% if session.user == campaign.owning_account %}
+                                        <div class="row edit__campaign__icon">
+                                            <i class="material-icons">edit</i>
+                                            <a href="{{ url_for('delete_campaign', campaign_id=campaign._id) }}"><i class="material-icons">delete_forever</i></a>                                 
+                                        </div>
+                                    {% endif %}
                                 </div>
                             </li>
                             {% endif %}
