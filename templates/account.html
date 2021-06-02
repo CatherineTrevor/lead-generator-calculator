@@ -225,6 +225,16 @@
                                                 <label class="active" for="total_campaign_cost">Total Campaign Cost</label>
                                         </div>        
                                     </div>
+                                    {% for calculation in calculations %}
+                                        {% if session.user == calculation.owning_account and campaign.campaign_name == calculation.campaign_name %}
+                                            <div class="row">
+                                                <div class="input-field col l3 s6">
+                                                    <input value="{{ account.currency }} {{ calculation.cost_per_marketing_lead }}" name="cost_per_marketing_lead" type="text" class="validate">
+                                                    <label class="active" for="results">Cost per marketing lead</label>
+                                                </div>                                         
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
                                     <div class="row edit__campaign__icon">
                                         <i class="material-icons">edit</i>
                                         <i class="material-icons">delete_forever</i>                                 

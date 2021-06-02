@@ -88,8 +88,10 @@ def sign_up():
 def get_account_profile():
     accounts = list(mongo.db.accounts.find())
     campaigns = list(mongo.db.campaigns.find())
+    calculations = list(mongo.db.calculations.find())
     return render_template("account.html",
-                            accounts=accounts, campaigns=campaigns)
+                            accounts=accounts, campaigns=campaigns,
+                            calculations=calculations)
 
 
 @app.route("/account<username>", methods=["GET", "POST"])
