@@ -227,12 +227,22 @@
                                     </div>
                                     {% for calculation in calculations %}
                                         {% if session.user == calculation.owning_account and campaign.campaign_name == calculation.campaign_name %}
-                                            <div class="row">
-                                                <div class="input-field col l3 s6">
-                                                    <input value="{{ account.currency }} {{ calculation.cost_per_marketing_lead }}" name="cost_per_marketing_lead" type="text" class="validate">
-                                                    <label class="active" for="results">Cost per marketing lead</label>
-                                                </div>                                         
-                                            </div>
+                                            <form action="{{ url_for('calculate_results') }}" method="POST">
+                                                <div class="row">
+                                                    <div class="input-field col l3 s6">
+                                                        <input value="{{ account.currency }} {{ calculation.cost_per_marketing_lead }}" name="cost_per_marketing_lead" type="text" class="validate">
+                                                        <label class="active" for="cost_per_marketing_lead">Cost per marketing lead</label>
+                                                    </div>
+                                                    <div class="input-field col l3 s6">
+                                                        <input value="{{ account.currency }} {{ calculation.cost_per_sales_lead }}" name="cost_per_sales_lead" type="text" class="validate">
+                                                        <label class="active" for="cost_per_sales_lead">Cost per sales lead</label>
+                                                    </div>  
+                                                    <div class="input-field col l3 s6">
+                                                        <input value="{{ calculation.hit_rate }} %" name="hit_rate" type="text" class="validate">
+                                                        <label class="active" for="hit_rate">Hit rate</label>
+                                                    </div>                                                                                                                                                   
+                                                </div>
+                                            </form>
                                         {% endif %}
                                     {% endfor %}
                                     <div class="row edit__campaign__icon">
