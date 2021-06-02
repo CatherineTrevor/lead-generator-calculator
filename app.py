@@ -174,6 +174,10 @@ def delete_campaign(campaign_id):
 
 @app.route("/log_out")
 def log_out():
+    # remove user from session cookies
+    flash("You have been logged out")
+    # can also use session.clear()
+    session.pop("user")
     return redirect(url_for("log_in"))
 
 

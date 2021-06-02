@@ -23,12 +23,15 @@
           <i class="fas fa-database"></i>
         </a>
         <ul class="right hide-on-med-and-down">
-          <li><a class="nav-link white-text" href="{{ url_for('index') }}">Home</a></li>
-          <li><a class="nav-link white-text" href="{{ url_for('about') }}">About</a></li>
-          <li><a class="nav-link white-text" href="{{ url_for('benchmark_data') }}">Benchmark Data</a></li>
-          <li><a class="nav-link white-text" href="{{ url_for('log_in') }}">Log In</a></li>
-          <li><a class="nav-link white-text" href="{{ url_for('sign_up') }}">Sign Up</a></li> 
-          <li><a class="nav-link white-text" href="{{ url_for('log_out') }}">Log Out</a></li>                                        
+            <li><a class="nav-link white-text" href="{{ url_for('index') }}">Home</a></li>
+            <li><a class="nav-link white-text" href="{{ url_for('about') }}">About</a></li>
+            <li><a class="nav-link white-text" href="{{ url_for('benchmark_data') }}">Benchmark Data</a></li>
+          {% if session.user %}
+            <li><a class="nav-link white-text" href="{{ url_for('log_out') }}">Log Out</a></li>
+            {% else %}
+            <li><a class="nav-link white-text" href="{{ url_for('log_in') }}">Log In</a></li>
+            <li><a class="nav-link white-text" href="{{ url_for('sign_up') }}">Sign Up</a></li> 
+          {% endif %}
         </ul>
         <!--mobile navbar-->
         <ul id="nav-mobile" class="sidenav">
