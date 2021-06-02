@@ -87,7 +87,11 @@ def sign_up():
 @app.route("/account_profile")
 def get_account_profile():
     accounts = list(mongo.db.accounts.find())
-    return render_template("account.html", accounts=accounts)
+    campaigns = list(mongo.db.campaigns.find())
+    calculations = list(mongo.db.calculations.find())
+    return render_template("account.html",
+                            accounts=accounts, campaigns=campaigns,
+                            calculations=calculations)
 
 
 @app.route("/account<username>", methods=["GET", "POST"])
@@ -105,12 +109,6 @@ def account(username):
 @app.route("/admin")
 def admin():
     return render_template("admin.html")
-
-
-@app.route("/account_profile")
-def get_account_profile():
-    accounts = list(mongo.db.accounts.find())
-    return render_template("account.html", accounts=accounts)
 
 
 @app.route("/create_campaign", methods=["GET", "POST"])
@@ -131,10 +129,40 @@ def create_campaign():
             "owning_account": session["user"]
         }
         mongo.db.campaigns.insert_one(campaign)
+        calculate_results()
         flash("Task succesfully added")
         return redirect(url_for("get_account_profile"))
 
     return render_template("create_campaign.html")
+
+
+@app.route("/calculate", methods=["GET", "POST"])
+def calculate_results():
+    if request.method == "POST":
+
+        total_campaign_cost = int(request.form.get("total_campaign_cost"))
+        mql = int(request.form.get("marketing_qualified_leads"))
+        sql = int(request.form.get("sales_qualified_leads"))        
+        calc_cost_mql = int(total_campaign_cost / mql)
+        calc_cost_sql = int(total_campaign_cost / sql)
+        calc_hit_rate = int(sql / mql * 100)
+
+        calculation = {
+            "owning_account": session["user"],
+            "campaign_name": request.form.get("campaign_name"),
+            "marketing_qualified_leads": request.form.get(
+                "marketing_qualified_leads"),
+            "sales_qualified_leads": request.form.get(
+                "sales_qualified_leads"),                
+            "cost_per_marketing_lead": calc_cost_mql,
+            "cost_per_sales_lead": calc_cost_sql,
+            "hit_rate": calc_hit_rate                        
+        }
+        mongo.db.calculations.insert_one(calculation)
+        return redirect(url_for("get_account_profile"))
+
+    calculations = mongo.db.calculations.find()
+    return render_template('account.html', calculations=calculations)
 
 
 @app.route("/log_out")
