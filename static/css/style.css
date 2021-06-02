@@ -29,6 +29,11 @@ p {
     width: 100%;
   }
 
+.parallax-container .parallax img {
+  transform: translate3d(-50%, 488.847px, 0px);
+  opacity: 1;
+} 
+
 .icons {
   color: white;
   font-size: 50px;
