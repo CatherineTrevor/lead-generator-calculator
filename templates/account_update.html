@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+    {% block content %}
+    <div class="row">
+        <form class="col s12" method="POST" action="{{ url_for('account_update', account_id=account._id) }}">        
+            <div class="col s12 m4">
+                <div class="row">
+                    <div class="icon-block">
+                        <h2 class="center blue-grey-text">
+                            <i class="material-icons">group</i>
+                        </h2>
+                        <h5 class="center">
+                            Account info table
+                        </h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input value="{{ account.company_name }}" name="company_name" id="company_name" type="text" class="validate">
+                        <label class="active" for="company_name">Company Name</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input value="{{ account.first_name }} {{ account.last_name }} " name="owner_name" id="owner_name" type="text" class="validate">
+                        <label class="active" for="owner_name">Account Owner</label>
+                    </div>                                
+                    <div class="input-field col s6">
+                        <input value="{{ account.company_country_name }}" name="company_country_name" id="country" type="text" class="validate">
+                        <label class="active" for="company_country_name">Country</label>
+                    </div> 
+                    <div class="input-field col s6">
+                        <input value="{{ account.currency }}" name="currency" id="currency" type="text" class="validate">
+                        <label class="active" for="currency">Currency</label>
+                    </div>  
+                    <div class="input-field col s6">
+                        <input value="{{ account.company_industry }}" name="company_industry" id="company_industry" type="text" class="validate">
+                        <label class="active" for="company_industry">Industry</label>
+                    </div>                                                                                                      
+                </div>
+                <div class="row">
+                    <div class="col s12 center-align">
+                        <a href="{{ url_for('get_account_profile') }}" class="btn-large red text-shadow">
+                            Cancel changes <i class="fas fa-times-circle right"></i>
+                        </a>
+                        <button type="submit" class="btn-large red darken-1 text-shadow">                          
+                            Save changes <i class="fas fa-edit right"></i>
+                        </button>
+                    </div>
+                </div>                
+            </form>   
+        </div>
+    {% endblock %}
