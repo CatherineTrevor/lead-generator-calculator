@@ -179,11 +179,44 @@ def calculate_results():
             "cost_per_sales_lead": calc_cost_sql,
             "hit_rate": calc_hit_rate
         }
+        existing_campaign = mongo.db.campaigns.find_one(
+            {"_id": request.form.get("_id")})
+
+        if existing_campaign:
+            mongo.db.calculations.update(calculation)
+            return redirect(url_for("get_account_profile"))
+
         mongo.db.calculations.insert_one(calculation)
         return redirect(url_for("get_account_profile"))
 
     calculations = mongo.db.calculations.find()
     return render_template('account.html', calculations=calculations)
+
+
+@app.route("/edit_campaign/<campaign_id>", methods=["GET", "POST"])
+def edit_campaign(campaign_id):
+    if request.method == "POST":
+        submit = {
+            "campaign_name": request.form.get("campaign_name"),
+            "campaign_type": request.form.get("campaign_type"),
+            "communication_platform": request.form.get(
+                "communication_platform"),
+            "start_date": request.form.get("start_date"),
+            "end_date": request.form.get("end_date"),
+            "marketing_qualified_leads": request.form.get(
+                "marketing_qualified_leads"),
+            "sales_qualified_leads": request.form.get("sales_qualified_leads"),
+            "total_campaign_cost": request.form.get("total_campaign_cost"),
+            "owning_account": session["user"]
+        }
+        calculate_results()
+        mongo.db.campaigns.update({"_id": ObjectId(campaign_id)}, submit)
+        flash("Task successfully updated")
+        return redirect(url_for("get_account_profile"))
+
+    campaign = mongo.db.campaigns.find_one({"_id": ObjectId(campaign_id)})
+
+    return render_template("edit_campaign.html", campaign=campaign)
 
 
 @app.route("/delete_campaign/<campaign_id>")
