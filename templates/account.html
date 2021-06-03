@@ -32,33 +32,36 @@
                             </h5>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row">                    
                         <div class="input-field col s12">
-                            <input value="{{ account.company_name }}" id="company_name" type="text" class="validate">
+                            <input value="{{ account.company_name }}" id="company_name" type="text" class="validate" readonly>
                             <label class="active" for="company_name">Company Name</label>
                           </div>
                           <div class="input-field col s6">
-                            <input value="{{ account.first_name }} {{ account.last_name }} " id="owner_name" type="text" class="validate">
+                            <input value="{{ account.first_name }} {{ account.last_name }} " id="owner_name" type="text" class="validate" readonly>
                             <label class="active" for="owner_name">Account Owner</label>
                           </div>  
                           <div class="input-field col s6">
-                            <input value="{{ account.username }}" id="username" type="text" class="validate">
+                            <input value="{{ account.username }}" id="username" type="text" class="validate" readonly>
                             <label class="active" for="username">Username</label>
                           </div>                                 
                           <div class="input-field col s6">
-                            <input value="{{ account.company_country_name }}" id="country" type="text" class="validate">
+                            <input value="{{ account.company_country_name }}" id="country" type="text" class="validate" readonly>
                             <label class="active" for="country">Country</label>
                           </div> 
                           <div class="input-field col s6">
-                            <input value="{{ account.currency }}" id="currency" type="text" class="validate">
+                            <input value="{{ account.currency }}" id="currency" type="text" class="validate" readonly>
                             <label class="active" for="currency">Currency</label>
                           </div>  
                           <div class="input-field col s6">
-                            <input value="{{ account.company_industry }}" id="industry" type="text" class="validate">
+                            <input value="{{ account.company_industry }}" id="industry" type="text" class="validate" readonly>
                             <label class="active" for="industry">Industry</label>
                           </div>                                                                                                      
-                    </div>   
-                </div>
+                    </div> 
+                    <div class="row center">
+                        <a href="{{ url_for('account_update', account_id=account._id) }}" id="download-button" class="btn-large waves-effect waves-light blue-grey lighten-1">Edit Account Info</a>   
+                    </div>
+                </div>            
                 <div class="col s12 m4">
                     <div class="row">
                         <div class="icon-block">
@@ -77,7 +80,7 @@
                                     No of open campaigns
                                 </th>
                                 <td>
-                                    10
+                                    {{ account.total_campaigns }}
                                     <i class="tiny material-icons">lock</i>                                        
                                 </td>
                             </tr>
@@ -142,8 +145,7 @@
                     </div>
                     <div class="row center">
                         <a href="{{ url_for('create_campaign') }}" id="download-button" class="btn-large waves-effect waves-light blue-grey lighten-1">
-                            Create new campaign
-                            <i class="tiny material-icons">edit</i>                                  
+                            Create new campaign                              
                         </a>
                     </div>
                     <div class="row">
@@ -192,9 +194,9 @@
                                 </div>
                                 <div class="collapsible-body">
                                     <div class="row">
-                                        <div class="input-field col l6 s6">
-                                            <input value ="{{ campaign.campaign_type }}" id="campaign_type" name="campaign_type" type="text" class="validate">
-                                            <label class="active" for="campaign_type">Campaign Type</label>
+                                        <div class="col l6 s6">
+                                            <p value="{{ campaign.campaign_type }}" id="campaign_type" name="campaign_type" type="text" class="validate"></p>
+                                            <label for="campaign_type">Campaign Type</label>
                                         </div>  
                                         <div class="input-field col l6 s6">
                                             <input value="{{ campaign.communication_platform }}" name="communication_platform" type="text" class="validate">
@@ -245,10 +247,12 @@
                                             </form>
                                         {% endif %}
                                     {% endfor %}
-                                    <div class="row edit__campaign__icon">
-                                        <i class="material-icons">edit</i>
-                                        <i class="material-icons">delete_forever</i>                                 
-                                    </div>                           
+                                    {% if session.user == campaign.owning_account %}
+                                        <div class="row edit__campaign__icon">
+                                            <i class="material-icons">edit</i>
+                                            <a href="{{ url_for('delete_campaign', campaign_id=campaign._id) }}"><i class="material-icons">delete_forever</i></a>                                 
+                                        </div>
+                                    {% endif %}
                                 </div>
                             </li>
                             {% endif %}

@@ -106,6 +106,27 @@ def account(username):
     return redirect(url_for("log_in"))
 
 
+@app.route("/account_update/<account_id>", methods=["GET", "POST"])
+def account_update(account_id):
+    if request.method == "POST":
+        submit = {
+            "company_name": request.form.get("company_name"),
+            "first_name": request.form.get("first_name"),
+            "last_name": request.form.get("last_name"),
+            "company_country_name": request.form.get("company_country_name"),
+            "company_industry": request.form.get("company_industry"),
+            "currency": request.form.get("currency"),
+            "username": session["user"]
+        }
+        mongo.db.accounts.update({"_id": ObjectId(account_id)}, submit)
+        flash("Account successfully updated")
+        return redirect(url_for("get_account_profile"))
+
+    account = mongo.db.accounts.find_one({"_id": ObjectId(account_id)})
+
+    return render_template("account_update.html", account=account)
+
+
 @app.route("/admin")
 def admin():
     return render_template("admin.html")
@@ -142,7 +163,7 @@ def calculate_results():
 
         total_campaign_cost = int(request.form.get("total_campaign_cost"))
         mql = int(request.form.get("marketing_qualified_leads"))
-        sql = int(request.form.get("sales_qualified_leads"))        
+        sql = int(request.form.get("sales_qualified_leads"))
         calc_cost_mql = int(total_campaign_cost / mql)
         calc_cost_sql = int(total_campaign_cost / sql)
         calc_hit_rate = int(sql / mql * 100)
@@ -153,10 +174,10 @@ def calculate_results():
             "marketing_qualified_leads": request.form.get(
                 "marketing_qualified_leads"),
             "sales_qualified_leads": request.form.get(
-                "sales_qualified_leads"),                
+                "sales_qualified_leads"),
             "cost_per_marketing_lead": calc_cost_mql,
             "cost_per_sales_lead": calc_cost_sql,
-            "hit_rate": calc_hit_rate                        
+            "hit_rate": calc_hit_rate
         }
         mongo.db.calculations.insert_one(calculation)
         return redirect(url_for("get_account_profile"))
@@ -165,8 +186,19 @@ def calculate_results():
     return render_template('account.html', calculations=calculations)
 
 
+@app.route("/delete_campaign/<campaign_id>")
+def delete_campaign(campaign_id):
+    mongo.db.campaigns.remove({"_id": ObjectId(campaign_id)})
+    flash("Task deleted")
+    return redirect(url_for("get_account_profile"))
+
+
 @app.route("/log_out")
 def log_out():
+    # remove user from session cookies
+    flash("You have been logged out")
+    # can also use session.clear()
+    session.pop("user")
     return redirect(url_for("log_in"))
 
 
