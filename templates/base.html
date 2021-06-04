@@ -23,12 +23,15 @@
           <i class="fas fa-database"></i>
         </a>
         <ul class="right hide-on-med-and-down">
-          <li><a class="nav-link white-text" href="{{ url_for('index') }}">Home</a></li>
-          <li><a class="nav-link white-text" href="{{ url_for('about') }}">About</a></li>
-          <li><a class="nav-link white-text" href="{{ url_for('benchmark_data') }}">Benchmark Data</a></li>
-          <li><a class="nav-link white-text" href="{{ url_for('log_in') }}">Log In</a></li>
-          <li><a class="nav-link white-text" href="{{ url_for('sign_up') }}">Sign Up</a></li> 
-          <li><a class="nav-link white-text" href="{{ url_for('log_out') }}">Log Out</a></li>                                        
+            <li><a class="nav-link white-text" href="{{ url_for('index') }}">Home</a></li>
+            <li><a class="nav-link white-text" href="{{ url_for('about') }}">About</a></li>
+            <li><a class="nav-link white-text" href="{{ url_for('benchmark_data') }}">Benchmark Data</a></li>
+          {% if session.user %}
+            <li><a class="nav-link white-text" href="{{ url_for('log_out') }}">Log Out</a></li>
+            {% else %}
+            <li><a class="nav-link white-text" href="{{ url_for('log_in') }}">Log In</a></li>
+            <li><a class="nav-link white-text" href="{{ url_for('sign_up') }}">Sign Up</a></li> 
+          {% endif %}
         </ul>
         <!--mobile navbar-->
         <ul id="nav-mobile" class="sidenav">
@@ -40,16 +43,27 @@
     <!--main content-->
       {% block content %}
       {% endblock%}
+      <section>
+        <!--flash messages-->
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="row flashes">
+                        <h4 class="red lighten-4 center-align">{{ message }}</h4>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </section>
     <!--floating action button: contact-->
     <div class="fixed-action-btn">
-      <a class="btn-floating btn-large red">
+      <a class="btn-floating btn-large orange">
         <i class="large material-icons">mode_edit</i>
       </a>
       <ul>
-        <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
-        <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
-        <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
-        <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
+        <li><a href="{{ url_for('benchmark_data') }}" title="Go to Benchmark data" class="btn-floating orange lighten-3"><i class="material-icons">insert_chart</i></a></li>        
+        <li><a href="{{ url_for('log_in') }}" title="Log In to your account" class="btn-floating orange lighten-2"><i class="material-icons">account_circle</i></a></li>        
+        <li><a class="btn-floating orange lighten-1" title="Get in touch"><i class="material-icons">mail</i></a></li>        
       </ul>
     </div>
     <!--footer-->

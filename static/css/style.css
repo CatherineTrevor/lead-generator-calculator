@@ -41,10 +41,34 @@ p {
   text-align: center;
 }
 
+.account__table {
+  margin: 0 auto;
+  width: 80%;
+}
+
+.account__table tr {
+  border-bottom: 1px solid #9e9e9e;
+}
+
+.edit__campaign__icon {
+  text-align: right;
+}
+
+.edit__campaign__icon .material-icons {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
 .fa-database {
   color:white;
   font-size: 30px;
   margin: 0 auto;
+}
+
+/***Contact form***/
+
+.container__signup__form {
+  width: 30%;
 }
 
 @media only screen and (max-width : 992px) {
