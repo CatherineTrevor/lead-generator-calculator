@@ -60,6 +60,14 @@ def log_in():
 
     return render_template("log_in.html")
 
+@app.route("/log_out")
+def log_out():
+    # remove user from session cookies
+    flash("See you again soon!")
+    # can also use session.clear()
+    session.pop("user")
+    return redirect(url_for("log_in"))
+
 
 @app.route("/sign_up", methods=["GET", "POST"])
 def sign_up():
@@ -132,11 +140,6 @@ def account_update(account_id):
     return render_template("account_update.html", account=account)
 
 
-@app.route("/admin")
-def admin():
-    return render_template("admin.html")
-
-
 @app.route("/create_campaign", methods=["GET", "POST"])
 def create_campaign():
     if request.method == "POST":
@@ -198,13 +201,14 @@ def delete_campaign(campaign_id):
     return redirect(url_for("get_account_profile"))
 
 
-@app.route("/log_out")
-def log_out():
-    # remove user from session cookies
-    flash("You have been logged out")
-    # can also use session.clear()
-    session.pop("user")
-    return redirect(url_for("log_in"))
+@app.route("/contact_us")
+def contact_us():
+    return render_template("contact_us.html")
+
+
+@app.route("/admin")
+def admin():
+    return render_template("admin.html")
 
 
 if __name__ == "__main__":
