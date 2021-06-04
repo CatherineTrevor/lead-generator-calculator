@@ -201,8 +201,20 @@ def delete_campaign(campaign_id):
     return redirect(url_for("get_account_profile"))
 
 
-@app.route("/contact_us")
+@app.route("/contact_us", methods=["GET", "POST"])
 def contact_us():
+    if request.method == "POST":
+        message = {
+            "contact_name": request.form.get("contact_name"),
+            "company_name": request.form.get("company_name"),
+            "email_address": request.form.get("email_address"),
+            "phone_number": request.form.get("phone_numer"),
+            "message": request.form.get("message"),
+        }
+        mongo.db.contacts.insert_one(message)
+        flash("We have received your message")
+        return redirect(url_for("contact_us"))
+
     return render_template("contact_us.html")
 
 

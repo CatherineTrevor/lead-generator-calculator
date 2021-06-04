@@ -31,17 +31,17 @@
                             <label class="active" for="company_name">Company Name</label>
                         </div>                                
                         <div class="input-field col s6">
-                            <input name="email_address" id="email_address" type="text" class="validate" required>
+                            <input name="email_address" id="email_address" type="email" class="validate" required>
                             <label class="active" for="email_address">Email address</label>
                         </div> 
                         <div class="input-field col s6">
-                            <input name="phone_number" id="phone_number" type="text" class="validate">
+                            <input name="phone_number" id="phone_number" type="tel" class="validate">
                             <label class="active" for="phone_number">Phone number</label>
                         </div>  
                         <div class="input-field col s12">
-                            <input name="message" id="message" textarea rows="10" cols="30" class="validate">
-                            <label class="active" for="message">Message</label>
-                        </div>                                                                                                      
+                            <textarea id="message" name="message" class="materialize-textarea" data-length="200" required></textarea>
+                            <label for="message">Message</label>
+                        </div>                                                                                                 
                     </div>
                     <div class="row center">
                         <div class="col s12 center-align">
