@@ -38,16 +38,16 @@ def benchmark_data():
 def log_in():
     if request.method == "POST":
         # check if username exists in db
-        existing_user = mongo.db.users.find_one(
-            {"username": request.form.get("username").lower()})
+        existing_user = mongo.db.accounts.find_one(
+            {"email_address": request.form.get("email_address").lower()})
 
         if existing_user:
             # ensure hashed password matches user input
             if check_password_hash(
                 existing_user["password"], request.form.get("password")):
-                session["user"] = request.form.get("username").lower()
+                session["user"] = request.form.get("email_address").lower()
                 return redirect(url_for(
-                    "account", username=session["user"]))
+                    "account", email_address=session["user"]))
             else:
                 # invalid password match
                 flash("Incorrect Username and/or Password")
@@ -65,22 +65,27 @@ def log_in():
 def sign_up():
     if request.method == "POST":
         # check if username exists in database
-        existing_user = mongo.db.users.find_one(
-            {"username": request.form.get("username")})
+        existing_user = mongo.db.accounts.find_one(
+            {"email_address": request.form.get("email_address")})
 
         if existing_user:
             flash("Username already exists")
             return redirect(url_for("sign_up"))
 
         register = {
-            "username": request.form.get("username"),
-            "password": generate_password_hash(request.form.get("password"))
+            "email_address": request.form.get("email_address"),
+            "password": generate_password_hash(request.form.get("password")),
+            "company_name": "Enter your company name",
+            "account_owner": "Please update your details!",
+            "company_country_name": "Select your country",
+            "company_industry": "Select your industry",
+            "currency": "Your currency"
         }
-        mongo.db.users.insert_one(register)
+        mongo.db.accounts.insert_one(register)
 
         # put the new user into 'session' cookie
-        session["user"] = request.form.get("username")
-        return redirect(url_for("account", username=session["user"]))
+        session["user"] = request.form.get("email_address")
+        return redirect(url_for("account", email_address=session["user"]))
     return render_template("sign_up.html")
 
 
@@ -94,11 +99,11 @@ def get_account_profile():
                             calculations=calculations)
 
 
-@app.route("/account<username>", methods=["GET", "POST"])
-def account(username):
+@app.route("/account<email_address>", methods=["GET", "POST"])
+def account(email_address):
     # grab the session user's username from db
-    username = mongo.db.users.find_one(
-        {"username": session["user"]})["username"]
+    email_address = mongo.db.accounts.find_one(
+        {"email_address": session["user"]})["email_address"]
 
     if session['user']:
         return redirect(url_for("get_account_profile"))
@@ -111,12 +116,12 @@ def account_update(account_id):
     if request.method == "POST":
         submit = {
             "company_name": request.form.get("company_name"),
-            "first_name": request.form.get("first_name"),
-            "last_name": request.form.get("last_name"),
+            "account_owner": request.form.get("account_owner"),
             "company_country_name": request.form.get("company_country_name"),
             "company_industry": request.form.get("company_industry"),
             "currency": request.form.get("currency"),
-            "username": session["user"]
+            "password": session["user"],
+            "email_address": session["user"]
         }
         mongo.db.accounts.update({"_id": ObjectId(account_id)}, submit)
         flash("Account successfully updated")
