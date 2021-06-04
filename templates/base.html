@@ -8,9 +8,9 @@
     <link href="{{ url_for('static', filename='css/style.css') }}" type="text/css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/314e917aa2.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous" defer></script>
-    <script src="{{ url_for('static', filename='js/materialize.js') }}" defer></script>  
+    <script src="{{ url_for('static', filename='js/materialize.js') }}" defer></script> 
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js" defer></script>     
     <script src="{{ url_for('static', filename='js/init.js') }}" defer></script>
-    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>    
     {% block scripts %}
     {% endblock %}    
     <title>Lead Generator Calculator</title> 
@@ -27,6 +27,7 @@
             <li><a class="nav-link white-text" href="{{ url_for('about') }}">About</a></li>
             <li><a class="nav-link white-text" href="{{ url_for('benchmark_data') }}">Benchmark Data</a></li>
           {% if session.user %}
+          <li><a class="nav-link white-text" href="{{ url_for('get_account_profile') }}">My Account</a></li>          
             <li><a class="nav-link white-text" href="{{ url_for('log_out') }}">Log Out</a></li>
             {% else %}
             <li><a class="nav-link white-text" href="{{ url_for('log_in') }}">Log In</a></li>
@@ -40,21 +41,21 @@
         <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       </div>
     </nav>
+    <section>
+      <!--flash messages-->
+      {% with messages = get_flashed_messages() %}
+          {% if messages %}
+              {% for message in messages %}
+                  <div class="row flashes">
+                      <h3 class="blue-grey-text lighten-4 center-align">{{ message }}</h4>
+                  </div>
+              {% endfor %}
+          {% endif %}
+      {% endwith %}
+  </section>
     <!--main content-->
       {% block content %}
       {% endblock%}
-      <section>
-        <!--flash messages-->
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                {% for message in messages %}
-                    <div class="row flashes">
-                        <h4 class="red lighten-4 center-align">{{ message }}</h4>
-                    </div>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
-    </section>
     <!--floating action button: contact-->
     <div class="fixed-action-btn">
       <a class="btn-floating btn-large orange">
@@ -63,7 +64,7 @@
       <ul>
         <li><a href="{{ url_for('benchmark_data') }}" title="Go to Benchmark data" class="btn-floating orange lighten-3"><i class="material-icons">insert_chart</i></a></li>        
         <li><a href="{{ url_for('log_in') }}" title="Log In to your account" class="btn-floating orange lighten-2"><i class="material-icons">account_circle</i></a></li>        
-        <li><a class="btn-floating orange lighten-1" title="Get in touch"><i class="material-icons">mail</i></a></li>        
+        <li><a href="{{ url_for('contact_us') }}" class="btn-floating orange lighten-1" title="Get in touch"><i class="material-icons">mail</i></a></li>        
       </ul>
     </div>
     <!--footer-->
@@ -74,7 +75,7 @@
             <h5 class="white-text">Lead Generation Calculator</h5>
             <p class="grey-text text-lighten-4">
               Lead Generation Calculator has been developed to support those involved in strategic marketing make smarter decisions, using real data.
-              If you have any comments or suggestions, get in touch.
+              If you have any comments or suggestions, <a href="{{ url_for('contact_us') }}">get in touch.</a>
             </p>
           </div>
           <div class="col l6 sm12">
