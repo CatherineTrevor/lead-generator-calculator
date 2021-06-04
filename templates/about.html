@@ -1,4 +1,184 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>About</h1>
+    <div id="index-banner" class="parallax-container">
+        <div class="section no-pad-bot">
+            <div class="container">
+                <h1 class="header center blue-grey-text text-lighten-2">
+                    About
+                </h1>
+                <div class="row center">
+                    <h5 class="header col s12 light">
+                        Make strategic marketing decisions based on real data
+                    </h5>
+                </div>
+            </div>
+        </div>
+        <div class="parallax">
+            <img src="{{ url_for('static', filename='assets/backgroundImage3.jpg') }}" alt="Data background image 3 sourced from Pixaby">
+        </div>
+    </div>
+    <div class="container">
+        <div class="section">
+            <!--   Icon Section   -->
+            <div class="row">
+                <div class="col s12 m4">
+                    <div class="icon-block">
+                        <h2 class="center blue-grey-text">
+                            <i class="material-icons">flash_on</i>
+                        </h2>
+                        <p class="light">
+                            How often have you thought that you were getting enquiries or website visits from a campaign, but then weeks or months later, wondered
+                            where the business went?
+                        </p>
+                        <p class="light">
+                            Tracking your campaigns and the enquries and actual sales it yields, can help you understand a bit more about what is happening with your 
+                            lead conversion. 
+                        </p>
+                        <p class="light">
+                            Got questions? Take a look at the FAQs below.
+                        </p>                        
+                    </div>
+                </div>
+                <div class="col s12 m4">
+                    <div class="icon-block">
+                        <h2 class="center blue-grey-text">
+                            <i class="material-icons">settings</i>
+                        </h2>
+                        <p class="light">
+                            An activity that yields a high number of leads, might not actually provide you with the best return on your investment if those leads do not convert
+                            into sales.
+                        </p>
+                        <p class="light">
+                            It is important in strategic marketing to plan your spend based on what will provide with you the best return on investment. Having a clear overview
+                            of your campaigns will help you acheive this.
+                        </p>                        
+                    </div>
+                </div>
+                <div class="col s12 m4">
+                    <div class="icon-block">
+                        <h2 class="center blue-grey-text">
+                            <i class="material-icons">equalizer</i></h2>
+                        <p class="light">
+                            Comparing data from companies within your industry can provide a strong insight into other communication platforms to consider as part
+                            of your marketing planning.
+                        </p>
+                        <p class="light">
+                            All data provided is kept strictly confidential. Benchmark data is an average based on the many companies that use the site, most of which are 
+                            small-medium enterprises, without access to high-cost, advanced customer-relationship management tools.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="parallax-container valign-wrapper">
+        <div class="section no-pad-bot">
+            <div class="container">
+                <div class="row center">
+                    <h4 class="header col s12 light">
+                        FAQs
+                    </h4>
+                </div>          
+            </div>
+        </div>
+        <div class="parallax">
+            <img src="{{ url_for('static', filename='assets/backgroundImage4.jpg') }}" alt="Data background image 4 sourced from Pixaby">
+        </div>
+    </div>           
+    <div class="container">
+        <div class="section">
+            <ul class="collapsible">
+                <li>
+                    <div class="collapsible-header">
+                      <i class="material-icons">question_answer</i>
+                      How much does an account cost?
+                    </div>
+                    <div class="collapsible-body">
+                        <p class="light">
+                            Nothing! We are a small start-up and at the moment the service is completely free!
+                        </p>
+                    </div>
+                </li>
+                <li>
+                    <div class="collapsible-header">
+                      <i class="material-icons">question_answer</i>
+                      Is my company data secure?
+                    </div>
+                    <div class="collapsible-body">
+                        <p class="light">
+                            Yes, completely. The data is kept in a secure database on another server, linked to the website.
+                            All data entered into the site is used for the <a href="{{ url_for('benchmark_data') }}">Benchmark data</a> shown. It is an average 
+                            per industry and company details are never displayed.
+                        </p>                        
+                    </div>
+                </li>
+                <li>
+                    <div class="collapsible-header">
+                      <i class="material-icons">question_answer</i>
+                      My marketing team works across multiple industries and countries; how is this managed?
+                    </div>
+                    <div class="collapsible-body">
+                        <p class="light">
+                            The site has been developed for small-medium enterprises who are less likely to work across multiple industries and/or countries, therefore 
+                            at the moment account profiles are one industry/country only; it is not possible to have multiple industries or countries per account.
+                        </p>
+                        <p class="light">
+                            The best way to monitor multiple industries and/or countries is by having one account for each.
+                        </p>                        
+                    </div>
+                </li> 
+                <li>
+                    <div class="collapsible-header">
+                      <i class="material-icons">question_answer</i>
+                      How do you differentiate between marketing and sales leads?
+                    </div>
+                    <div class="collapsible-body">
+                        <p class="light">
+                            This depends on your business model, however we suggest the basic distinction is that marketing leads are initial enquiries, that need more 
+                            information, or communication before they convert into a sales lead.
+                        </p>
+                        <p class="light">
+                            A sales lead is a more positive enquiry that has higher possibility of converting into business.
+                        </p>   
+                        <p class="light">
+                            A transaction is where the sales lead has turned into a sale and money has exchanged hands.
+                        </p>    
+                        <p class="light">
+                            Take into account that the flow of leads from marketing, through sales into a transation is not linear and will depend very much on the business, 
+                            industry and whether you are B2B or B2C for example.
+                        </p>                                                                        
+                    </div>
+                </li>
+                <li>
+                    <div class="collapsible-header">
+                      <i class="material-icons">question_answer</i>
+                      Do you offer marketing help?
+                    </div>
+                    <div class="collapsible-body">
+                        <p class="light">
+                            No we don't - but there are plenty of resouces out there to help!
+                        </p>
+                        <p class="light">
+                            Here are a few to get you started...
+                        </p>   
+                        <p class="light">
+                            <a href="https://www.leadsquared.com/what-is-a-lead/" target="_blank">
+                                Lead Squared
+                            </a>  
+                        </p>
+                        <p class="light">
+                            <a href="https://www.toolshero.com/marketing/marketing-strategy/" target="_blank">
+                                Tools Hero
+                            </a>
+                        </p>
+                        <p class="light">
+                            <a href="https://www.tableau.com/learn/articles/marketing-qualified-lead" target="_blank">
+                                Tableau
+                            </a> 
+                        </p>                             
+                    </div>
+                </li>                                                                            
+              </ul>
+        </div>
+    </div>
 {% endblock %}
