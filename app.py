@@ -219,24 +219,40 @@ def contact_us():
     return render_template("contact_us.html")
 
 
-@app.route("/admin")
-def admin():
-    categories = list(mongo.db.categories.find().sort("category_name", 1))
-    return render_template("admin.html", categories=categories) 
-
-
 @app.route("/create_category", methods=["GET", "POST"])
 def create_category():
     if request.method == "POST":
         category = {
-            "category_name": request.form.get("category_name"),
             "category_type": request.form.get("category_type"),
+            "category_name": request.form.get("category_name"),
         }
         mongo.db.categories.insert_one(category)
         flash("Category succesfully added")
         return redirect(url_for("admin"))
 
-    return render_template("create_category.html")
+    categories = mongo.db.categories.find().sort("category_name", 1)
+    return render_template("create_category.html", categories=categories)
+
+
+@app.route("/admin")
+def admin():
+    categories = list(mongo.db.categories.find().sort("category_name", 1))
+    return render_template("admin.html", categories=categories)
+
+
+@app.route("/edit_category/<category_id>", methods=["GET", "POST"])
+def edit_category(category_id):
+    if request.method == "POST":
+        submit = {
+            "category_name": request.form.get("category_name"),
+            "category_type": request.form.get("category_type")
+        }
+        mongo.db.categories.update({"_id": ObjectId(category_id)}, submit)
+        flash("Category successfully updated")
+        return redirect(url_for("admin"))
+
+    category = mongo.db.categories.find_one({"_id": ObjectId(category_id)})
+    return render_template("edit_category.html", category=category)
 
 
 if __name__ == "__main__":
