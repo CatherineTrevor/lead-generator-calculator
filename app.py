@@ -221,7 +221,8 @@ def contact_us():
 
 @app.route("/admin")
 def admin():
-    return render_template("admin.html")
+    categories = list(mongo.db.categories.find().sort("category_name", 1))
+    return render_template("admin.html", categories=categories) 
 
 
 @app.route("/create_category", methods=["GET", "POST"])
@@ -233,7 +234,7 @@ def create_category():
         }
         mongo.db.categories.insert_one(category)
         flash("Category succesfully added")
-        return redirect(url_for("create_category"))
+        return redirect(url_for("admin"))
 
     return render_template("create_category.html")
 
