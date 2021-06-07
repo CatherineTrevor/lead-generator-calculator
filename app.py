@@ -60,6 +60,7 @@ def log_in():
 
     return render_template("log_in.html")
 
+
 @app.route("/log_out")
 def log_out():
     # remove user from session cookies
@@ -221,6 +222,20 @@ def contact_us():
 @app.route("/admin")
 def admin():
     return render_template("admin.html")
+
+
+@app.route("/create_category", methods=["GET", "POST"])
+def create_category():
+    if request.method == "POST":
+        category = {
+            "category_name": request.form.get("category_name"),
+            "category_type": request.form.get("category_type"),
+        }
+        mongo.db.categories.insert_one(category)
+        flash("Category succesfully added")
+        return redirect(url_for("create_category"))
+
+    return render_template("create_category.html")
 
 
 if __name__ == "__main__":
