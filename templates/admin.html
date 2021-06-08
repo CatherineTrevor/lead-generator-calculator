@@ -25,28 +25,7 @@
             </a>
         </button>
     </div>  
-    <!--Account industry categories-->
     <div class="section">
-        <div class="row">
-            <h3 class="header center blue-grey-text">
-                Industries
-            </h3>
-            {% for category in categories %}
-                {% if category.category_type|lower == "industry"|lower %}
-                    <div class="col s4 m2">
-                        <div class="card medium blue-grey center-align category__management__card">
-                            <div class="card-content white-text">
-                                <span class="card-title">{{ category.category_name }}</span>
-                            </div>         
-                            <div class="card-action">
-                                <a href="{{ url_for ('edit_category', category_id=category._id) }}" class="btn-small blue-grey accent-4">Edit</a>
-                                <a href="{{ url_for('delete_category', category_id=category._id) }}" class="btn-small blue-grey accent-4">Delete</a>
-                            </div>
-                        </div>
-                    </div>
-                {% endif %}
-            {% endfor %}
-        </div>
         <!--Campaign type categories-->
         <div class="row">
             <h3 class="header center blue-grey-text">
@@ -88,6 +67,27 @@
                     </div>
                 {% endif %}
             {% endfor %}
-        </div>      
+        </div> 
+        <!--Account industry categories-->        
+        <div class="row">
+            <h3 class="header center blue-grey-text">
+                Industries
+            </h3>
+            {% for category in categories %}
+                {% if category.category_type|lower == "industry"|lower %}
+                    <div class="col s4 m2">
+                        <div class="card medium blue-grey center-align category__management__card">
+                            <div class="card-content white-text">
+                                <span class="card-title">{{ category.category_name }}</span>
+                            </div>         
+                            <div class="card-action">
+                                <a href="{{ url_for ('edit_category', category_id=category._id) }}" class="btn-small blue-grey accent-4">Edit</a>
+                                <a href="{{ url_for('delete_category', category_id=category._id) }}" class="btn-small blue-grey accent-4">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>             
     </div>   
 {% endblock %}

@@ -285,8 +285,9 @@ def edit_category(category_id):
         flash("Category successfully updated")
         return redirect(url_for("admin"))
 
+    options = mongo.db.options.find().sort("category_type", 1)
     category = mongo.db.categories.find_one({"_id": ObjectId(category_id)})
-    return render_template("edit_category.html", category=category)
+    return render_template("edit_category.html", category=category, options=options)
 
 
 @app.route("/delete_category/<category_id>")
