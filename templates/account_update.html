@@ -20,8 +20,8 @@
                             <label class="active" for="company_name">Company Name</label>
                         </div>
                         <div class="input-field col s6">
-                            <input value="{{ account.first_name }} {{ account.last_name }} " name="first_name last_name" id="account_owner" type="text" class="validate">
-                            <label class="active" for="first_name last_name">Account Owner</label>
+                            <input value="{{ account.account_owner }} " name="account_owner" id="account_owner" type="text" class="validate">
+                            <label class="active" for="account_owner">Account Owner</label>
                         </div>                                
                         <div class="input-field col s6">
                             <input value="{{ account.company_country_name }}" name="company_country_name" id="country" type="text" class="validate">

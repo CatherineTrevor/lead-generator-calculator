@@ -38,16 +38,16 @@ def benchmark_data():
 def log_in():
     if request.method == "POST":
         # check if username exists in db
-        existing_user = mongo.db.users.find_one(
-            {"username": request.form.get("username").lower()})
+        existing_user = mongo.db.accounts.find_one(
+            {"email_address": request.form.get("email_address").lower()})
 
         if existing_user:
             # ensure hashed password matches user input
             if check_password_hash(
                 existing_user["password"], request.form.get("password")):
-                session["user"] = request.form.get("username").lower()
+                session["user"] = request.form.get("email_address").lower()
                 return redirect(url_for(
-                    "account", username=session["user"]))
+                    "account", email_address=session["user"]))
             else:
                 # invalid password match
                 flash("Incorrect Username and/or Password")
@@ -61,26 +61,40 @@ def log_in():
     return render_template("log_in.html")
 
 
+@app.route("/log_out")
+def log_out():
+    # remove user from session cookies
+    flash("See you again soon!")
+    # can also use session.clear()
+    session.pop("user")
+    return redirect(url_for("log_in"))
+
+
 @app.route("/sign_up", methods=["GET", "POST"])
 def sign_up():
     if request.method == "POST":
         # check if username exists in database
-        existing_user = mongo.db.users.find_one(
-            {"username": request.form.get("username")})
+        existing_user = mongo.db.accounts.find_one(
+            {"email_address": request.form.get("email_address")})
 
         if existing_user:
             flash("Username already exists")
             return redirect(url_for("sign_up"))
 
         register = {
-            "username": request.form.get("username"),
-            "password": generate_password_hash(request.form.get("password"))
+            "email_address": request.form.get("email_address"),
+            "password": generate_password_hash(request.form.get("password")),
+            "company_name": "Enter your company name",
+            "account_owner": "Please update your details!",
+            "company_country_name": "Select your country",
+            "company_industry": "Select your industry",
+            "currency": "Your currency"
         }
-        mongo.db.users.insert_one(register)
+        mongo.db.accounts.insert_one(register)
 
         # put the new user into 'session' cookie
-        session["user"] = request.form.get("username")
-        return redirect(url_for("account", username=session["user"]))
+        session["user"] = request.form.get("email_address")
+        return redirect(url_for("account", email_address=session["user"]))
     return render_template("sign_up.html")
 
 
@@ -94,11 +108,11 @@ def get_account_profile():
                             calculations=calculations)
 
 
-@app.route("/account<username>", methods=["GET", "POST"])
-def account(username):
+@app.route("/account<email_address>", methods=["GET", "POST"])
+def account(email_address):
     # grab the session user's username from db
-    username = mongo.db.users.find_one(
-        {"username": session["user"]})["username"]
+    email_address = mongo.db.accounts.find_one(
+        {"email_address": session["user"]})["email_address"]
 
     if session['user']:
         return redirect(url_for("get_account_profile"))
@@ -111,12 +125,12 @@ def account_update(account_id):
     if request.method == "POST":
         submit = {
             "company_name": request.form.get("company_name"),
-            "first_name": request.form.get("first_name"),
-            "last_name": request.form.get("last_name"),
+            "account_owner": request.form.get("account_owner"),
             "company_country_name": request.form.get("company_country_name"),
             "company_industry": request.form.get("company_industry"),
             "currency": request.form.get("currency"),
-            "username": session["user"]
+            "password": session["user"],
+            "email_address": session["user"]
         }
         mongo.db.accounts.update({"_id": ObjectId(account_id)}, submit)
         flash("Account successfully updated")
@@ -125,11 +139,6 @@ def account_update(account_id):
     account = mongo.db.accounts.find_one({"_id": ObjectId(account_id)})
 
     return render_template("account_update.html", account=account)
-
-
-@app.route("/admin")
-def admin():
-    return render_template("admin.html")
 
 
 @app.route("/create_campaign", methods=["GET", "POST"])
@@ -226,13 +235,64 @@ def delete_campaign(campaign_id):
     return redirect(url_for("get_account_profile"))
 
 
-@app.route("/log_out")
-def log_out():
-    # remove user from session cookies
-    flash("You have been logged out")
-    # can also use session.clear()
-    session.pop("user")
-    return redirect(url_for("log_in"))
+@app.route("/contact_us", methods=["GET", "POST"])
+def contact_us():
+    if request.method == "POST":
+        message = {
+            "contact_name": request.form.get("contact_name"),
+            "company_name": request.form.get("company_name"),
+            "email_address": request.form.get("email_address"),
+            "phone_number": request.form.get("phone_numer"),
+            "message": request.form.get("message"),
+        }
+        mongo.db.contacts.insert_one(message)
+        flash("We have received your message")
+        return redirect(url_for("contact_us"))
+
+    return render_template("contact_us.html")
+
+
+@app.route("/create_category", methods=["GET", "POST"])
+def create_category():
+    if request.method == "POST":
+        category = {
+            "category_type": request.form.get("category_type"),
+            "category_name": request.form.get("category_name"),
+        }
+        mongo.db.categories.insert_one(category)
+        flash("Category succesfully added")
+        return redirect(url_for("admin"))
+
+    categories = mongo.db.categories.find().sort("category_name", 1)
+    return render_template("create_category.html", categories=categories)
+
+
+@app.route("/admin")
+def admin():
+    categories = list(mongo.db.categories.find().sort("category_name", 1))
+    return render_template("admin.html", categories=categories)
+
+
+@app.route("/edit_category/<category_id>", methods=["GET", "POST"])
+def edit_category(category_id):
+    if request.method == "POST":
+        submit = {
+            "category_name": request.form.get("category_name"),
+            "category_type": request.form.get("category_type")
+        }
+        mongo.db.categories.update({"_id": ObjectId(category_id)}, submit)
+        flash("Category successfully updated")
+        return redirect(url_for("admin"))
+
+    category = mongo.db.categories.find_one({"_id": ObjectId(category_id)})
+    return render_template("edit_category.html", category=category)
+
+
+@app.route("/delete_category/<category_id>")
+def delete_category(category_id):
+    mongo.db.categories.remove({"_id": ObjectId(category_id)})
+    flash("Category deleted")
+    return redirect(url_for("admin"))
 
 
 if __name__ == "__main__":
