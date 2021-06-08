@@ -31,10 +31,15 @@
                             <input value="{{ account.currency }}" name="currency" id="currency" type="text" class="validate">
                             <label class="active" for="currency">Currency</label>
                         </div>  
-                        <div class="input-field col s6">
-                            <input value="{{ account.company_industry }}" name="company_industry" id="company_industry" type="text" class="validate">
-                            <label class="active" for="company_industry">Industry</label>
-                        </div>                                                                                                      
+                        <div class="input-field col l6 s6">
+                            <select id="company_industry" name="company_industry" class="validate" required>
+                                <option class="blue-grey-text" value="" disabled selected></option>
+                                {% for category in categories %}
+                                    <option value="{{ category.category_name }}">{{ category.category_name }}</option>
+                                {% endfor %}
+                            </select>
+                            <label id="company_industry" class="blue-grey-text">Select industry</label>
+                        </div>                                                                                                                             
                     </div>
                     <div class="row center">
                         <div class="col s12 center-align">

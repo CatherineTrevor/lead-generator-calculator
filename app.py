@@ -137,8 +137,9 @@ def account_update(account_id):
         return redirect(url_for("get_account_profile"))
 
     account = mongo.db.accounts.find_one({"_id": ObjectId(account_id)})
+    categories = mongo.db.categories.find().sort("category_name", 1)
 
-    return render_template("account_update.html", account=account)
+    return render_template("account_update.html", account=account, categories=categories)
 
 
 @app.route("/create_campaign", methods=["GET", "POST"])
