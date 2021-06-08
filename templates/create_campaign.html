@@ -12,13 +12,23 @@
                             <input id="campaign_name" name="campaign_name" type="text" class="validate" required>
                             <label class="active" for="campaign_name">Campaign Name</label>
                         </div>
-                        <div class="input-field col s6">
-                            <input id="campaign_type" name="campaign_type" type="text" class="validate">
-                            <label class="active" for="campaign_type">Campaign Type</label>
-                        </div>  
-                        <div class="input-field col s6">
-                            <input id="communication_platform" name="communication_platform" type="text" class="validate" required>
-                            <label class="active" for="communication_platform">Communication Platform</label>
+                        <div class="input-field col l6 s6">
+                            <select id="campaign_type" name="campaign_type" class="validate" required>
+                                <option class="blue-grey-text" value="" disabled selected></option>
+                                {% for category in categories %}
+                                    <option value="{{ category.category_name }}">{{ category.category_name }}</option>
+                                {% endfor %}
+                            </select>
+                            <label id="category_type" class="blue-grey-text">Select campaign type</label>
+                        </div>
+                        <div class="input-field col l6 s6">
+                            <select id="communication_platform" name="communication_platform" class="validate" required>
+                                <option class="blue-grey-text" value="" disabled selected></option>
+                                {% for category in categories %}
+                                    <option value="{{ category.category_type }}">{{ category.category_type }}</option>
+                                {% endfor %}
+                            </select>
+                            <label id="communication_platform" class="blue-grey-text">Select communication platform</label>
                         </div>                                 
                         <div class="input-field col s6">
                             <input id="start_date" name="start_date" type="date" class=" datepicker validate" required>

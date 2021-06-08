@@ -164,7 +164,8 @@ def create_campaign():
         flash("Task succesfully added")
         return redirect(url_for("get_account_profile"))
 
-    return render_template("create_campaign.html")
+    categories = mongo.db.categories.find().sort("category_name", 1)
+    return render_template("create_campaign.html", categories=categories)
 
 
 @app.route("/calculate", methods=["GET", "POST"])
