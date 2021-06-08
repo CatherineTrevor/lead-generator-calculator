@@ -256,15 +256,15 @@ def contact_us():
 def create_category():
     if request.method == "POST":
         category = {
-            "category_type": request.form.get("category_type"),
             "category_name": request.form.get("category_name"),
+            "category_type": request.form.get("category_type"),
         }
         mongo.db.categories.insert_one(category)
         flash("Category succesfully added")
         return redirect(url_for("admin"))
 
-    categories = mongo.db.categories.find().sort("category_name", 1)
-    return render_template("create_category.html", categories=categories)
+    options = mongo.db.options.find().sort("category_type", 1)
+    return render_template("create_category.html", options=options)
 
 
 @app.route("/admin")
