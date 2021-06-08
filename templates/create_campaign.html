@@ -9,7 +9,7 @@
                 <form class="col l6" method="POST" action="{{ url_for('create_campaign') }}">
                     <div class="row">
                         <div class="input-field col s12">
-                            <input id="campaign_name" name="campaign_name" type="text" class="validate">
+                            <input id="campaign_name" name="campaign_name" type="text" class="validate" required>
                             <label class="active" for="campaign_name">Campaign Name</label>
                         </div>
                         <div class="input-field col s6">
@@ -17,11 +17,11 @@
                             <label class="active" for="campaign_type">Campaign Type</label>
                         </div>  
                         <div class="input-field col s6">
-                            <input id="communication_platform" name="communication_platform" type="text" class="validate">
+                            <input id="communication_platform" name="communication_platform" type="text" class="validate" required>
                             <label class="active" for="communication_platform">Communication Platform</label>
                         </div>                                 
                         <div class="input-field col s6">
-                            <input id="start_date" name="start_date" type="date" class=" datepicker validate">
+                            <input id="start_date" name="start_date" type="date" class=" datepicker validate" required>
                             <label class="active" for="start_date">Start Date</label>
                         </div> 
                         <div class="input-field col s6">
