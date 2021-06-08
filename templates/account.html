@@ -20,48 +20,7 @@
     <div class="container">
         <div class="section">
             <!--   Icon Section   -->
-            <div class="row">
-                <div class="col s12 m4">
-                    <div class="row">
-                        <div class="icon-block">
-                            <h2 class="center blue-grey-text">
-                                <i class="material-icons">group</i>
-                            </h2>
-                            <h5 class="center">
-                                Account info table
-                            </h5>
-                        </div>
-                    </div>
-                    <div class="row">                    
-                        <div class="input-field col s12">
-                            <input value="{{ account.company_name }}" id="company_name" type="text" class="validate" readonly>
-                            <label class="active" for="company_name">Company Name</label>
-                          </div>
-                          <div class="input-field col s6">
-                            <input value="{{ account.account_owner }}" id="account_owner" type="text" class="validate" readonly>
-                            <label class="active" for="account_owner">Account Owner</label>
-                          </div>  
-                          <div class="input-field col s6">
-                            <input value="{{ account.email_address }}" id="email_address" type="text" class="validate" readonly>
-                            <label class="active" for="email_address">Email address</label>
-                          </div>                                 
-                          <div class="input-field col s6">
-                            <input value="{{ account.company_country_name }}" id="country" type="text" class="validate" readonly>
-                            <label class="active" for="country">Country</label>
-                          </div> 
-                          <div class="input-field col s6">
-                            <input value="{{ account.currency }}" id="currency" type="text" class="validate" readonly>
-                            <label class="active" for="currency">Currency</label>
-                          </div>  
-                          <div class="input-field col s6">
-                            <input value="{{ account.company_industry }}" id="industry" type="text" class="validate" readonly>
-                            <label class="active" for="industry">Industry</label>
-                          </div>                                                                                                      
-                    </div> 
-                    <div class="row center">
-                        <a href="{{ url_for('account_update', account_id=account._id) }}" id="download-button" class="btn-large waves-effect waves-light blue-grey lighten-1">Edit Account Info</a>   
-                    </div>
-                </div>            
+            <div class="row">          
                 <div class="col s12 m4">
                     <div class="row">
                         <div class="icon-block">
@@ -148,31 +107,6 @@
                             Create new campaign                              
                         </a>
                     </div>
-                    <div class="row">
-                        <div class="col l12">
-                            <h4>
-                                Filter campaign view
-                            </h4>
-                        </div>
-                        <div class="col">
-                            <div class="chip">
-                                New product
-                                <i class="close material-icons">close</i>
-                            </div>
-                            <div class="chip">
-                                Price promotion
-                                <i class="close material-icons">close</i>
-                            </div>
-                            <div class="chip">
-                                General
-                                <i class="close material-icons">close</i>
-                            </div>
-                            <div class="chip">
-                                Social media
-                                <i class="close material-icons">close</i>
-                            </div>                                                                                        
-                        </div>
-                    </div>
                     <div class="row center">
                         <a href="{{ url_for('benchmark_data') }}" id="download-button" class="btn-large waves-effect waves-light blue-grey lighten-1">
                             Looking for comparative data? Click here                                 
@@ -231,7 +165,7 @@
                                     <!--campaign calculation section-->
                                     {% for calculation in calculations %}
                                         {% if session.user == calculation.owning_account and campaign.campaign_name == calculation.campaign_name %}
-                                            <form action="{{ url_for('calculate_results') }}" method="POST">
+                                            <form action="{{ url_for('calculate_results', calculation_id=calculation._id) }}" method="POST">
                                                 <div class="row">
                                                     <div class="input-field col l3 s6">
                                                         <input value="{{ account.currency }} {{ calculation.cost_per_marketing_lead }}" name="cost_per_marketing_lead" type="text" class="validate" readonly>
@@ -259,10 +193,55 @@
                                 </div>
                             </li>
                             {% endif %}
-                        {% endfor %}
-                    {% endif %}                            
-                {% endfor %}                        
+                        {% endfor %}                    
             </ul>
         </div>
     </div>
+    <div class="col s12 m4">
+        <div class="row">
+            <div class="icon-block">
+                <h2 class="center blue-grey-text">
+                    <i class="material-icons">group</i>
+                </h2>
+                <h5 class="center">
+                    Account info table
+                </h5>
+            </div>
+        </div>
+        <div class="container">
+            <div class="section">
+                <div class="row">                    
+                    <div class="input-field col l4 s6">
+                        <input value="{{ account.company_name }}" id="company_name" type="text" class="validate" readonly>
+                        <label class="active" for="company_name">Company Name</label>
+                    </div>
+                    <div class="input-field col l4 s6">
+                        <input value="{{ account.account_owner }}" id="account_owner" type="text" class="validate" readonly>
+                        <label class="active" for="account_owner">Account Owner</label>
+                    </div>  
+                    <div class="input-field col l4 s6">
+                        <input value="{{ account.email_address }}" id="email_address" type="text" class="validate" readonly>
+                        <label class="active" for="email_address">Email address</label>
+                    </div>  
+                    <div class="input-field col l4 s6">
+                        <input value="{{ account.company_industry }}" id="industry" type="text" class="validate" readonly>
+                        <label class="active" for="industry">Industry</label>
+                    </div>                                                    
+                    <div class="input-field col l4 s6">
+                        <input value="{{ account.company_country_name }}" id="country" type="text" class="validate" readonly>
+                        <label class="active" for="country">Country</label>
+                    </div> 
+                    <div class="input-field col l4 s6">
+                        <input value="{{ account.currency }}" id="currency" type="text" class="validate" readonly>
+                        <label class="active" for="currency">Currency</label>
+                    </div>                                                                                                      
+                </div> 
+                <div class="row center">
+                    <a href="{{ url_for('account_update', account_id=account._id) }}" id="download-button" class="btn-large waves-effect waves-light blue-grey lighten-1">Edit Account Info</a>   
+                </div>
+            </div>
+        </div>        
+            {% endif %}                            
+        {% endfor %}   
+    </div>     
 {% endblock %}

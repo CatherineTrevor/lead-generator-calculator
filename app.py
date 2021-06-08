@@ -220,7 +220,7 @@ def edit_campaign(campaign_id):
         }
         calculate_results()
         mongo.db.campaigns.update({"_id": ObjectId(campaign_id)}, submit)
-        flash("Task successfully updated")
+        flash("Campaign successfully updated")
         return redirect(url_for("get_account_profile"))
 
     campaign = mongo.db.campaigns.find_one({"_id": ObjectId(campaign_id)})
