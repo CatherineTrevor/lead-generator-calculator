@@ -129,7 +129,6 @@ def account_update(account_id):
             "company_country_name": request.form.get("company_country_name"),
             "company_industry": request.form.get("company_industry"),
             "currency": request.form.get("currency"),
-            "password": session["user"],
             "email_address": session["user"]
         }
         mongo.db.accounts.update({"_id": ObjectId(account_id)}, submit)
@@ -258,8 +257,8 @@ def contact_us():
 def create_category():
     if request.method == "POST":
         category = {
-            "category_name": request.form.get("category_name"),
             "category_type": request.form.get("category_type"),
+            "category_name": request.form.get("category_name")
         }
         mongo.db.categories.insert_one(category)
         flash("Category succesfully added")
