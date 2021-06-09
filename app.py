@@ -168,8 +168,9 @@ def create_campaign(account_id):
         return redirect(url_for("get_account_profile"))
 
     account = mongo.db.accounts.find_one({"_id": ObjectId(account_id)})
-    categories = mongo.db.categories.find().sort("category_name", 1)
-    return render_template("create_campaign.html", account=account, categories=categories)
+    campaign_type = mongo.db.categories.find({"category_type": "Campaign type"}).sort("category_name", 1)
+    communication_platform = mongo.db.categories.find({"category_type": "Communication platform"}).sort("category_name", 1)
+    return render_template("create_campaign.html", account=account, campaign_type=campaign_type, communication_platform=communication_platform)
 
 
 @app.route("/calculate", methods=["GET", "POST"])
@@ -230,8 +231,9 @@ def edit_campaign(campaign_id):
         return redirect(url_for("get_account_profile"))
 
     campaign = mongo.db.campaigns.find_one({"_id": ObjectId(campaign_id)})
-
-    return render_template("edit_campaign.html", campaign=campaign)
+    campaign_type = mongo.db.categories.find({"category_type": "Campaign type"}).sort("category_name", 1)
+    communication_platform = mongo.db.categories.find({"category_type": "Communication platform"}).sort("category_name", 1)
+    return render_template("edit_campaign.html", campaign=campaign, campaign_type=campaign_type, communication_platform=communication_platform)
 
 
 @app.route("/delete_campaign/<campaign_id>")
