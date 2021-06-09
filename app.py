@@ -92,8 +92,9 @@ def sign_up():
         }
         mongo.db.accounts.insert_one(register)
 
-        # put the new user into 'session' cookie
+        # put the new user and password into 'session' cookie
         session["user"] = request.form.get("email_address")
+        session["password"] = generate_password_hash(request.form.get("password"))
         return redirect(url_for("account", email_address=session["user"]))
     return render_template("sign_up.html")
 
@@ -129,7 +130,8 @@ def account_update(account_id):
             "company_country_name": request.form.get("company_country_name"),
             "company_industry": request.form.get("company_industry"),
             "currency": request.form.get("currency"),
-            "email_address": session["user"]
+            "email_address": session["user"],
+            "password": session["password"]
         }
         mongo.db.accounts.update({"_id": ObjectId(account_id)}, submit)
         flash("Account successfully updated")
