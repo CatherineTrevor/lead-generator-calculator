@@ -94,7 +94,8 @@ def sign_up():
 
         # put the new user and password into 'session' cookie
         session["user"] = request.form.get("email_address")
-        session["password"] = generate_password_hash(request.form.get("password"))
+        session["password"] = generate_password_hash(
+            request.form.get("password"))
         return redirect(url_for("account", email_address=session["user"]))
     return render_template("sign_up.html")
 
@@ -138,9 +139,11 @@ def account_update(account_id):
         return redirect(url_for("get_account_profile"))
 
     account = mongo.db.accounts.find_one({"_id": ObjectId(account_id)})
-    categories = mongo.db.categories.find({"category_type": "Industry"}).sort("category_name", 1)
+    categories = mongo.db.categories.find(
+        {"category_type": "Industry"}).sort("category_name", 1)
 
-    return render_template("account_update.html", account=account, categories=categories)
+    return render_template(
+        "account_update.html", account=account, categories=categories)
 
 
 @app.route("/create_campaign/<account_id>", methods=["GET", "POST"])
@@ -168,15 +171,21 @@ def create_campaign(account_id):
         return redirect(url_for("get_account_profile"))
 
     account = mongo.db.accounts.find_one({"_id": ObjectId(account_id)})
-    campaign_type = mongo.db.categories.find({"category_type": "Campaign type"}).sort("category_name", 1)
-    communication_platform = mongo.db.categories.find({"category_type": "Communication platform"}).sort("category_name", 1)
-    return render_template("create_campaign.html", account=account, campaign_type=campaign_type, communication_platform=communication_platform)
+    campaign_type = mongo.db.categories.find(
+        {"category_type": "Campaign type"}).sort("category_name", 1)
+    communication_platform = mongo.db.categories.find(
+        {"category_type": "Communication platform"}).sort("category_name", 1)
+    return render_template(
+        "create_campaign.html", account=account,
+        campaign_type=campaign_type,
+        communication_platform=communication_platform)
 
 
 @app.route("/calculate", methods=["GET", "POST"])
 def calculate_results():
     if request.method == "POST":
-
+        existing_calculation = mongo.db.calculations.find_one(
+            {"_id": ObjectId()})
         total_campaign_cost = int(request.form.get("total_campaign_cost"))
         mql = int(request.form.get("marketing_qualified_leads"))
         sql = int(request.form.get("sales_qualified_leads"))
@@ -195,11 +204,10 @@ def calculate_results():
             "cost_per_sales_lead": calc_cost_sql,
             "hit_rate": calc_hit_rate
         }
-        existing_campaign = mongo.db.campaigns.find_one(
-            {"_id": request.form.get("_id")})
 
-        if existing_campaign:
-            mongo.db.calculations.update(calculation)
+        if existing_calculation:
+            mongo.db.calculations.update(
+                {"_id": ObjectId()}, calculation)
             return redirect(url_for("get_account_profile"))
 
         mongo.db.calculations.insert_one(calculation)
@@ -231,9 +239,14 @@ def edit_campaign(campaign_id):
         return redirect(url_for("get_account_profile"))
 
     campaign = mongo.db.campaigns.find_one({"_id": ObjectId(campaign_id)})
-    campaign_type = mongo.db.categories.find({"category_type": "Campaign type"}).sort("category_name", 1)
-    communication_platform = mongo.db.categories.find({"category_type": "Communication platform"}).sort("category_name", 1)
-    return render_template("edit_campaign.html", campaign=campaign, campaign_type=campaign_type, communication_platform=communication_platform)
+    campaign_type = mongo.db.categories.find(
+        {"category_type": "Campaign type"}).sort("category_name", 1)
+    communication_platform = mongo.db.categories.find(
+        {"category_type": "Communication platform"}).sort("category_name", 1)
+    return render_template(
+        "edit_campaign.html", campaign=campaign,
+        campaign_type=campaign_type,
+        communication_platform=communication_platform)
 
 
 @app.route("/delete_campaign/<campaign_id>")
@@ -260,6 +273,12 @@ def contact_us():
     return render_template("contact_us.html")
 
 
+@app.route("/admin")
+def admin():
+    categories = list(mongo.db.categories.find().sort("category_name", 1))
+    return render_template("admin.html", categories=categories)
+
+
 @app.route("/create_category", methods=["GET", "POST"])
 def create_category():
     if request.method == "POST":
@@ -275,12 +294,6 @@ def create_category():
     return render_template("create_category.html", options=options)
 
 
-@app.route("/admin")
-def admin():
-    categories = list(mongo.db.categories.find().sort("category_name", 1))
-    return render_template("admin.html", categories=categories)
-
-
 @app.route("/edit_category/<category_id>", methods=["GET", "POST"])
 def edit_category(category_id):
     if request.method == "POST":
@@ -294,7 +307,8 @@ def edit_category(category_id):
 
     options = mongo.db.options.find().sort("category_type", 1)
     category = mongo.db.categories.find_one({"_id": ObjectId(category_id)})
-    return render_template("edit_category.html", category=category, options=options)
+    return render_template(
+        "edit_category.html", category=category, options=options)
 
 
 @app.route("/delete_category/<category_id>")
