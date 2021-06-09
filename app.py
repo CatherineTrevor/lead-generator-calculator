@@ -125,13 +125,13 @@ def account(email_address):
 def account_update(account_id):
     if request.method == "POST":
         submit = {
+            "email_address": session["user"],
+            "password": session["password"],
             "company_name": request.form.get("company_name"),
             "account_owner": request.form.get("account_owner"),
             "company_country_name": request.form.get("company_country_name"),
             "company_industry": request.form.get("company_industry"),
-            "currency": request.form.get("currency"),
-            "email_address": session["user"],
-            "password": session["password"]
+            "currency": request.form.get("currency")
         }
         mongo.db.accounts.update({"_id": ObjectId(account_id)}, submit)
         flash("Account successfully updated")
