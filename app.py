@@ -141,9 +141,10 @@ def account_update(account_id):
     return render_template("account_update.html", account=account, categories=categories)
 
 
-@app.route("/create_campaign", methods=["GET", "POST"])
-def create_campaign():
+@app.route("/create_campaign/<account_id>", methods=["GET", "POST"])
+def create_campaign(account_id):
     if request.method == "POST":
+        account = mongo.db.accounts.find_one({"_id": ObjectId(account_id)})
         campaign = {
             "campaign_name": request.form.get("campaign_name"),
             "campaign_type": request.form.get("campaign_type"),
@@ -156,15 +157,17 @@ def create_campaign():
             "sales_qualified_leads": request.form.get(
                 "sales_qualified_leads"),
             "total_campaign_cost": request.form.get("total_campaign_cost"),
-            "owning_account": session["user"]
+            "owning_account": session["user"],
+            "account_id": account["_id"]
         }
         mongo.db.campaigns.insert_one(campaign)
         calculate_results()
         flash("Task succesfully added")
         return redirect(url_for("get_account_profile"))
 
+    account = mongo.db.accounts.find_one({"_id": ObjectId(account_id)})
     categories = mongo.db.categories.find().sort("category_name", 1)
-    return render_template("create_campaign.html", categories=categories)
+    return render_template("create_campaign.html", account=account, categories=categories)
 
 
 @app.route("/calculate", methods=["GET", "POST"])
