@@ -38,30 +38,36 @@
                             <label id="communication_platform" class="blue-grey-text">Select communication platform</label>
                         </div> 
                         <div class="input-field col s6">
-                            <input value="{{ campaign.start_date }}" name="start_date" id="start_date" type="text" class="datepicker validate">
+                            <input id="start_date" name="start_date" value="{{ campaign.start_date }}" type="text" class="datepicker validate" required>
                             <label class="active" for="start_date">Start Date</label>
+                        </div> 
+                        <div class="input-field col s6">
+                            <input id="end_date" name="end_date" value="{{ campaign.end_date }}" type="text" class="datepicker validate">
+                            <label class="active" for="end_date">End Date</label>
                         </div>  
-                        <div class="input-field col s6">
-                            <input value="{{ campaign.end_date }}" name="end_date" id="end_date" type="text" class="validate">
-                            <label class="active" for="end_date">End date</label>
-                        </div>
-                        <div class="input-field col s6">
-                            <input value="{{ campaign.marketing_qualified_leads }}" name="marketing_qualified_leads" id="marketing_qualified_leads" type="text" class="validate">
-                            <label class="active" for="marketing_qualified_leads">Marketing Qualified Leads</label>
-                        </div>  
-                        <div class="input-field col s6">
-                            <input value="{{ campaign.sales_qualified_leads }}" name="sales_qualified_leads" id="sales_qualified_leads" type="text" class="validate">
-                            <label class="active" for="sales_qualified_leads">Sales Qualified Leads</label>
-                        </div>  
-                        <div class="input-field col s6">
-                            <input value="{{ campaign.total_campaign_cost }}" name="total_campaign_cost" id="total_campaign_cost" type="text" class="validate">
+                        <div class="input-field col s4">
+                            <input id="total_campaign_cost" name="total_campaign_cost" value="{{ campaign.total_campaign_cost }}" type="text" pattern="\d*" class="validate">
                             <label class="active" for="total_campaign_cost">Total Campaign Cost</label>
-                        </div>                                                                                                                                                                                
+                        </div>
+                        <div class="input-field col s4">
+                            <input id="marketing_qualified_leads" name="marketing_qualified_leads" value="{{ campaign.marketing_qualified_leads}}" type="text" pattern="\d*"  class="validate">
+                            <label class="active" for="marketing_qualified_leads">Marketing Qualified Leads</label>
+                        </div>    
+                        <div class="input-field col s4">
+                            <input id="sales_qualified_leads" name="sales_qualified_leads" value="{{ campaign.sales_qualified_leads }}" type="text" pattern="\d*" class="validate">
+                            <label class="active" for="sales_qualified_leads">Sales Qualified Leads</label>
+                        </div>                                                                                                                                      
+                    </div>
+                    <div class="row center">
+                        <button type="submit" class="btn-large waves-effect waves-light blue-grey lighten-1">
+                            <a href=""></a>
+                            Display results
+                        </button>
                     </div>
                     <div class="row center">
                         <div class="col s12 center-align">
                             <button type="submit" class="btn-large waves-effect waves-light blue-grey lighten-1">                          
-                                Save changes  
+                                Save & close  
                             </button>
                             <a href="{{ url_for('get_account_profile') }}" id="download-button" class="btn-large waves-effect waves-light blue-grey lighten-1">
                                 Cancel changes 

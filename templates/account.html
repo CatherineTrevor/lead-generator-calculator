@@ -127,10 +127,7 @@
                                     <i class="material-icons">expand_more</i>
                                         {{ campaign.campaign_name }}            
                                 </div>
-                                <div class="collapsible-body">
-                                    <h5 class="center">
-                                        Campaign information
-                                    </h5>                                    
+                                <div class="collapsible-body">                                   
                                     <div class="row">
                                         <div class="input-field col l6 s6">
                                             <label for="campaign_type">Campaign Type</label>
@@ -150,11 +147,12 @@
                                             <input value="{{ campaign.end_date }}" name="end_date" type="text" class="datepicker validate" readonly>
                                             <label for="end_date">End Date</label>
                                         </div>  
-                                    </div>
-                                    <h5 class="center">
-                                        Results
-                                    </h5>                                    
+                                    </div>                                 
                                     <div class="row">
+                                        <div class="input-field col l3 s6">
+                                            <input value="{{ account.currency }} {{ campaign.total_campaign_cost }}" name="total_campaign_cost" type="text" class="validate" readonly>
+                                            <label for="total_campaign_cost">Total Campaign Cost</label>
+                                        </div>                                                
                                         <div class="input-field col l3 s6">
                                                 <input value="{{ campaign.marketing_qualified_leads }}" name="marketing_qualified_leads" type="number" class="validate" readonly>
                                                 <label for="marketing_qualified_leads">Marketing Qualified Leads</label>
@@ -163,10 +161,6 @@
                                                 <input value="{{ campaign.sales_qualified_leads }}" name="sales_qualified_leads" type="number" class="validate" readonly>
                                                 <label for="sales_qualified_leads">Sales Qualified Leads</label>
                                         </div>             
-                                        <div class="input-field col l3 s6">
-                                                <input value="{{ account.currency }} {{ campaign.total_campaign_cost }}" name="total_campaign_cost" type="text" class="validate" readonly>
-                                                <label for="total_campaign_cost">Total Campaign Cost</label>
-                                        </div>        
                                     </div>
                                     <!--campaign calculation section-->
                                     {% for calculation in calculations %}
