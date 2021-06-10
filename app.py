@@ -64,9 +64,7 @@ def log_in():
 
 @app.route("/log_out")
 def log_out():
-    # remove user from session cookies
-    flash("See you again soon!")
-    session.clear("user")
+    session.clear()
     return redirect(url_for("log_in"))
 
 
