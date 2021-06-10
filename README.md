@@ -165,3 +165,5 @@ The project was created
 # Deployment
 
 # Credits
+
+* [Geeks for Geeks: help with count_document calculation](https://www.geeksforgeeks.org/count-the-number-of-documents-in-mongodb-using-python/)

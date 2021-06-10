@@ -1,4 +1,5 @@
 import os
+import math
 from flask import (
     Flask, flash, render_template, redirect, request, session, url_for)
 from flask_pymongo import PyMongo
@@ -65,8 +66,7 @@ def log_in():
 def log_out():
     # remove user from session cookies
     flash("See you again soon!")
-    # can also use session.clear()
-    session.pop("user")
+    session.clear("user")
     return redirect(url_for("log_in"))
 
 
@@ -105,9 +105,13 @@ def get_account_profile():
     accounts = list(mongo.db.accounts.find())
     campaigns = list(mongo.db.campaigns.find())
     calculations = list(mongo.db.calculations.find())
+    total_open_campaigns = mongo.db.campaigns.count_documents(
+        {"owning_account": session['user']})
+
     return render_template("account.html",
                             accounts=accounts, campaigns=campaigns,
-                            calculations=calculations)
+                            calculations=calculations,
+                            total_open_campaigns=total_open_campaigns)
 
 
 @app.route("/account<email_address>", methods=["GET", "POST"])
@@ -167,7 +171,6 @@ def create_campaign(account_id):
         }
         mongo.db.campaigns.insert_one(campaign)
         calculate_results()
-        flash("Task succesfully added")
         return redirect(url_for("get_account_profile"))
 
     account = mongo.db.accounts.find_one({"_id": ObjectId(account_id)})
@@ -206,7 +209,7 @@ def calculate_results():
         }
 
         if existing_calculation:
-            mongo.db.calculations.update(
+            mongo.db.calculations.find_one_and_update(
                 {"_id": ObjectId()}, calculation)
             return redirect(url_for("get_account_profile"))
 
