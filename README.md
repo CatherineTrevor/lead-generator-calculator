@@ -167,3 +167,5 @@ The project was created
 # Credits
 
 * [Geeks for Geeks: help with count_document calculation](https://www.geeksforgeeks.org/count-the-number-of-documents-in-mongodb-using-python/)
+
+* [Stackoverflow: numbers only input field](https://stackoverflow.com/questions/8808590/number-input-type-that-takes-only-integers)

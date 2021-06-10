@@ -31,25 +31,25 @@
                     <label id="communication_platform" class="blue-grey-text">Select communication platform</label>
                 </div>                                 
                 <div class="input-field col s6">
-                    <input id="start_date" name="start_date" type="date" class=" datepicker validate" required>
+                    <input id="start_date" name="start_date" type="text" class="datepicker validate" required>
                     <label class="active" for="start_date">Start Date</label>
                 </div> 
                 <div class="input-field col s6">
-                    <input id="end_date" name="end_date" type="date" class=" datepicker validate">
+                    <input id="end_date" name="end_date" type="text" class="datepicker validate">
                     <label class="active" for="end_date">End Date</label>
                 </div>  
-                <div class="input-field col s6">
-                    <input id="marketing_qualified_leads" name="marketing_qualified_leads" type="number" class="validate">
+                <div class="input-field col s4">
+                    <input id="total_campaign_cost" name="total_campaign_cost" type="text" pattern="\d*" class="validate">
+                    <label class="active" for="total_campaign_cost">Total Campaign Cost {{ account.currency }}</label>
+                </div>
+                <div class="input-field col s4">
+                    <input id="marketing_qualified_leads" name="marketing_qualified_leads" type="text" pattern="\d*"  class="validate">
                     <label class="active" for="marketing_qualified_leads">Marketing Qualified Leads</label>
                 </div>    
-                <div class="input-field col s6">
-                    <input id="sales_qualified_leads" name="sales_qualified_leads" type="number" class="validate">
+                <div class="input-field col s4">
+                    <input id="sales_qualified_leads" name="sales_qualified_leads" type="text" pattern="\d*" class="validate">
                     <label class="active" for="sales_qualified_leads">Sales Qualified Leads</label>
-                </div>             
-                <div class="input-field col s6">
-                    <input id="total_campaign_cost" name="total_campaign_cost" type="number" class="validate">
-                    <label class="active" for="total_campaign_cost">Total Campaign Cost</label>
-                </div>                                                                                                                         
+                </div>                                                                                                                                      
             </div>
             <div class="row center">
                 <button type="submit" class="btn-large waves-effect waves-light blue-grey lighten-1">
