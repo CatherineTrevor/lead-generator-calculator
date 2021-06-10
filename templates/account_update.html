@@ -2,55 +2,64 @@
 {% block content %}
     <div class="container">
         <div class="section">
-            <div class="row">
-                <form class="col l10 s8" method="POST" action="{{ url_for('account_update', account_id=account._id) }}">        
-                    <div class="row">
-                        <div class="icon-block">
-                            <h2 class="center white">
-                                <i class="material-icons">group</i>
-                            </h2>
-                            <h5 class="center">
-                                Account info table
-                            </h5>
-                        </div>
+            <form class="col l10 s8" method="POST" action="{{ url_for('account_update', account_id=account._id) }}">        
+                <div class="icon-block">
+                    <h2 class="center blue-grey-text">
+                        <i class="material-icons">group</i>
+                    </h2>
+                    <h5 class="blue-grey-text center">
+                        Account info table
+                    </h5>
+                </div>
+                <div class="row">
+                    <div class="input-field col l12">
+                        <input value="{{ account.company_name }}" name="company_name" id="company_name" type="text" class="validate">
+                        <label class="active" for="company_name">Company Name</label>
+                    </div>
+                    <div class="input-field col l6">
+                        <input value="{{ account.account_owner }} " name="account_owner" id="account_owner" type="text" class="validate">
+                        <label class="active" for="account_owner">Account Owner</label>
+                    </div>
+                    <div class="input-field col l6">
+                        <input value="{{ account.email_address }} " name="email_address" id="email_address" type="email" class="validate">
+                        <label class="active" for="email_address">Email Address (used for log-in)</label>
+                    </div>                                            
+                </div>
+                <div class="row">
+                    <div class="input-field col l6">
+                        <input value="{{ account.company_country_name }}" name="company_country_name" id="country" type="text" class="validate">
+                        <label class="active" for="company_country_name">Country</label>
+                    </div> 
+                    <div class="input-field col l2">
+                        <input value="{{ account.currency }}" name="currency" id="currency" type="text" class="validate">
+                        <label class="active" for="currency">Currency</label>
+                    </div>  
+                    <div class="input-field col l4">
+                        <select id="company_industry" name="company_industry" class="validate" required>
+                            <option class="blue-grey-text" value="" disabled selected></option>
+                            {% for category in categories %}
+                                <option value="{{ category.category_name }}" selected>{{ category.category_name }}</option>
+                            {% endfor %}
+                        </select>
+                        <label id="company_industry" class="blue-grey-text">Select industry</label>
                     </div>
                     <div class="row">
-                        <div class="input-field col s12">
-                            <input value="{{ account.company_name }}" name="company_name" id="company_name" type="text" class="validate">
-                            <label class="active" for="company_name">Company Name</label>
+                        <div class="col">
+                            <small class="text-right-align">
+                                If your industry is not displayed, please <a href="{{ url_for('contact_us') }}">get in touch.</a>
+                            </small> 
                         </div>
-                        <div class="input-field col s6">
-                            <input value="{{ account.account_owner }} " name="account_owner" id="account_owner" type="text" class="validate">
-                            <label class="active" for="account_owner">Account Owner</label>
-                        </div>                                
-                        <div class="input-field col s6">
-                            <input value="{{ account.company_country_name }}" name="company_country_name" id="country" type="text" class="validate">
-                            <label class="active" for="company_country_name">Country</label>
-                        </div> 
-                        <div class="input-field col s6">
-                            <input value="{{ account.currency }}" name="currency" id="currency" type="text" class="validate">
-                            <label class="active" for="currency">Currency</label>
-                        </div>  
-                        <div class="input-field col l6 s6">
-                            <select id="company_industry" name="company_industry" class="validate" required>
-                                <option class="blue-grey-text" value="" disabled selected></option>
-                                {% for category in categories %}
-                                    <option value="{{ category.category_name }}">{{ category.category_name }}</option>
-                                {% endfor %}
-                            </select>
-                            <label id="company_industry" class="blue-grey-text">Select industry</label>
-                        </div>                                                                                                                             
                     </div>
-                    <div class="row center">
-                        <div class="col s12 center-align">
-                            <button type="submit" class="btn-large waves-effect waves-light blue-grey lighten-1">                          
-                                Save changes  
-                            </button>
-                            <a href="{{ url_for('get_account_profile') }}" id="download-button" class="btn-large waves-effect waves-light blue-grey lighten-1">
-                                Cancel changes 
-                            </a>                        
-                        </div>
-                    </div>                
+                </div>                                                                                                              
+                <div class="row center">
+                    <div class="col s12 center-align">
+                        <button type="submit" class="btn-large waves-effect waves-light blue-grey lighten-1">                          
+                            Save changes  
+                        </button>
+                        <a href="{{ url_for('get_account_profile') }}" id="download-button" class="btn-large waves-effect waves-light blue-grey lighten-1">
+                            Cancel changes 
+                        </a>                        
+                    </div>            
                 </form>   
             </div>
         </div>

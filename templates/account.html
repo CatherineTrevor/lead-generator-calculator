@@ -5,12 +5,12 @@
             <div class="container">
                 {% for account in accounts %}
                     {% if session.user == account.email_address %}                
-                    <h1 class="header center blue-grey-text text-lighten-2">
+                    <h1 class="header center blue-grey-text text-lighten-4">
                         Welcome
                     </h1>
-                    <h1 class="header center blue-grey-text text-lighten-2">
+                    <h3 class="header center blue-grey-text text-lighten-4">
                         {{ account.account_owner }}
-                    </h1>                
+                    </h3>                
             </div>
         </div>
         <div class="parallax">
@@ -21,87 +21,85 @@
         <div class="section">
             <!--   Icon Section   -->
             <div class="row">          
-                <div class="col s12 l8">
+                <div class="col s12 l6">
                     <div class="row">
                         <div class="icon-block">
                             <h2 class="center blue-grey-text">
                                 <i class="material-icons">data_usage</i>
                             </h2>
-                            <h5 class="center">
+                            <h5 class="center blue-grey-text">
                                 {{ account.company_name }}'s Campaign Overview
                             </h5>
                         </div>
                     </div>
-                    <div class="row">                      
-                        <table class="account__table">
-                            <tr>
-                                <th>                                
-                                    Total open campaigns
-                                </th>
-                                <td>
-                                    {{ total_open_campaigns }}
-                                    <i class="tiny material-icons">lock</i>                                        
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    Total Marketing Spend
-                                </th>
-                                <td>
-                                    {{ account.currency }} {{ marketing_spend }}
-                                    <i class="tiny material-icons">lock</i>        
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    Total Marketing Leads
-                                </th>
-                                <td>
-                                    15
-                                    <i class="tiny material-icons">lock</i>                                        
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    Total Sales Leads
-                                </th>
-                                <td>
-                                    6
-                                    <i class="tiny material-icons">lock</i>                                        
-                                </td>
-                            </tr>  
-                            <tr>
-                                <th>
-                                    Av. cost per MQL
-                                </th>
-                                <td>
-                                    {{ account.currency }} 10
-                                    <i class="tiny material-icons">lock</i>                                        
-                                </td>
-                            </tr>   
-                            <tr>
-                                <th>
-                                    Av. cost per SQL
-                                </th>
-                                <td>
-                                    {{ account.currency }} 36
-                                    <i class="tiny material-icons">lock</i>                                        
-                                </td>
-                            </tr>                                                                                  
+                    <div class="col l12">
+                        <div class="row">                      
+                            <table class="account__table blue-grey-text">
+                                <tr>
+                                    <th>                                
+                                        Total open campaigns
+                                    </th>
+                                    <td>
+                                        {{ total_open_campaigns }}                                     
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Total Marketing Spend
+                                    </th>
+                                    <td>
+                                        {{ account.currency }} {{ marketing_spend }}    
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Total Marketing Leads
+                                    </th>
+                                    <td>
+                                        15                                     
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Total Sales Leads
+                                    </th>
+                                    <td>
+                                        6                                       
+                                    </td>
+                                </tr>  
+                                <tr>
+                                    <th>
+                                        Av. cost per MQL
+                                    </th>
+                                    <td>
+                                        {{ account.currency }} 10                                  
+                                    </td>
+                                </tr>   
+                                <tr>
+                                    <th>
+                                        Av. cost per SQL
+                                    </th>
+                                    <td>
+                                        {{ account.currency }} 36                                      
+                                    </td>
+                                </tr>                                                                                  
                             </table>
-                    </div>                    
+                        </div>
+                    </div>
                 </div>
-                <div class="col s12 l4">
+                <div class="col s12 l6">
                     <div class="row">
                         <div class="icon-block">
                             <h2 class="center blue-grey-text">
                                 <i class="material-icons">input</i>
                             </h2>
-                            <h5 class="center">
+                            <h5 class="center blue-grey-text">
                                 Actions
                             </h5>
                         </div>
                     </div>
+                </div>
+                <div class="col l6">
                     <div class="row center">
                         <a href="{{ url_for('create_campaign', account_id=account._id) }}" id="download-button" class="btn-large waves-effect waves-light blue-grey lighten-1">
                             Create new campaign                              
@@ -111,8 +109,11 @@
                         <a href="{{ url_for('benchmark_data') }}" id="download-button" class="btn-large waves-effect waves-light blue-grey lighten-1">
                             Looking for comparative data? Click here                                 
                         </a>
-                    </div>                    
-                </div>
+                    </div>
+                    <div class="row center">
+                        <a href="{{ url_for('account_update', account_id=account._id) }}" id="download-button" class="btn-large waves-effect waves-light blue-grey lighten-1">Edit Account Info</a>   
+                    </div>
+                </div>                                
             </div>
         </div>
     </div>          
@@ -203,7 +204,7 @@
                 <h2 class="center blue-grey-text">
                     <i class="material-icons">group</i>
                 </h2>
-                <h5 class="center">
+                <h5 class="center blue-grey-text">
                     Account info table
                 </h5>
             </div>
@@ -222,11 +223,7 @@
                     <div class="input-field col l4 s6">
                         <input value="{{ account.email_address }}" id="email_address" type="text" class="validate" readonly>
                         <label class="active" for="email_address">Email address</label>
-                    </div>  
-                    <div class="input-field col l4 s6">
-                        <input value="{{ account.company_industry }}" id="industry" type="text" class="validate" readonly>
-                        <label class="active" for="industry">Industry</label>
-                    </div>                                                    
+                    </div>                                                  
                     <div class="input-field col l4 s6">
                         <input value="{{ account.company_country_name }}" id="country" type="text" class="validate" readonly>
                         <label class="active" for="country">Country</label>
@@ -234,11 +231,12 @@
                     <div class="input-field col l4 s6">
                         <input value="{{ account.currency }}" id="currency" type="text" class="validate" readonly>
                         <label class="active" for="currency">Currency</label>
-                    </div>                                                                                                      
+                    </div>    
+                    <div class="input-field col l4 s6">
+                        <input value="{{ account.company_industry }}" id="industry" type="text" class="validate" readonly>
+                        <label class="active" for="industry">Industry</label>
+                    </div>                                                                                                                          
                 </div> 
-                <div class="row center">
-                    <a href="{{ url_for('account_update', account_id=account._id) }}" id="download-button" class="btn-large waves-effect waves-light blue-grey lighten-1">Edit Account Info</a>   
-                </div>
             </div>
         </div>        
             {% endif %}                            

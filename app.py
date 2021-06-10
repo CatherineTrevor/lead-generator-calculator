@@ -84,9 +84,9 @@ def sign_up():
             "password": generate_password_hash(request.form.get("password")),
             "company_name": "Enter your company name",
             "account_owner": "Please update your details!",
-            "company_country_name": "Select your country",
+            "company_country_name": "Enter your country",
             "company_industry": "Select your industry",
-            "currency": "Your currency"
+            "currency": "Select your currency"
         }
         mongo.db.accounts.insert_one(register)
 

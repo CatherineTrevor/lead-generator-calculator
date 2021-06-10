@@ -19,42 +19,40 @@
 </div>    
 <div class="container">
         <div class="section">
-            <div class="row">
-                <form class="col l8 s8" method="POST" action="{{ url_for('contact_us') }}">        
-                    <div class="row center">
-                        <div class="input-field col s6">
-                            <input name="contact_name" id="contact_name" type="text" class="validate" required>
-                            <label class="active" for="contact_name">Name</label>
-                        </div>
-                        <div class="input-field col s6">
-                            <input name="company_name" id="company_name" type="text" class="validate" required>
-                            <label class="active" for="company_name">Company Name</label>
-                        </div>                                
-                        <div class="input-field col s6">
-                            <input name="email_address" id="email_address" type="email" class="validate" required>
-                            <label class="active" for="email_address">Email address</label>
-                        </div> 
-                        <div class="input-field col s6">
-                            <input name="phone_number" id="phone_number" type="tel" class="validate">
-                            <label class="active" for="phone_number">Phone number</label>
-                        </div>  
-                        <div class="input-field col s12">
-                            <textarea id="message" name="message" class="materialize-textarea" data-length="200" required></textarea>
-                            <label for="message">Message</label>
-                        </div>                                                                                                 
+            <form method="POST" action="{{ url_for('contact_us') }}">        
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input name="contact_name" id="contact_name" type="text" class="validate" required>
+                        <label class="active" for="contact_name">Name</label>
                     </div>
-                    <div class="row center">
-                        <div class="col s12 center-align">
-                            <button type="submit" class="btn-large waves-effect waves-light blue-grey lighten-1">                          
-                                Send message  
-                            </button>
-                            <a href="{{ url_for('index') }}" id="download-button" class="btn-large waves-effect waves-light blue-grey lighten-1">
-                                Cancel
-                            </a>                        
-                        </div>
-                    </div>                
-                </form>   
-            </div>
+                    <div class="input-field col s6">
+                        <input name="company_name" id="company_name" type="text" class="validate" required>
+                        <label class="active" for="company_name">Company Name</label>
+                    </div>                                
+                    <div class="input-field col s6">
+                        <input name="email_address" id="email_address" type="email" class="validate" required>
+                        <label class="active" for="email_address">Email address</label>
+                    </div> 
+                    <div class="input-field col s6">
+                        <input name="phone_number" id="phone_number" type="tel" class="validate">
+                        <label class="active" for="phone_number">Phone number</label>
+                    </div>  
+                    <div class="input-field col s12">
+                        <textarea id="message" name="message" class="materialize-textarea" data-length="200" required></textarea>
+                        <label for="message">Message</label>
+                    </div>                                                                                                 
+                </div>
+                <div class="row center">
+                    <div class="col s12 center-align">
+                        <button type="submit" class="btn-large waves-effect waves-light blue-grey lighten-1">                          
+                            Send message  
+                        </button>
+                        <a href="{{ url_for('index') }}" id="download-button" class="btn-large waves-effect waves-light blue-grey lighten-1">
+                            Cancel
+                        </a>                        
+                    </div>
+                </div>                
+            </form>   
         </div>
     </div>    
 {% endblock %}
