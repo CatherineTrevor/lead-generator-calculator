@@ -44,18 +44,6 @@
         <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       </div>
     </nav>
-    <section>
-      <!--flash messages-->
-      {% with messages = get_flashed_messages() %}
-          {% if messages %}
-              {% for message in messages %}
-                  <div class="row flashes">
-                      <h3 class="blue-grey-text lighten-4 center-align">{{ message }}</h4>
-                  </div>
-              {% endfor %}
-          {% endif %}
-      {% endwith %}
-  </section>
     <!--main content-->
       {% block content %}
       {% endblock%}

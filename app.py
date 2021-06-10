@@ -105,11 +105,10 @@ def get_account_profile():
     calculations = list(mongo.db.calculations.find())
     total_open_campaigns = mongo.db.campaigns.count_documents(
         {"owning_account": session['user']})
-
     return render_template("account.html",
-                            accounts=accounts, campaigns=campaigns,
-                            calculations=calculations,
-                            total_open_campaigns=total_open_campaigns)
+                        accounts=accounts, campaigns=campaigns,
+                        calculations=calculations,
+                        total_open_campaigns=total_open_campaigns)
 
 
 @app.route("/account<email_address>", methods=["GET", "POST"])

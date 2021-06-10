@@ -17,6 +17,18 @@
             <img src="{{ url_for('static', filename='assets/backgroundImage9.jpg') }}" alt="Data background image 9 sourced from Pixaby">
         </div>
     </div>
+    <section>
+        <!--flash messages-->
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="row flashes">
+                        <h3 class="blue-grey-text lighten-4 center-align">{{ message }}</h4>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </section>    
     <!--Create new categories button-->
     <div class="row center">
         <button type="submit" class="btn-large waves-effect waves-light blue-grey lighten-1">
