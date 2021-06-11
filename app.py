@@ -184,6 +184,50 @@ def create_campaign(account_id):
         communication_platform=communication_platform)
 
 
+@app.route("/edit_campaign/<campaign_id>/<account_id>", methods=["GET", "POST"])
+def edit_campaign(campaign_id, account_id):
+    if request.method == "POST":
+        account = mongo.db.accounts.find_one({"_id": ObjectId(account_id)})
+        submit = {
+            "campaign_name": request.form.get("campaign_name"),
+            "campaign_type": request.form.get("campaign_type"),
+            "communication_platform": request.form.get(
+                "communication_platform"),
+            "start_date": request.form.get("start_date"),
+            "end_date": request.form.get("end_date"),
+            "marketing_qualified_leads": request.form.get(
+                "marketing_qualified_leads"),
+            "sales_qualified_leads": request.form.get("sales_qualified_leads"),
+            "converted_leads": request.form.get("converted_leads"),
+            "total_campaign_cost": request.form.get("total_campaign_cost"),
+            "owning_account": session["user"],
+            "account_id": account["_id"]
+        }
+        calculate_results()
+        mongo.db.campaigns.update({"_id": ObjectId(campaign_id)}, submit)
+        flash("Campaign successfully updated")
+        return redirect(url_for("get_account_profile"))
+
+    account = mongo.db.accounts.find_one({"_id": ObjectId(account_id)})
+    campaign = mongo.db.campaigns.find_one({"_id": ObjectId(campaign_id)})
+    campaign_type = mongo.db.categories.find(
+        {"category_type": "Campaign type"}).sort("category_name", 1)
+    communication_platform = mongo.db.categories.find(
+        {"category_type": "Communication platform"}).sort("category_name", 1)
+    return render_template(
+        "edit_campaign.html", account=account,
+        campaign=campaign,
+        campaign_type=campaign_type,
+        communication_platform=communication_platform)
+
+
+@app.route("/delete_campaign/<campaign_id>")
+def delete_campaign(campaign_id):
+    mongo.db.campaigns.remove({"_id": ObjectId(campaign_id)})
+    flash("Campaign deleted")
+    return redirect(url_for("get_account_profile"))
+
+
 @app.route("/calculate", methods=["GET", "POST"])
 def calculate_results():
     if request.method == "POST":
@@ -221,46 +265,6 @@ def calculate_results():
 
     calculations = mongo.db.calculations.find()
     return render_template('account.html', calculations=calculations)
-
-
-@app.route("/edit_campaign/<campaign_id>", methods=["GET", "POST"])
-def edit_campaign(campaign_id):
-    if request.method == "POST":
-        submit = {
-            "campaign_name": request.form.get("campaign_name"),
-            "campaign_type": request.form.get("campaign_type"),
-            "communication_platform": request.form.get(
-                "communication_platform"),
-            "start_date": request.form.get("start_date"),
-            "end_date": request.form.get("end_date"),
-            "marketing_qualified_leads": request.form.get(
-                "marketing_qualified_leads"),
-            "sales_qualified_leads": request.form.get("sales_qualified_leads"),
-            "converted_leads": request.form.get("converted_leads"),
-            "total_campaign_cost": request.form.get("total_campaign_cost"),
-            "owning_account": session["user"]
-        }
-        calculate_results()
-        mongo.db.campaigns.update({"_id": ObjectId(campaign_id)}, submit)
-        flash("Campaign successfully updated")
-        return redirect(url_for("get_account_profile"))
-
-    campaign = mongo.db.campaigns.find_one({"_id": ObjectId(campaign_id)})
-    campaign_type = mongo.db.categories.find(
-        {"category_type": "Campaign type"}).sort("category_name", 1)
-    communication_platform = mongo.db.categories.find(
-        {"category_type": "Communication platform"}).sort("category_name", 1)
-    return render_template(
-        "edit_campaign.html", campaign=campaign,
-        campaign_type=campaign_type,
-        communication_platform=communication_platform)
-
-
-@app.route("/delete_campaign/<campaign_id>")
-def delete_campaign(campaign_id):
-    mongo.db.campaigns.remove({"_id": ObjectId(campaign_id)})
-    flash("Campaign deleted")
-    return redirect(url_for("get_account_profile"))
 
 
 @app.route("/contact_us", methods=["GET", "POST"])
