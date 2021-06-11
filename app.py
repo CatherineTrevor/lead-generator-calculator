@@ -164,6 +164,7 @@ def create_campaign(account_id):
                 "marketing_qualified_leads"),
             "sales_qualified_leads": request.form.get(
                 "sales_qualified_leads"),
+            "converted_leads": request.form.get("converted_leads"),
             "total_campaign_cost": request.form.get("total_campaign_cost"),
             "owning_account": session["user"],
             "account_id": account["_id"]
@@ -191,8 +192,10 @@ def calculate_results():
         total_campaign_cost = int(request.form.get("total_campaign_cost"))
         mql = int(request.form.get("marketing_qualified_leads"))
         sql = int(request.form.get("sales_qualified_leads"))
+        converted_leads = int(request.form.get("converted_leads"))
         calc_cost_mql = int(total_campaign_cost / mql)
         calc_cost_sql = int(total_campaign_cost / sql)
+        calc_cost_per_conversion = int(total_campaign_cost / converted_leads)
         calc_hit_rate = int(sql / mql * 100)
 
         calculation = {
@@ -204,6 +207,7 @@ def calculate_results():
                 "sales_qualified_leads"),
             "cost_per_marketing_lead": calc_cost_mql,
             "cost_per_sales_lead": calc_cost_sql,
+            "cost_per_converted_lead": calc_cost_per_conversion,
             "hit_rate": calc_hit_rate
         }
 
@@ -232,6 +236,7 @@ def edit_campaign(campaign_id):
             "marketing_qualified_leads": request.form.get(
                 "marketing_qualified_leads"),
             "sales_qualified_leads": request.form.get("sales_qualified_leads"),
+            "converted_leads": request.form.get("converted_leads"),
             "total_campaign_cost": request.form.get("total_campaign_cost"),
             "owning_account": session["user"]
         }

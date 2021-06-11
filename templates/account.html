@@ -167,19 +167,27 @@
                                             <label for="total_campaign_cost">Total Campaign Cost</label>
                                         </div>                                                
                                         <div class="input-field col l3 s6">
-                                                <input value="{{ campaign.marketing_qualified_leads }}" name="marketing_qualified_leads" type="number" class="validate" readonly>
-                                                <label for="marketing_qualified_leads">Marketing Qualified Leads</label>
+                                            <input value="{{ campaign.marketing_qualified_leads }}" name="marketing_qualified_leads" type="number" class="validate" readonly>
+                                            <label for="marketing_qualified_leads">Marketing Qualified Leads</label>
                                         </div>    
                                         <div class="input-field col l3 s6">
-                                                <input value="{{ campaign.sales_qualified_leads }}" name="sales_qualified_leads" type="number" class="validate" readonly>
-                                                <label for="sales_qualified_leads">Sales Qualified Leads</label>
-                                        </div>             
+                                            <input value="{{ campaign.sales_qualified_leads }}" name="sales_qualified_leads" type="number" class="validate" readonly>
+                                            <label for="sales_qualified_leads">Sales Qualified Leads</label>
+                                        </div>
+                                        <div class="input-field col l3 s6">
+                                            <input value="{{ campaign.converted_leads }}" id="converted_leads" name="converted_leads" type="number" class="validate" readonly>
+                                            <label for="converted_leads">Converted Leads</label>
+                                        </div>                                                              
                                     </div>
                                     <!--campaign calculation section-->
                                     {% for calculation in calculations %}
                                         {% if session.user == calculation.owning_account and campaign.campaign_name == calculation.campaign_name %}
                                             <form action="{{ url_for('calculate_results', calculation_id=calculation._id) }}" method="POST">
                                                 <div class="row">
+                                                    <div class="input-field col l3 s6">
+                                                        <input value="{{ calculation.hit_rate }} %" name="hit_rate" type="text" class="validate" readonly>
+                                                        <label for="hit_rate">Hit rate (from marketing to sales lead)</label>
+                                                    </div>                                                    
                                                     <div class="input-field col l3 s6">
                                                         <input value="{{ account.currency }} {{ calculation.cost_per_marketing_lead }}" name="cost_per_marketing_lead" type="text" class="validate" readonly>
                                                         <label for="cost_per_marketing_lead">Cost per marketing lead</label>
@@ -189,9 +197,9 @@
                                                         <label for="cost_per_sales_lead">Cost per sales lead</label>
                                                     </div>  
                                                     <div class="input-field col l3 s6">
-                                                        <input value="{{ calculation.hit_rate }} %" name="hit_rate" type="text" class="validate" readonly>
-                                                        <label for="hit_rate">Hit rate</label>
-                                                    </div>                                                                                                                                                   
+                                                        <input value="{{ account.currency }} {{ calculation.cost_per_converted_lead }}" name="cost_per_converted_lead" type="text" class="validate" readonly>
+                                                        <label for="cost_per_converted_lead">Cost per converted lead</label>
+                                                    </div>                                                                                                                                                                                                        
                                                 </div>
                                             </form>
                                         {% endif %}
