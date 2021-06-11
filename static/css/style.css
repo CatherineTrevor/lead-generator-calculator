@@ -69,6 +69,14 @@ p {
   height: 150px;
 }
 
+.category__management__title {
+  font-size: 22px !important;
+}
+
+.create__category__button {
+  margin-top: 20px;
+}
+
 /***Contact form***/
 
 .container__signup__form {

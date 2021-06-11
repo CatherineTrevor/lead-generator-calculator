@@ -3,11 +3,11 @@
     <div id="index-banner" class="parallax-container">
         <div class="section no-pad-bot">
             <div class="container">             
-                <h1 class="header center blue-grey-text text-lighten-2">
+                <h1 class="header center blue-grey-text text-lighten-4">
                     Category management                        
                 </h1>
                 <div class="row center">
-                    <h5 class="header col s12 light">
+                    <h5 class="header col s12 white-text light">
                         Create, edit and delete categories
                     </h5>
                 </div>                                  
@@ -30,7 +30,7 @@
         {% endwith %}
     </section>    
     <!--Create new categories button-->
-    <div class="row center">
+    <div class="row center create__category__button">
         <button type="submit" class="btn-large waves-effect waves-light blue-grey lighten-1">
             <a class="nav-link white-text" href="{{ url_for('create_category') }}">
                 Create new category
@@ -40,19 +40,19 @@
     <div class="section">
         <!--Campaign type categories-->
         <div class="row">
-            <h3 class="header center blue-grey-text">
+            <h5 class="header center blue-grey-text">
                 Campaign type
-            </h3>
+            </h5>
             {% for category in categories %}
                 {% if category.category_type|lower == "campaign type"|lower %}
-                    <div class="col s4 m2">
+                    <div class="col s4 m2 l2">
                         <div class="card medium blue-grey lighten-3 center-align category__management__card">
                             <div class="card-content white-text">
-                                <span class="card-title">{{ category.category_name }}</span>
+                                <span class="card-title category__management__title">{{ category.category_name }}</span>
                             </div>            
                             <div class="card-action">
-                                <a href="{{ url_for ('edit_category', category_id=category._id) }}" class="btn-small blue-grey accent-4">Edit</a>
-                                <a href="{{ url_for('delete_category', category_id=category._id) }}" class="btn-small blue-grey accent-4">Delete</a>
+                                <a href="{{ url_for ('edit_category', category_id=category._id) }}" class="btn-small blue-grey lighten-2 accent-4">Edit</a>
+                                <a href="{{ url_for('delete_category', category_id=category._id) }}" class="btn-small blue-grey lighten-2 accent-4">Delete</a>
                             </div>
                         </div>
                     </div>
@@ -61,19 +61,19 @@
         </div> 
         <!--Communication platform categories-->
         <div class="row">
-            <h3 class="header center blue-grey-text">
+            <h5 class="header center blue-grey-text">
                 Communication platform
-            </h3>
+            </h5>
             {% for category in categories %}
                 {% if category.category_type|lower == "communication platform"|lower %}
-                    <div class="col s4 m2">
+                    <div class="col s4 m2 l2">
                         <div class="card medium blue-grey lighten-3 center-align category__management__card">
                             <div class="card-content white-text">
-                                <span class="card-title">{{ category.category_name }}</span>
+                                <span class="card-title category__management__title">{{ category.category_name }}</span>
                             </div>               
                             <div class="card-action">
-                                <a href="{{ url_for ('edit_category', category_id=category._id) }}" class="btn-small blue-grey accent-4">Edit</a>
-                                <a href="{{ url_for('delete_category', category_id=category._id) }}" class="btn-small blue-grey accent-4">Delete</a>
+                                <a href="{{ url_for ('edit_category', category_id=category._id) }}" class="btn-small blue-grey lighten-2 accent-4">Edit</a>
+                                <a href="{{ url_for('delete_category', category_id=category._id) }}" class="btn-small blue-grey lighten-2 accent-4">Delete</a>
                             </div>
                         </div>
                     </div>
@@ -82,19 +82,19 @@
         </div> 
         <!--Account industry categories-->        
         <div class="row">
-            <h3 class="header center blue-grey-text">
+            <h5 class="header center blue-grey-text">
                 Industries
-            </h3>
+            </h5>
             {% for category in categories %}
                 {% if category.category_type|lower == "industry"|lower %}
-                    <div class="col s4 m2">
+                    <div class="col s4 m2 l2">
                         <div class="card medium blue-grey lighten-3 center-align category__management__card">
                             <div class="card-content white-text">
-                                <span class="card-title">{{ category.category_name }}</span>
+                                <span class="card-title category__management__title">{{ category.category_name }}</span>
                             </div>         
                             <div class="card-action">
-                                <a href="{{ url_for ('edit_category', category_id=category._id) }}" class="btn-small blue-grey accent-4">Edit</a>
-                                <a href="{{ url_for('delete_category', category_id=category._id) }}" class="btn-small blue-grey accent-4">Delete</a>
+                                <a href="{{ url_for ('edit_category', category_id=category._id) }}" class="btn-small blue-grey lighten-2 accent-4">Edit</a>
+                                <a href="{{ url_for('delete_category', category_id=category._id) }}" class="btn-small blue-grey lighten-2 accent-4">Delete</a>
                             </div>
                         </div>
                     </div>

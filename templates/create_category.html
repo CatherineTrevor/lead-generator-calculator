@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
     <div class="row">
-        <h2 class="header center blue-grey-text text-lighten-2">
-            Category management
+        <h2 class="header center blue-grey-text text-lighten-4">
+            Category Management
         </h2>
     </div>
     <div class="container">
@@ -28,6 +28,9 @@
                 <button type="submit" class="btn-large waves-effect waves-light blue-grey lighten-1">
                     Save
                 </button>
+                <a href="{{ url_for('admin') }}" id="download-button" class="btn-large waves-effect waves-light blue-grey lighten-1">
+                    Cancel 
+                </a>                    
             </div>            
         </form>
     </div>
