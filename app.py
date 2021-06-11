@@ -1,5 +1,4 @@
 import os
-import math
 from flask import (
     Flask, flash, render_template, redirect, request, session, url_for)
 from flask_pymongo import PyMongo
@@ -42,6 +41,10 @@ def log_in():
         existing_user = mongo.db.accounts.find_one(
             {"email_address": request.form.get("email_address").lower()})
 
+        # put the new user and password into 'session' cookie to allow for account_updates after log-in
+        session["user"] = request.form.get("email_address")
+        session["password"] = generate_password_hash(request.form.get("password"))
+
         if existing_user:
             # ensure hashed password matches user input
             if check_password_hash(
@@ -53,7 +56,6 @@ def log_in():
                 # invalid password match
                 flash("Incorrect Username and/or Password")
                 return redirect(url_for("log_in"))
-
         else:
             # username doesn't exist
             flash("Incorrect Username and/or Password")
@@ -92,8 +94,7 @@ def sign_up():
 
         # put the new user and password into 'session' cookie
         session["user"] = request.form.get("email_address")
-        session["password"] = generate_password_hash(
-            request.form.get("password"))
+        session["password"] = generate_password_hash(request.form.get("password"))
         return redirect(url_for("account", email_address=session["user"]))
     return render_template("sign_up.html")
 
@@ -126,6 +127,7 @@ def account(email_address):
 @app.route("/account_update/<account_id>", methods=["GET", "POST"])
 def account_update(account_id):
     if request.method == "POST":
+        # put existing info
         submit = {
             "email_address": session["user"],
             "password": session["password"],
