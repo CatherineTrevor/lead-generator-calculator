@@ -8,7 +8,7 @@
                         <i class="material-icons">group</i>
                     </h2>
                     <h5 class="blue-grey-text center">
-                        Account info table
+                        Account information
                     </h5>
                 </div>
                 <div class="row">
@@ -20,10 +20,13 @@
                         <input value="{{ account.account_owner }} " name="account_owner" id="account_owner" type="text" class="validate">
                         <label class="active" for="account_owner">Account Owner</label>
                     </div>
-                    <div class="input-field col l6">
-                        <input value="{{ account.email_address }} " name="email_address" id="email_address" type="email" class="validate">
-                        <label class="active" for="email_address">Email Address (used for log-in)</label>
-                    </div>                                            
+                    <!--admin should not change the log in email address-->
+                    {% if session.user|lower != "admin@admin.com"|lower %}
+                        <div class="input-field col l6">
+                            <input value="{{ account.email_address }} " name="email_address" id="email_address" type="email" class="validate">
+                            <label class="active" for="email_address">Email Address (used for log-in)</label>
+                        </div>    
+                    {% endif %}                                                            
                 </div>
                 <div class="row">
                     <div class="input-field col l6">
