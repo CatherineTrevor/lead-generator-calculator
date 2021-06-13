@@ -26,23 +26,27 @@
 
 # Project Overview
 
-A site to assist people involved in strategic marketing decisions. Manage core marketing campaign data and the subsequent number of leads generated to obtain information about the cost per lead. This data provides invaluable insight into the value provided by marketing campaigns.
+A site to assist people involved in strategic marketing decisions manage their core marketing campaign data and the subsequent number of leads generated to obtain information about the cost per lead. This data provides important insight into the value provided by individual marketing campaigns, which in turn allows for strategies and budgets to be based on real data.
 
-Site users also have access to average cost per lead information from other companies using the site.
+Site users also have access to average cost per lead information from other companies using the site, providing a benchmark.
 
 # User Experience Design
 
 ## Strategy
 
-Developed for those involved in strategic marketing decisions, the site allows for better-informed decisions about the cost per marketing lead, and cost per converted sales lead per marketing activity / campaign that they conduct.
+Developed for those involved in strategic marketing decisions, the site allows for better-informed decisions about marketing campaigns, based on the cost per marketing lead, and cost per converted sales lead per marketing activity / campaign.
 
-Companies open an account and create a campaign profile, which includes the cost of the campaign, number of Marketing Qualified Leads (MQL) and number of converted or Sales Qualified Leads (SQL). They are then presented with the cost per MQL and SQL, as well as a conversion hit rate to understand which activities provide converted leads. This information gives the foundation for better-informed decisions for marketing strategies and budget planning.
+Companies open an account and create a campaign profile, which includes the cost of the campaign, number of Marketing Qualified Leads (MQL), number of Sales Qualified Leads (SQL) and leads that converted into business. They are then presented with the cost per MQL and SQL, as well as a conversion hit rate to understand which activities provide the most converted leads as the best cost. This information gives the foundation for better-informed decisions for marketing strategies and budget planning.
 
 Site users will have access to anonymous comparable data, so they have a benchmark.
 
+The site is free-to-use and mobile responsive.
+
 ### Target audience
 
-Small-Medium Enterprises (SMEs) that may not have a Customer Relationship Management (CRM) tool, or are relying on spreadsheets to manage this information. The site will be a source of information that can be updated as a campaign continues to run and then presented to stakeholders as needed.
+Small-Medium Enterprises (SMEs) that are unlikely to have a Customer Relationship Management (CRM) tool, or are relying on spreadsheets to manage this information. The site will be a source of information that can be updated as a campaign continues to run and then presented to stakeholders as needed.
+
+Campaigns can be created, read, edited, and deleted by the account owner, following the CRUD basic operations of persistent storage. 
 
 ### User stories
 
@@ -86,10 +90,10 @@ Small-Medium Enterprises (SMEs) that may not have a Customer Relationship Manage
 | Benchmark Data | Graphs to display data from companies using the site, including helpful links from external sources about lead generation and cost | Log In / Sign up links |
 | Log In page | Email address and password required. Also used for Admin log in  | Sign up page link |
 | Sign Up page | Email address and password only required  | Log in page link |
-| Administration profile | Category management: create, read, edit and delete | Create new category link |
-| Create a new category | Save new category listing or edit existing listing   | N/A |
-| Account profile | Campaign management: create, read, edit and delete | Create new campaign link |
-| Create a new campaign | Save new category listing or edit existing listing  | N/A |
+| Administration profile | Category management: create, read, edit and delete | Create new category or edit existing category link |
+| Create a new category | Save new category listing  | N/A |
+| Account profile | Campaign management: create, read, edit and delete | Create new campaign or edit existing category link |
+| Create a new campaign | Save new category listing listing  | N/A |
 | Currency exchange | For comparison purposes, data displayed on benchmark-data.html will be converted into Euros using an API. It will therefore be converted in the back-end before displayed in the front-end  | N/A |
 
 ## Structure
@@ -104,17 +108,33 @@ For wireframes see separate [SKELETON.md file](SKELETON.md).
 
 **Database schema**
 
-Using [Creately](https://creately.com/) to generate a database schema, few company details are required. Industry and country are dropdown fields to reduce the risk of misspellings - this data is required to populate graphs displayed on benchmark-data.html, so they must be uniform. The Industry listing will be managed by Administration who will have access to create, edit and delete the industry options.
+The database schema was created using [Creately](https://creately.com/) to generate a database schema. 
 
-The Country field is dropdown using the [Exchange Rate API](https://www.exchangerate-api.com/docs/supported-currencies) who maintain country and currency code listings. Again the importance of pre-defined fields for these options must be stressed, so the countries can be used for data comparison in benchmark-data.html. Free text fields will not allow for such data comparison (for example Sweden, Sverige, SWE or SE are all common terms, but cannot be grouped as the same country so the risk is they are appear as four different countries where the data should be displayed as one).
+Industry and country are dropdown fields to reduce the risk of misspellings - this data is required to populate graphs displayed on benchmark-data.html, so the input must be uniformed, rather than free-text. The Industry listing will be managed by Administration who will have access to create, edit and delete the industry options.
+
+The Country field is dropdown using the [Exchange Rate API](https://www.exchangerate-api.com/docs/supported-currencies) who maintain country and currency code listings. Again the importance of pre-defined fields for these options must be stressed, so the countries can be used for data comparison in benchmark-data.html. Free text fields will not allow for such data comparison. For example Sweden, Sverige, SWE or SE are all common terms, but cannot be grouped as the same country so the risk is they are appear as four different countries where the data should be displayed as one.
 
 [Exchange Rate API](https://www.exchangerate-api.com/docs/supported-currencies) also provides currency exchange. At present the site is focused on European businesses, therefore all data for comparison purposes will be converted into Euros.
+
+Calculations were input into a separate collection, to allow for data to be further manipulated and displayed in the graph on benchmark-data.html.
 
 ![database_schema](https://user-images.githubusercontent.com/76033080/119633631-3b638a00-be12-11eb-8377-2c917a91c63f.jpg)
 
 ## Surface
 
+### Template
+
+The site uses the [Parallax template](https://materializecss.com/templates/parallax-template/preview.html) from Materialize (https://materializecss.com), which has been heavily modified.
+
 ### Typography
+
+Font families used are: Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif as set by the Materialize template.
+
+### Color scheme
+
+Based on the blue-grey color scheme, with a combination of blue-grey lighten and white text, as supplied by [Materlialize](https://materializecss.com/color.html).
+
+![image](https://user-images.githubusercontent.com/76033080/121817049-5a21a780-cc7f-11eb-91e3-9b16e2ea8aef.png)
 
 ### Imagery
 
@@ -146,8 +166,6 @@ Image by <a href="https://pixabay.com/users/kiquebg-5133331/?utm_source=link-att
 
 Image by <a href="https://pixabay.com/users/geralt-9301/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2910663">Gerd Altmann</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2910663">Pixabay</a>
 
-### Color Scheme
-
 # Technologies Used
 
 The project uses the following languages;
@@ -158,14 +176,53 @@ The project uses the following languages;
 * jQuery
 * Python
 
-The project was created 
+The project was created on GitHub and uses the following libraries and frameworks:
+
+ - [Balsamiq](https://balsamiq.cloud/) - used to create all wireframes
+ - [Materialize](https://materializecss.com/about.html) - the site layout uses the Parallax template from Materialize, which has been heavily modified
+ - [Google Fonts](https://fonts.google.com/specimen/Permanent+Marker?preview.text=Gothenburg%20Netball%20Club%20Est.%202019%20Fun,%20fitness%20and%20friendship!&preview.text_type=custom) - Permanent Marker and Lato
+ - [MongoDB]
+ - [Heroku]
+ - [Creately]
+ - [Google charts]
+ - **[Free Formatter HTML](https://www.freeformatter.com/html-formatter.html) - for HTML code formatting
+ - **[Free Formatter CSS](https://www.freeformatter.com/css-beautifier.html) - to beautify CSS code
+ - [Grammarly](https://app.grammarly.com/) [(Example)](supporting-docs/grammarly-example.jpg) - the free service to double check grammar and spelling 
+ - [Monday.com](https://view.monday.com/1287064588-3df266aa3259485edf2c68ed782207b8?r=use1) - used for project/task management 
+ - **[Am I responsive](http://ami.responsivedesign.is/) - supplied the responsive image for the top of README.md
 
 # Testing
 
+[See separate Testing file](TESTING.md) for information on testing and issues.
+
 # Deployment
+
+**Conection to MongoDB**
+
+The Github repo is connected to MongoDB:
+
+![image](https://user-images.githubusercontent.com/76033080/121817309-e385a980-cc80-11eb-8c17-df173b5c9519.png)
+
+![image](https://user-images.githubusercontent.com/76033080/121817315-eaacb780-cc80-11eb-8505-f9dce1385d72.png)
+
+**Deployment on Heroku**
+
+![image](https://user-images.githubusercontent.com/76033080/121817372-5f7ff180-cc81-11eb-90d5-4cb613c61c8d.png)
+
+![image](https://user-images.githubusercontent.com/76033080/121817444-cd2c1d80-cc81-11eb-9ebf-a1c5b0857ee1.png)
+
+![image](https://user-images.githubusercontent.com/76033080/121817453-d9b07600-cc81-11eb-953b-246f3b6a77c2.png)
+
+![image](https://user-images.githubusercontent.com/76033080/121817469-edf47300-cc81-11eb-84ed-492aae305e88.png)
+
+![image](https://user-images.githubusercontent.com/76033080/121817476-f9479e80-cc81-11eb-9f4b-07ffad140612.png)
+
 
 # Credits
 
 * [Geeks for Geeks: help with count_document calculation](https://www.geeksforgeeks.org/count-the-number-of-documents-in-mongodb-using-python/)
-
-* [Stackoverflow: numbers only input field](https://stackoverflow.com/questions/8808590/number-input-type-that-takes-only-integers)
+* [Stackoverflow](http://stackoverflow.com) - general help including PyMongo, MongoDB and [numbers only input field](https://stackoverflow.com/questions/8808590/number-input-type-that-takes-only-integers)
+* Code Institute Slack community
+* Narender Singh, Code Institute mentor
+* Code Institute tutors
+* Ex-colleagues for supporting me and helping test the site
