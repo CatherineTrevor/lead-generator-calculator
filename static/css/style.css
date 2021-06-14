@@ -13,11 +13,9 @@ nav ul a,
 nav .brand-logo {
   color: #444;
 }
-
 p {
   line-height: 2rem;
 }
-
 .sidenav-trigger {
   color: #26a69a;
 }
@@ -36,10 +34,13 @@ footer.page-footer {
 .icon-block .material-icons {
   font-size: inherit;
 }
+.btn-large {
+  margin-bottom: 10px;
+}
 
 /***Top image and header section***/
 
- .parallax-container {
+.parallax-container {
   color: rgba(255,255,255,.9);
   height: auto;
   line-height: 0;
@@ -90,21 +91,36 @@ footer.page-footer {
   margin-top: 20px;
 }
 
-/***Contact form***/
-
-.container__signup__form {
-  width: 30%;
-}
-
 /***Responsive styling***/
 
 @media only screen and (max-width : 992px) {
+  h1 {
+    font-size: 160%;
+  }
+  h5 {
+    font-size: 110%;
+  }
+  .section {
+    padding-top: 0rem;
+  }
+  .parallax-container {
+    min-height: 200px;
+  }
   .parallax-container .section {
     position: absolute;
     top: 40%;
   }
   #index-banner .section {
     top: 10%;
+  }
+  .index__page__container {
+    min-height: 300px;
+  }
+  .btn-small {
+    margin-bottom: 10px;
+  }
+  .category__management__title {
+    font-size: 18px !important;
   }
 }
 

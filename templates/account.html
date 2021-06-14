@@ -142,39 +142,39 @@
                                 </div>
                                 <div class="collapsible-body">                                   
                                     <div class="row">
-                                        <div class="input-field col l6 s6">
+                                        <div class="input-field col l6 s12">
                                             <label for="campaign_type">Campaign Type</label>
                                             <input value="{{ campaign.campaign_type }}" name="campaign_type" type="text" class="validate" readonly>
                                         </div>  
-                                        <div class="input-field col l6 s6">
+                                        <div class="input-field col l6 s12">
                                             <label for="communication_platform">Communication Platform</label>
                                             <input value="{{ campaign.communication_platform }}" name="communication_platform" type="text" class="validate">
                                         </div> 
                                     </div>
                                     <div class="row">
-                                        <div class="input-field col l6 s6">
+                                        <div class="input-field col l6 s12">
                                             <input value="{{ campaign.start_date }}" name="start_date" type="date" class="validate" readonly>
                                             <label for="start_date">Start Date</label>
                                         </div> 
-                                        <div class="input-field col l6 s6">
+                                        <div class="input-field col l6 s12">
                                             <input value="{{ campaign.end_date }}" name="end_date" type="text" class="datepicker validate" readonly>
                                             <label for="end_date">End Date</label>
                                         </div>  
                                     </div>                                 
                                     <div class="row">
-                                        <div class="input-field col l3 s6">
+                                        <div class="input-field col l3 s12">
                                             <input value="{{ account.currency }} {{ campaign.total_campaign_cost }}" name="total_campaign_cost" type="text" class="validate" readonly>
                                             <label for="total_campaign_cost">Total Campaign Cost</label>
                                         </div>                                                
-                                        <div class="input-field col l3 s6">
+                                        <div class="input-field col l3 s12">
                                             <input value="{{ campaign.marketing_qualified_leads }}" name="marketing_qualified_leads" type="number" class="validate" readonly>
                                             <label for="marketing_qualified_leads">Marketing Qualified Leads</label>
                                         </div>    
-                                        <div class="input-field col l3 s6">
+                                        <div class="input-field col l3 s12">
                                             <input value="{{ campaign.sales_qualified_leads }}" name="sales_qualified_leads" type="number" class="validate" readonly>
                                             <label for="sales_qualified_leads">Sales Qualified Leads</label>
                                         </div>
-                                        <div class="input-field col l3 s6">
+                                        <div class="input-field col l3 s12">
                                             <input value="{{ campaign.converted_leads }}" id="converted_leads" name="converted_leads" type="number" class="validate" readonly>
                                             <label for="converted_leads">Converted Leads</label>
                                         </div>                                                              
@@ -184,19 +184,19 @@
                                         {% if session.user == calculation.owning_account and campaign.campaign_name == calculation.campaign_name %}
                                             <form action="{{ url_for('calculate_results', calculation_id=calculation._id) }}" method="POST">
                                                 <div class="row">
-                                                    <div class="input-field col l3 s6">
+                                                    <div class="input-field col l3 s12">
                                                         <input value="{{ calculation.hit_rate }} %" name="hit_rate" type="text" class="validate" readonly>
                                                         <label for="hit_rate">Hit rate (from marketing to sales lead)</label>
                                                     </div>                                                    
-                                                    <div class="input-field col l3 s6">
+                                                    <div class="input-field col l3 s12">
                                                         <input value="{{ account.currency }} {{ calculation.cost_per_marketing_lead }}" name="cost_per_marketing_lead" type="text" class="validate" readonly>
                                                         <label for="cost_per_marketing_lead">Cost per marketing lead</label>
                                                     </div>
-                                                    <div class="input-field col l3 s6">
+                                                    <div class="input-field col l3 s12">
                                                         <input value="{{ account.currency }} {{ calculation.cost_per_sales_lead }}" name="cost_per_sales_lead" type="text" class="validate" readonly>
                                                         <label for="cost_per_sales_lead">Cost per sales lead</label>
                                                     </div>  
-                                                    <div class="input-field col l3 s6">
+                                                    <div class="input-field col l3 s12">
                                                         <input value="{{ account.currency }} {{ calculation.cost_per_converted_lead }}" name="cost_per_converted_lead" type="text" class="validate" readonly>
                                                         <label for="cost_per_converted_lead">Cost per converted lead</label>
                                                     </div>                                                                                                                                                                                                        
@@ -232,27 +232,27 @@
         <div class="container">
             <div class="section">
                 <div class="row">                    
-                    <div class="input-field col l4 s6">
+                    <div class="input-field col l4 s12">
                         <input value="{{ account.company_name }}" id="company_name" type="text" class="validate" readonly>
                         <label class="active" for="company_name">Company Name</label>
                     </div>
-                    <div class="input-field col l4 s6">
+                    <div class="input-field col l4 s12">
                         <input value="{{ account.account_owner }}" id="account_owner" type="text" class="validate" readonly>
                         <label class="active" for="account_owner">Account Owner</label>
                     </div>  
-                    <div class="input-field col l4 s6">
+                    <div class="input-field col l4 s12">
                         <input value="{{ account.email_address }}" id="email_address" type="text" class="validate" readonly>
                         <label class="active" for="email_address">Email address</label>
                     </div>                                                  
-                    <div class="input-field col l4 s6">
+                    <div class="input-field col l4 s8">
                         <input value="{{ account.company_country_name }}" id="country" type="text" class="validate" readonly>
                         <label class="active" for="country">Country</label>
                     </div> 
-                    <div class="input-field col l4 s6">
+                    <div class="input-field col l4 s4">
                         <input value="{{ account.currency }}" id="currency" type="text" class="validate" readonly>
                         <label class="active" for="currency">Currency</label>
                     </div>    
-                    <div class="input-field col l4 s6">
+                    <div class="input-field col l4 s12">
                         <input value="{{ account.company_industry }}" id="industry" type="text" class="validate" readonly>
                         <label class="active" for="industry">Industry</label>
                     </div>                                                                                                                          

@@ -10,10 +10,10 @@
         </h5>
     </div>
 </div>        
-    <div class="container container__signup__form">
-        <form class="col s6" method="POST" action="{{ url_for('log_in') }}">
+    <div class="container">
+        <form method="POST" action="{{ url_for('log_in') }}">
             <div class="row">
-                <div class="input-field col s12 center-align blue-grey-text">
+                <div class="input-field col s12 l8 center-align blue-grey-text">
                     <i class="material-icons prefix">mail</i>
                     <input id="email_address" name="email_address" type="email" class="validate" required>
                     <label for="email_address">
@@ -23,9 +23,7 @@
                         Enter the email address used for sign up
                     </span>                      
                 </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12 center-align blue-grey-text">
+                <div class="input-field col s12 l8 center-align blue-grey-text">
                     <i class="material-icons prefix">lock_outline</i>
                     <input id="password" name="password" type="password" class="validate" minlength="5" maxlength="15" required pattern="^[a-zA-Z0-9]{5,15}$">
                     <label for="password">
