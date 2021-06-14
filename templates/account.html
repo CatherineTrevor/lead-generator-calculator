@@ -133,7 +133,7 @@
     <div class="container">
         <div class="section">
             <ul class="collapsible">
-                {% for campaign in campaigns %}
+                {% for campaign in campaigns | reverse %}
                     {% if session.user == campaign.owning_account %}                
                             <li>
                                 <div class="collapsible-header">

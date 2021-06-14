@@ -208,7 +208,7 @@ def edit_campaign(campaign_id, account_id, calculation_id):
             "total_campaign_cost": request.form.get("total_campaign_cost"),
             "owning_account": session["user"],
             "account_id": account["_id"],
-            "company_industry": account["company_industry"] 
+            "company_industry": account["company_industry"]
         }
         update_calculate_results(campaign_id, calculation_id)
         mongo.db.campaigns.update({"_id": ObjectId(campaign_id)}, submit)
@@ -242,8 +242,7 @@ def delete_campaign(campaign_id, calculation_id):
 @app.route("/calculate", methods=["GET", "POST"])
 def calculate_results():
     if request.method == "POST":
-        existing_calculation = mongo.db.calculations.find_one(
-            {"_id": ObjectId()})
+
         total_campaign_cost = int(request.form.get("total_campaign_cost"))
         mql = int(request.form.get("marketing_qualified_leads"))
         sql = int(request.form.get("sales_qualified_leads"))
@@ -265,11 +264,6 @@ def calculate_results():
             "cost_per_converted_lead": calc_cost_per_conversion,
             "hit_rate": calc_hit_rate
         }
-
-        if existing_calculation:
-            mongo.db.calculations.find_one_and_update(
-                {"_id": ObjectId()}, calculation)
-            return redirect(url_for("get_account_profile"))
 
         mongo.db.calculations.insert_one(calculation)
         return redirect(url_for("get_account_profile"))
