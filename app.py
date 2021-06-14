@@ -169,7 +169,8 @@ def create_campaign(account_id):
             "converted_leads": request.form.get("converted_leads"),
             "total_campaign_cost": request.form.get("total_campaign_cost"),
             "owning_account": session["user"],
-            "account_id": account["_id"]
+            "account_id": account["_id"],
+            "company_industry": account["company_industry"]            
         }
         mongo.db.campaigns.insert_one(campaign)
         calculate_results()
@@ -206,7 +207,8 @@ def edit_campaign(campaign_id, account_id, calculation_id):
             "converted_leads": request.form.get("converted_leads"),
             "total_campaign_cost": request.form.get("total_campaign_cost"),
             "owning_account": session["user"],
-            "account_id": account["_id"]
+            "account_id": account["_id"],
+            "company_industry": account["company_industry"] 
         }
         update_calculate_results(campaign_id, calculation_id)
         mongo.db.campaigns.update({"_id": ObjectId(campaign_id)}, submit)
