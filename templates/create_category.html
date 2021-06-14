@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="input-field col l6 s6">
                     <select id="category_type" name="category_type" class="validate" required>
-                        <option class="blue-grey-text" value="" disabled selected></option>
+                        <option class="blue-grey-text" value="" selected></option>
                         {% for option in options %}
                             <option value="{{ option.category_type }}">{{ option.category_type }}</option>
                         {% endfor %}

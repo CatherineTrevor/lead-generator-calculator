@@ -13,8 +13,8 @@
                     <label class="active" for="campaign_name">Campaign Name</label>
                 </div>
                 <div class="input-field col l6 s12">
-                    <select id="campaign_type" name="campaign_type" class="validate" type="text" required>
-                        <option class="blue-grey-text" value="" disabled selected></option>
+                    <select id="campaign_type" name="campaign_type" type="text" class="validate" required>
+                        <option class="blue-grey-text" value="" selected></option>
                         {% for campaign in campaign_type %}
                             <option value="{{ campaign.category_name }}">{{ campaign.category_name }}</option>
                         {% endfor %}
@@ -22,8 +22,8 @@
                     <label id="category_type" class="blue-grey-text">Select campaign type</label>
                 </div>
                 <div class="input-field col l6 s12">
-                    <select id="communication_platform" name="communication_platform" class="validate" required>
-                        <option class="blue-grey-text" value="" disabled selected></option>
+                    <select id="communication_platform" name="communication_platform" type="text" class="validate" required>
+                        <option class="blue-grey-text" value="" selected></option>
                         {% for communication in communication_platform %}
                             <option value="{{ communication.category_name }}">{{ communication.category_name }}</option>
                         {% endfor %}

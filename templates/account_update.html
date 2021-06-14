@@ -38,10 +38,10 @@
                         <label class="active" for="currency">Currency</label>
                     </div>  
                     <div class="input-field col l4 s12">
-                        <select id="company_industry" name="company_industry" class="validate" required>
-                            <option class="blue-grey-text" value="" disabled selected></option>
+                        <select id="company_industry" name="company_industry" class="validate" type="text" required>
+                            <option class="blue-grey-text" value="" selected></option>
                             {% for category in categories %}
-                                <option value="{{ category.category_name }}" selected>{{ category.category_name }}</option>
+                                <option value="{{ category.category_name }}">{{ category.category_name }}</option>
                             {% endfor %}
                         </select>
                         <label id="company_industry" class="blue-grey-text">Select industry</label>
