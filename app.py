@@ -41,17 +41,19 @@ def log_in():
         existing_user = mongo.db.accounts.find_one(
             {"email_address": request.form.get("email_address").lower()})
 
-        # put the new user and password into 'session' cookie to allow for account_updates after log-in
+        ''' put the new user and password into session cookie
+        to allow for account_updates after log-in '''
         session["user"] = request.form.get("email_address")
-        session["password"] = generate_password_hash(request.form.get("password"))
+        session["password"] = generate_password_hash(
+            request.form.get("password"))
 
         if existing_user:
             # ensure hashed password matches user input
             if check_password_hash(
                 existing_user["password"], request.form.get("password")):
-                session["user"] = request.form.get("email_address").lower()
+                    session["user"] = request.form.get("email_address").lower()
                 return redirect(url_for(
-                    "account", email_address=session["user"]))
+                "account", email_address=session["user"]))
             else:
                 # invalid password match
                 flash("Incorrect Username and/or Password")
@@ -109,7 +111,7 @@ def get_account_profile():
     return render_template("account.html",
                         accounts=accounts, campaigns=campaigns,
                         calculations=calculations,
-                        total_open_campaigns=total_open_campaigns)
+                            total_open_campaigns=total_open_campaigns)
 
 
 @app.route("/account<email_address>", methods=["GET", "POST"])
@@ -135,7 +137,7 @@ def account_update(account_id):
             "account_owner": request.form.get("account_owner"),
             "company_country_name": request.form.get("company_country_name"),
             "company_industry": request.form.get("company_industry"),
-            "currency": request.form.get("currency")
+            "currency": "€"
         }
         mongo.db.accounts.update({"_id": ObjectId(account_id)}, submit)
         flash("Account successfully updated")
@@ -184,10 +186,13 @@ def create_campaign(account_id):
         communication_platform=communication_platform)
 
 
-@app.route("/edit_campaign/<campaign_id>/<account_id>", methods=["GET", "POST"])
-def edit_campaign(campaign_id, account_id):
+@app.route("/edit_campaign/<campaign_id>/<account_id>/<calculation_id>",
+        methods=["GET", "POST"])
+def edit_campaign(campaign_id, account_id, calculation_id):
     if request.method == "POST":
         account = mongo.db.accounts.find_one({"_id": ObjectId(account_id)})
+        calculation = mongo.db.calculations.find_one({"_id": ObjectId(
+            calculation_id)})
         submit = {
             "campaign_name": request.form.get("campaign_name"),
             "campaign_type": request.form.get("campaign_type"),
@@ -203,13 +208,15 @@ def edit_campaign(campaign_id, account_id):
             "owning_account": session["user"],
             "account_id": account["_id"]
         }
-        calculate_results()
+        update_calculate_results(campaign_id, calculation_id)
         mongo.db.campaigns.update({"_id": ObjectId(campaign_id)}, submit)
         flash("Campaign successfully updated")
         return redirect(url_for("get_account_profile"))
 
     account = mongo.db.accounts.find_one({"_id": ObjectId(account_id)})
     campaign = mongo.db.campaigns.find_one({"_id": ObjectId(campaign_id)})
+    calculation = mongo.db.calculations.find_one({"_id": ObjectId(
+        calculation_id)})
     campaign_type = mongo.db.categories.find(
         {"category_type": "Campaign type"}).sort("category_name", 1)
     communication_platform = mongo.db.categories.find(
@@ -218,7 +225,8 @@ def edit_campaign(campaign_id, account_id):
         "edit_campaign.html", account=account,
         campaign=campaign,
         campaign_type=campaign_type,
-        communication_platform=communication_platform)
+        communication_platform=communication_platform,
+        calculation=calculation)
 
 
 @app.route("/delete_campaign/<campaign_id>/<calculation_id>")
@@ -266,6 +274,47 @@ def calculate_results():
 
     calculations = mongo.db.calculations.find()
     return render_template('account.html', calculations=calculations)
+
+
+@app.route("/calculate/<campaign_id>/<calculation_id>", methods=[
+    "GET", "POST"])
+def update_calculate_results(campaign_id, calculation_id):
+    if request.method == "POST":
+
+        total_campaign_cost = int(request.form.get("total_campaign_cost"))
+        mql = int(request.form.get("marketing_qualified_leads"))
+        sql = int(request.form.get("sales_qualified_leads"))
+        converted_leads = int(request.form.get("converted_leads"))
+        calc_cost_mql = int(total_campaign_cost / mql)
+        calc_cost_sql = int(total_campaign_cost / sql)
+        calc_cost_per_conversion = int(
+            total_campaign_cost / converted_leads)
+        calc_hit_rate = int(sql / mql * 100)
+
+        calculation = {
+            "owning_account": session["user"],
+            "campaign_name": request.form.get("campaign_name"),
+            "marketing_qualified_leads": request.form.get(
+                "marketing_qualified_leads"),
+            "sales_qualified_leads": request.form.get(
+                "sales_qualified_leads"),
+            "cost_per_marketing_lead": calc_cost_mql,
+            "cost_per_sales_lead": calc_cost_sql,
+            "cost_per_converted_lead": calc_cost_per_conversion,
+            "hit_rate": calc_hit_rate
+        }
+
+        mongo.db.calculations.update({"_id": ObjectId(
+            calculation_id)}, calculation)
+        return redirect(url_for("get_account_profile"))
+
+    calculation = mongo.db.calculations.find_one({"_id": ObjectId(
+        calculation_id)})
+    campaign = mongo.db.campaigns.find_one({"_id": ObjectId(campaign_id)})
+
+    return redirect(url_for("get_account_profile",
+                            campaign=campaign,
+                            calculation=calculation))
 
 
 @app.route("/contact_us", methods=["GET", "POST"])
