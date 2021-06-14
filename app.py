@@ -170,10 +170,13 @@ def create_campaign(account_id):
             "total_campaign_cost": request.form.get("total_campaign_cost"),
             "owning_account": session["user"],
             "account_id": account["_id"],
-            "company_industry": account["company_industry"]            
+            "company_industry": account["company_industry"]
         }
         mongo.db.campaigns.insert_one(campaign)
-        calculate_results()
+        try:
+            calculate_results()
+        except ValueError:
+            pass
         return redirect(url_for("get_account_profile"))
 
     account = mongo.db.accounts.find_one({"_id": ObjectId(account_id)})
