@@ -34,7 +34,7 @@
                         <label class="active" for="company_country_name">Country</label>
                     </div> 
                     <div class="input-field col l2">
-                        <input value="{{ account.currency }}" name="currency" id="currency" type="text" class="validate">
+                        <input value="{{ account.currency }}" name="currency" id="currency" type="text" class="validate" readonly>
                         <label class="active" for="currency">Currency</label>
                     </div>  
                     <div class="input-field col l4">
@@ -48,9 +48,16 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <small class="text-right-align">
-                                If your industry is not displayed, please <a href="{{ url_for('contact_us') }}">get in touch.</a>
-                            </small> 
+                            <p>
+                                <small class="text-right-align">
+                                    If your industry is not displayed, please <a href="{{ url_for('contact_us') }}">get in touch.</a>
+                                </small> 
+                            </p>
+                            <p>
+                                <small class="text-right-align">
+                                    At present currency is Euros. Currency options will be added in the future.
+                                </small>   
+                            </p>                          
                         </div>
                     </div>
                 </div>                                                                                                              

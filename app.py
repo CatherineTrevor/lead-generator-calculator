@@ -221,9 +221,10 @@ def edit_campaign(campaign_id, account_id):
         communication_platform=communication_platform)
 
 
-@app.route("/delete_campaign/<campaign_id>")
-def delete_campaign(campaign_id):
+@app.route("/delete_campaign/<campaign_id>/<calculation_id>")
+def delete_campaign(campaign_id, calculation_id):
     mongo.db.campaigns.remove({"_id": ObjectId(campaign_id)})
+    mongo.db.calculations.remove({"_id": ObjectId(calculation_id)})
     flash("Campaign deleted")
     return redirect(url_for("get_account_profile"))
 
