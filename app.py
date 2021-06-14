@@ -51,7 +51,7 @@ def log_in():
             # ensure hashed password matches user input
             if check_password_hash(
                 existing_user["password"], request.form.get("password")):
-                    session["user"] = request.form.get("email_address").lower()
+                session["user"] = request.form.get("email_address").lower()
                 return redirect(url_for(
                 "account", email_address=session["user"]))
             else:
@@ -111,7 +111,7 @@ def get_account_profile():
     return render_template("account.html",
                         accounts=accounts, campaigns=campaigns,
                         calculations=calculations,
-                            total_open_campaigns=total_open_campaigns)
+                        total_open_campaigns=total_open_campaigns)
 
 
 @app.route("/account<email_address>", methods=["GET", "POST"])
@@ -280,7 +280,6 @@ def calculate_results():
     "GET", "POST"])
 def update_calculate_results(campaign_id, calculation_id):
     if request.method == "POST":
-
         total_campaign_cost = int(request.form.get("total_campaign_cost"))
         mql = int(request.form.get("marketing_qualified_leads"))
         sql = int(request.form.get("sales_qualified_leads"))
