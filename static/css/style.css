@@ -4,8 +4,11 @@
  * the core Materialize files in the future
  *
  * Made By MaterializeCSS.com
+ * Modified for lead-generation-calculator
  */
 
+
+ /***Main sections***/
 nav ul a,
 nav .brand-logo {
   color: #444;
@@ -97,6 +100,9 @@ p {
   #index-banner .section {
     top: 0;
   }
+  #logo-container {
+    display: none;
+  }  
 }
 
 .icon-block {
