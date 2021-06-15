@@ -53,7 +53,7 @@ def log_in():
                 existing_user["password"], request.form.get("password")):
                 session["user"] = request.form.get("email_address").lower()
                 return redirect(url_for(
-                "account", email_address=session["user"]))
+                    "account", email_address=session["user"]))
             else:
                 # invalid password match
                 flash("Incorrect Username and/or Password")
@@ -90,14 +90,24 @@ def sign_up():
             "account_owner": "Please update your details!",
             "company_country_name": "Enter your country",
             "company_industry": "Select your industry",
-            "currency": "Select your currency"
+            "currency": "€"
         }
         mongo.db.accounts.insert_one(register)
-
         # put the new user and password into 'session' cookie
         session["user"] = request.form.get("email_address")
-        session["password"] = generate_password_hash(request.form.get("password"))
-        return redirect(url_for("account", email_address=session["user"]))
+        session["password"] = generate_password_hash(
+            request.form.get("password"))
+
+        # create account overview from which to count campaigns and totals
+        overview = {
+            "account_owner": session["user"],
+            "company_industry": "industry",
+            "total_open_campaigns": "0"
+        }
+        # insert into new collection
+        mongo.db.accountCalculation.insert_one(overview)
+
+        return redirect(url_for("account", email_address=session["user"],))
     return render_template("sign_up.html")
 
 
@@ -106,12 +116,14 @@ def get_account_profile():
     accounts = list(mongo.db.accounts.find())
     campaigns = list(mongo.db.campaigns.find())
     calculations = list(mongo.db.calculations.find())
+    accountCalculation = list(mongo.db.accountCalculation.find())
     total_open_campaigns = mongo.db.campaigns.count_documents(
-        {"owning_account": session['user']})
+            {"owning_account": session['user']})
     return render_template("account.html",
-                        accounts=accounts, campaigns=campaigns,
-                        calculations=calculations,
-                        total_open_campaigns=total_open_campaigns)
+                            accounts=accounts, campaigns=campaigns,
+                            calculations=calculations,
+                            total_open_campaigns=total_open_campaigns,
+                            accountCalculation=accountCalculation)
 
 
 @app.route("/account<email_address>", methods=["GET", "POST"])
@@ -129,7 +141,6 @@ def account(email_address):
 @app.route("/account_update/<account_id>", methods=["GET", "POST"])
 def account_update(account_id):
     if request.method == "POST":
-        # put existing info
         submit = {
             "email_address": session["user"],
             "password": session["password"],
@@ -174,7 +185,7 @@ def create_campaign(account_id):
         }
         mongo.db.campaigns.insert_one(campaign)
         try:
-            calculate_results()
+            calculate_results(account_id)
         except ValueError:
             pass
         return redirect(url_for("get_account_profile"))
@@ -242,10 +253,9 @@ def delete_campaign(campaign_id, calculation_id):
     return redirect(url_for("get_account_profile"))
 
 
-@app.route("/calculate", methods=["GET", "POST"])
-def calculate_results():
+@app.route("/calculate/<account_id>", methods=["GET", "POST"])
+def calculate_results(account_id):
     if request.method == "POST":
-
         total_campaign_cost = int(request.form.get("total_campaign_cost"))
         mql = int(request.form.get("marketing_qualified_leads"))
         sql = int(request.form.get("sales_qualified_leads"))
@@ -254,10 +264,11 @@ def calculate_results():
         calc_cost_sql = int(total_campaign_cost / sql)
         calc_cost_per_conversion = int(total_campaign_cost / converted_leads)
         calc_hit_rate = int(sql / mql * 100)
-
+        account = mongo.db.accounts.find_one({"_id": ObjectId(account_id)})
         calculation = {
             "owning_account": session["user"],
             "campaign_name": request.form.get("campaign_name"),
+            "company_industry": account["company_industry"],
             "marketing_qualified_leads": request.form.get(
                 "marketing_qualified_leads"),
             "sales_qualified_leads": request.form.get(
@@ -272,10 +283,13 @@ def calculate_results():
         return redirect(url_for("get_account_profile"))
 
     calculations = mongo.db.calculations.find()
-    return render_template('account.html', calculations=calculations)
+    campaign = mongo.db.campaigns.find_one({"_id": ObjectId()})
+    account = mongo.db.accounts.find_one({"_id": ObjectId(account_id)})
+    return render_template('account.html', calculations=calculations,
+        campaign=campaign, account=account)
 
 
-@app.route("/calculate/<campaign_id>/<calculation_id>", methods=[
+@app.route("/update_calculate_results/<campaign_id>/<calculation_id>", methods=[
     "GET", "POST"])
 def update_calculate_results(campaign_id, calculation_id):
     if request.method == "POST":
@@ -288,10 +302,11 @@ def update_calculate_results(campaign_id, calculation_id):
         calc_cost_per_conversion = int(
             total_campaign_cost / converted_leads)
         calc_hit_rate = int(sql / mql * 100)
-
+        campaign = mongo.db.campaigns.find_one({"_id": ObjectId(campaign_id)})
         calculation = {
             "owning_account": session["user"],
             "campaign_name": request.form.get("campaign_name"),
+            "company_industry": campaign["company_industry"],
             "marketing_qualified_leads": request.form.get(
                 "marketing_qualified_leads"),
             "sales_qualified_leads": request.form.get(
