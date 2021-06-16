@@ -41,19 +41,22 @@ def log_in():
         existing_user = mongo.db.accounts.find_one(
             {"email_address": request.form.get("email_address").lower()})
 
-        ''' put the new user and password into session cookie
-        to allow for account_updates after log-in '''
+        '''
+            put the new user and password into session cookie
+            to allow for account_updates after log-in without
+            updating the password - issue #14
+        '''
         session["user"] = request.form.get("email_address")
         session["password"] = generate_password_hash(
             request.form.get("password"))
 
         if existing_user:
             # ensure hashed password matches user input
-            if check_password_hash(
-                existing_user["password"], request.form.get("password")):
+            if check_password_hash(existing_user["password"],
+                                   request.form.get("password")):
                 session["user"] = request.form.get("email_address").lower()
                 return redirect(url_for(
-                    "account", email_address=session["user"]))
+                                "account", email_address=session["user"]))
             else:
                 # invalid password match
                 flash("Incorrect Username and/or Password")
@@ -82,7 +85,7 @@ def sign_up():
         if existing_user:
             flash("Username already exists")
             return redirect(url_for("sign_up"))
-
+        # put blank info into account until user updates it
         register = {
             "email_address": request.form.get("email_address"),
             "password": generate_password_hash(request.form.get("password")),
@@ -104,11 +107,21 @@ def sign_up():
             "company_industry": "industry",
             "total_open_campaigns": "0"
         }
-        # insert into new collection
         mongo.db.accountCalculation.insert_one(overview)
 
         return redirect(url_for("account", email_address=session["user"],))
     return render_template("sign_up.html")
+
+
+# Account management
+
+
+@app.route("/account<email_address>", methods=["GET", "POST"])
+def account(email_address):
+    if session['user']:
+        return redirect(url_for("get_account_profile"))
+
+    return redirect(url_for("log_in"))
 
 
 @app.route("/account_profile")
@@ -120,22 +133,10 @@ def get_account_profile():
     total_open_campaigns = mongo.db.campaigns.count_documents(
             {"owning_account": session['user']})
     return render_template("account.html",
-                            accounts=accounts, campaigns=campaigns,
-                            calculations=calculations,
-                            total_open_campaigns=total_open_campaigns,
-                            accountCalculation=accountCalculation)
-
-
-@app.route("/account<email_address>", methods=["GET", "POST"])
-def account(email_address):
-    # grab the session user's username from db
-    email_address = mongo.db.accounts.find_one(
-        {"email_address": session["user"]})["email_address"]
-
-    if session['user']:
-        return redirect(url_for("get_account_profile"))
-
-    return redirect(url_for("log_in"))
+                           accounts=accounts, campaigns=campaigns,
+                           calculations=calculations,
+                           total_open_campaigns=total_open_campaigns,
+                           accountCalculation=accountCalculation)
 
 
 @app.route("/account_update/<account_id>", methods=["GET", "POST"])
@@ -160,6 +161,9 @@ def account_update(account_id):
 
     return render_template(
         "account_update.html", account=account, categories=categories)
+
+
+# Campaign management
 
 
 @app.route("/create_campaign/<account_id>", methods=["GET", "POST"])
@@ -202,7 +206,7 @@ def create_campaign(account_id):
 
 
 @app.route("/edit_campaign/<campaign_id>/<account_id>/<calculation_id>",
-        methods=["GET", "POST"])
+           methods=["GET", "POST"])
 def edit_campaign(campaign_id, account_id, calculation_id):
     if request.method == "POST":
         account = mongo.db.accounts.find_one({"_id": ObjectId(account_id)})
@@ -253,6 +257,9 @@ def delete_campaign(campaign_id, calculation_id):
     return redirect(url_for("get_account_profile"))
 
 
+# Calculations
+
+
 @app.route("/calculate/<account_id>", methods=["GET", "POST"])
 def calculate_results(account_id):
     if request.method == "POST":
@@ -286,11 +293,11 @@ def calculate_results(account_id):
     campaign = mongo.db.campaigns.find_one({"_id": ObjectId()})
     account = mongo.db.accounts.find_one({"_id": ObjectId(account_id)})
     return render_template('account.html', calculations=calculations,
-        campaign=campaign, account=account)
+                           campaign=campaign, account=account)
 
 
-@app.route("/update_calculate_results/<campaign_id>/<calculation_id>", methods=[
-    "GET", "POST"])
+@app.route("/update_calculate_results/<campaign_id>/<calculation_id>",
+           methods=["GET", "POST"])
 def update_calculate_results(campaign_id, calculation_id):
     if request.method == "POST":
         total_campaign_cost = int(request.form.get("total_campaign_cost"))
@@ -330,21 +337,7 @@ def update_calculate_results(campaign_id, calculation_id):
                             calculation=calculation))
 
 
-@app.route("/contact_us", methods=["GET", "POST"])
-def contact_us():
-    if request.method == "POST":
-        message = {
-            "contact_name": request.form.get("contact_name"),
-            "company_name": request.form.get("company_name"),
-            "email_address": request.form.get("email_address"),
-            "phone_number": request.form.get("phone_numer"),
-            "message": request.form.get("message"),
-        }
-        mongo.db.contacts.insert_one(message)
-        flash("We have received your message")
-        return redirect(url_for("contact_us"))
-
-    return render_template("contact_us.html")
+# Administration
 
 
 @app.route("/admin")
@@ -390,6 +383,23 @@ def delete_category(category_id):
     mongo.db.categories.remove({"_id": ObjectId(category_id)})
     flash("Category deleted")
     return redirect(url_for("admin"))
+
+
+@app.route("/contact_us", methods=["GET", "POST"])
+def contact_us():
+    if request.method == "POST":
+        message = {
+            "contact_name": request.form.get("contact_name"),
+            "company_name": request.form.get("company_name"),
+            "email_address": request.form.get("email_address"),
+            "phone_number": request.form.get("phone_numer"),
+            "message": request.form.get("message"),
+        }
+        mongo.db.contacts.insert_one(message)
+        flash("We have received your message")
+        return redirect(url_for("contact_us"))
+
+    return render_template("contact_us.html")
 
 
 if __name__ == "__main__":
