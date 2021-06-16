@@ -12,7 +12,7 @@
                     </h5>
                 </div>
                 <div class="row">
-                    <div class="input-field col l12 s12">
+                    <div class="input-field col l10 s12">
                         <input value="{{ account.company_name }}" name="company_name" id="company_name" type="text" class="validate">
                         <label class="active" for="company_name">Company Name</label>
                     </div>
@@ -29,36 +29,40 @@
                     {% endif %}                                                            
                 </div>
                 <div class="row">
-                    <div class="input-field col l6 s8">
+                    <div class="input-field col l4 s8">
                         <input value="{{ account.company_country_name }}" name="company_country_name" id="country" type="text" class="validate" required>
                         <label class="active" for="company_country_name">Country</label>
                     </div> 
                     <div class="input-field col l2 s4">
                         <input value="{{ account.currency }}" name="currency" id="currency" type="text" class="validate" readonly>
                         <label class="active" for="currency">Currency</label>
-                    </div>  
-                    <div class="input-field col l4 s12">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col l5 s12">
+                        <label for="company_industry">Selected Industry</label>
+                        <input value="{{ account.company_industry}}" type="text" readonly>                        
+                    </div>                      
+                    <div class="input-field col l5 s12">
                         <select id="company_industry" name="company_industry" class="validate" type="text" required>
                             <option class="blue-grey-text" value="" selected></option>
                             {% for category in categories %}
                                 <option value="{{ category.category_name }}">{{ category.category_name }}</option>
                             {% endfor %}
                         </select>
-                        <label id="company_industry" class="blue-grey-text">Select industry</label>
+                        <label id="company_industry" class="blue-grey-text">Update Industry</label>
                     </div>
-                    <div class="row">
-                        <div class="col">
-                            <p>
-                                <small class="text-right-align">
-                                    If your industry is not displayed, please <a href="{{ url_for('contact_us') }}">get in touch.</a>
-                                </small> 
-                            </p>
-                            <p>
-                                <small class="text-right-align">
-                                    At present currency is Euros. Currency options will be added in the future.
-                                </small>   
-                            </p>                          
-                        </div>
+                    <div class="col l12">
+                        <p>
+                            <small class="text-right-align">
+                                If your industry is not displayed, please <a href="{{ url_for('contact_us') }}">get in touch.</a>
+                            </small> 
+                        </p>
+                        <p>
+                            <small class="text-right-align">
+                                At present all currency is stated in Euros. Currency options will be added in the future.
+                            </small> 
+                        </p>                         
                     </div>
                 </div>                                                                                                              
                 <div class="row center">

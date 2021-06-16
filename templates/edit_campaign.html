@@ -16,27 +16,35 @@
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <input value="{{ campaign.campaign_name }}" name="campaign_name" id="campaign_name" type="text" class="validate">
+                            <input value="{{ campaign.campaign_name }}" name="campaign_name" id="campaign_name" type="text">
                             <label class="active" for="campaign_name">Campaign Name</label>
                         </div>
+                        <div class="input-field col l6 s12">
+                            <label for="campaign_type">Selected Campaign Type</label>
+                            <input value="{{ campaign.campaign_type }}" type="text" readonly>
+                        </div>
+                        <div class="input-field col l6 s12">
+                            <label for="communication_platform">Selected Communication Platform</label>
+                            <input value="{{ campaign.communication_platform }}" type="text" readonly>
+                        </div>                                                  
                         <div class="input-field col l6 s6">
-                            <select id="campaign_type" name="campaign_type" class="validate" type="text" required>
-                                <option class="blue-grey-text" value="" disabled selected></option>
+                            <select id="campaign_type" name="campaign_type" class="validate" type="text">
+                                <option class="blue-grey-text" value=""></option>
                                 {% for type in campaign_type %}
-                                    <option value="{{ type.category_name }}" selected>{{ type.category_name }}</option>
+                                    <option value="{{ type.category_name }}">{{ type.category_name }}</option>
                                 {% endfor %}
                             </select>
-                            <label id="category_type" class="blue-grey-text">Select campaign type</label>
+                            <label id="category_type" class="blue-grey-text">Update Campaign Type</label>
                         </div>
                         <div class="input-field col l6 s6">
-                            <select id="communication_platform" name="communication_platform" class="validate" required>
-                                <option class="blue-grey-text" value="" disabled selected></option>
+                            <select id="communication_platform" name="communication_platform" class="validate" type="text">
+                                <option class="blue-grey-text" value=""></option>
                                 {% for communication in communication_platform %}
-                                    <option value="{{ communication.category_name }}" selected>{{ communication.category_name }}</option>
+                                    <option value="{{ communication.category_name }}">{{ communication.category_name }}</option>
                                 {% endfor %}
                             </select>
-                            <label id="communication_platform" class="blue-grey-text">Select communication platform</label>
-                        </div> 
+                            <label id="communication_platform" class="blue-grey-text">Update Communication Platform</label>
+                        </div>                        
                         <div class="input-field col s6">
                             <input id="start_date" name="start_date" value="{{ campaign.start_date }}" type="text" class="datepicker validate" required>
                             <label class="active" for="start_date">Start Date</label>
@@ -45,28 +53,22 @@
                             <input id="end_date" name="end_date" value="{{ campaign.end_date }}" type="text" class="datepicker validate">
                             <label class="active" for="end_date">End Date</label>
                         </div>  
-                        <div class="input-field col s4">
+                        <div class="input-field col s3">
                             <input id="total_campaign_cost" name="total_campaign_cost" value="{{ campaign.total_campaign_cost }}" type="text" pattern="\d*" class="validate">
-                            <label class="active" for="total_campaign_cost">Total Campaign Cost</label>
+                            <label class="active" for="total_campaign_cost">Total Campaign Cost (€)</label>
                         </div>
-                        <div class="input-field col s4">
+                        <div class="input-field col s3">
                             <input id="marketing_qualified_leads" name="marketing_qualified_leads" value="{{ campaign.marketing_qualified_leads}}" type="text" pattern="\d*"  class="validate">
                             <label class="active" for="marketing_qualified_leads">Marketing Qualified Leads</label>
                         </div>    
-                        <div class="input-field col s4">
+                        <div class="input-field col s3">
                             <input id="sales_qualified_leads" name="sales_qualified_leads" value="{{ campaign.sales_qualified_leads }}" type="text" pattern="\d*" class="validate">
                             <label class="active" for="sales_qualified_leads">Sales Qualified Leads</label>
                         </div> 
-                        <div class="input-field col s4">
+                        <div class="input-field col s3">
                             <input id="converted_leads" name="converted_leads" value="{{ campaign.converted_leads }}"  type="text" pattern="\d*" class="validate">
                             <label class="active" for="converted_leads">Converted Leads</label>
                         </div>                                                                                                                                                                  
-                    </div>
-                    <div class="row center">
-                        <button type="submit" class="btn-large waves-effect waves-light blue-grey lighten-1">
-                            <a href=""></a>
-                            Display results
-                        </button>
                     </div>
                     <div class="row center">
                         <div class="col s12 center-align">
