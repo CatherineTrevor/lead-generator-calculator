@@ -205,8 +205,34 @@
                                     <!--campaign editing-->
                                     {% if session.user == campaign.owning_account %}
                                         <div class="row edit__campaign__icon">
-                                            <a href="{{ url_for('edit_campaign', campaign_id=campaign._id, account_id=account._id, calculation_id=calculation._id) }}"><i class="material-icons blue-grey-text">edit</i></a>
-                                            <a href="{{ url_for('delete_campaign', campaign_id=campaign._id, calculation_id=calculation._id) }}"><i class="material-icons red-text">delete_forever</i></a>                                 
+                                            <a href="{{ url_for('edit_campaign', campaign_id=campaign._id, account_id=account._id, calculation_id=calculation._id) }}">
+                                                <i class="material-icons blue-grey-text">
+                                                    edit
+                                                </i>
+                                            </a>
+                                            <!-- Modal Trigger -->
+                                            <a class="modal-trigger" href="#modal1">
+                                                <i class="material-icons red-text">
+                                                    delete_forever
+                                                </i>
+                                            </a>
+                                            <!-- Modal Structure -->
+                                            <div id="modal1" class="modal">
+                                                <div class="modal-content">
+                                                    <h5 class="blue-grey-text lighten-4 center-align">
+                                                        Are you sure you want to delete {{ campaign.campaign_name }}?   
+                                                    </h5>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <a href="{{ url_for('delete_campaign', campaign_id=campaign._id, calculation_id=calculation._id) }}" 
+                                                    class="white-text modal-close blue-grey waves-effect waves-green btn-flat">
+                                                        Yes, delete
+                                                    </a>
+                                                    <a href="{{ url_for('get_account_profile') }}" class="white-text modal-close blue-grey waves-effect waves-green btn-flat">
+                                                        No, take me back
+                                                    </a>                                                    
+                                                </div>
+                                            </div>                                      
                                         </div>
                                             {% endif %}
                                         {% endif %}                                        
