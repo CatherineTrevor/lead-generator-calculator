@@ -1,12 +1,63 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Benchmark Data</h1>
-
-<iframe style="background: #FFFFFF;border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2);" width="640" height="480" src="https://charts.mongodb.com/charts-lead-generator-calculator-rwyjx/embed/charts?id=1f9c5c1c-cab2-4204-b54b-4e47cf7d314f&autoRefresh=300&theme=light"></iframe>
-
-<iframe style="background: #FFFFFF;border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2);" width="640" height="480" src="https://charts.mongodb.com/charts-lead-generator-calculator-rwyjx/embed/charts?id=164dccf8-8a63-4f45-8ab1-be634f9312a5&autoRefresh=60&theme=light"></iframe>
-
-<iframe style="background: #FFFFFF;border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2);" width="640" height="480" src="https://charts.mongodb.com/charts-lead-generator-calculator-rwyjx/embed/charts?id=7848831a-d0ed-4793-b8fb-0cb01e3a46d9&autoRefresh=10&theme=light"></iframe>
-
-
+<div id="index-banner" class="parallax-container">
+    <div class="section no-pad-bot">
+        <div class="container">
+            <h1 class="header center blue-grey-text text-lighten-4">
+                Benchmark Data
+            </h1>
+            <div class="row center">
+                <h5 class="header col s12 white-text light">
+                    Find out how your costs fair against others in the same industry
+                </h5>
+            </div>            
+        </div>
+    </div>
+    <div class="parallax">
+        <img src="{{ url_for('static', filename='assets/backgroundImage9.jpg') }}" alt="Data background image 9 sourced from Pixaby">
+    </div>
+</div>
+<div class="container">
+    <div class="section">
+        <div class="row">
+            <div class="col s12 center">
+                <h3>
+                    <i class="mdi-content-send brown-text"></i>
+                </h3>
+                <p class="left-align">
+                    Add context to your decision making by understanding how much it cost your competitors to generate leads. The information provided below is taken from companies with 
+                    accounts on this site. All information is aggregated and an average provided.
+                </p>
+                <p class="left-align">
+                    Comparative data is given based on industry, communication platform and campaign type. 
+                    At the moment, it is not possible to collate these types of data to compare one industry’s specific platform or campaign type.
+                </p>
+                <p class="left-align">
+                    Don't yet have an account? <a href="{{ (url_for('sign_up')) }}">Sign up and manage your own data.</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="section">
+        <div class="row">
+            <div class="col l6 offset-l3">
+                <iframe style="background: #FFFFFF;border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2); margin-bottom: 30px;" 
+                width="640" height="480" src="https://charts.mongodb.com/charts-lead-generator-calculator-rwyjx/embed/charts?id=1f9c5c1c-cab2-4204-b54b-4e47cf7d314f&autoRefresh=300&theme=light">
+                </iframe>
+            </div>
+            <div class="col l6 offset-l3">
+                <iframe style="background: #FFFFFF;border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2); margin-bottom: 30px;" 
+                width="640" height="480" src="https://charts.mongodb.com/charts-lead-generator-calculator-rwyjx/embed/charts?id=164dccf8-8a63-4f45-8ab1-be634f9312a5&autoRefresh=60&theme=light">
+            </iframe>
+            </div>
+            <div class="col l6 offset-l3">
+                <iframe style="background: #FFFFFF;border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2); margin-bottom: 30px;" 
+                width="640" height="480" src="https://charts.mongodb.com/charts-lead-generator-calculator-rwyjx/embed/charts?id=7848831a-d0ed-4793-b8fb-0cb01e3a46d9&autoRefresh=10&theme=light">
+            </iframe>
+            </div>
+        </div> 
+    </div>
+</div>
 {% endblock %}
