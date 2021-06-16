@@ -9,7 +9,7 @@
     $("select").formSelect();
     $('.modal').modal();
     $(".datepicker").datepicker({
-      format: "dd mmmm, yyyy",
+      format: "dd/mm/yyyy",
       yearRange: 3,
       showClearBtn: true,
       i18n: {
@@ -46,10 +46,10 @@
   });
 })(jQuery); // end of jQuery name space
 
-document.addEventListener('DOMContentLoaded', function() {
-  var elems = document.querySelectorAll('.chips');
-  var instances = M.Chips.init(elems, options);
-});
+// document.addEventListener('DOMContentLoaded', function() {
+//  var elems = document.querySelectorAll('.chips');
+//  var instances = M.Chips.init(elems, options);
+// });
 
-$('#message').val('');
-M.textareaAutoResize($('#message'));
+// $('#message').val('');
+// M.textareaAutoResize($('#message')); 

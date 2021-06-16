@@ -81,11 +81,16 @@ footer.page-footer {
   font-size: 30px;
   margin: 0 auto;
 }
+
+/***Admin.html***/
+
 .card.medium.category__management__card {
   height: 150px;
 }
 .category__management__title {
   font-size: 22px !important;
+  font-weight: 400 !important;
+  text-transform: uppercase;
 }
 .create__category__button {
   margin-top: 20px;

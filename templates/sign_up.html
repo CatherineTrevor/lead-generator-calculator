@@ -25,12 +25,12 @@
                 </div>
                 <div class="input-field col s12 l6 offset-l3 blue-grey-text">
                     <i class="material-icons prefix">lock_outline</i>
-                    <input id="password" name="password" type="password" class="validate" minlength="5" maxlength="15" required pattern="^[a-zA-Z0-9]{5,15}$">
+                    <input id="password" name="password" type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="validate" minlength="8" required>
                     <label for="password">
                         Password
                     </label>
-                    <span class="helper-text" data-error="Your password must match the specified requirements" data-success="That's great!">
-                        Password must be between 5 and 15 characters
+                    <span class="helper-text" data-error="Your password must match the specified requirements of at least one number, one uppercase, one lowercase letter, and at least 8 or more characters" data-success="That's great!">
+                        Must contain at least one number, one uppercase, one lowercase letter, and at least 8 or more characters.
                     </span>                    
                 </div>
             </div>
