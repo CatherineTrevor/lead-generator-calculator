@@ -8,14 +8,9 @@
     <div class="container">
         <form class="col l6" method="POST" action="{{ url_for('edit_category', category_id=category._id) }}">
             <div class="row">
-                <div class="input-field col s12 l6 s6">
-                    <select id="category_type" name="category_type" class="validate" required>
-                        <option class="blue-grey-text" value="" disabled selected></option>
-                        {% for option in options %}
-                            <option value="{{ option.category_type }}">{{ option.category_type }}</option>
-                        {% endfor %}
-                    </select>
-                    <label id="category_type" class="blue-grey-text">Select category type</label>
+                <div class="input-field col s12 l6">
+                    <label for="category_type">Category Type (cannot be updated)</label>
+                    <input value="{{ category.category_type }}" type="text" readonly>
                 </div>
             </div>
             <div class="row">
