@@ -184,7 +184,7 @@ The project was created on GitHub and uses the following libraries and framework
  - [MongoDB]
  - [Heroku]
  - [Creately]
- - [Google charts]
+ - [PEP 8](https://www.python.org/dev/peps/pep-0008/#indentation) - help following PEP 8 styling guidelines
  - **[Free Formatter HTML](https://www.freeformatter.com/html-formatter.html) - for HTML code formatting
  - **[Free Formatter CSS](https://www.freeformatter.com/css-beautifier.html) - to beautify CSS code
  - [Grammarly](https://app.grammarly.com/) [(Example)](supporting-docs/grammarly-example.jpg) - the free service to double check grammar and spelling 

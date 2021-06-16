@@ -13,7 +13,7 @@
     <div class="container">
         <form method="POST" action="{{ url_for('sign_up') }}">
             <div class="row">
-                <div class="input-field col s12 l8 center-align blue-grey-text">
+                <div class="input-field col s12 l6 offset-l3 blue-grey-text">
                     <i class="material-icons prefix">mail</i>
                     <input id="email_address" name="email_address" type="email" class="validate" required>
                     <label for="email_address">
@@ -23,7 +23,7 @@
                         Sign-up using your email address
                     </span>                      
                 </div>
-                <div class="input-field col s12 l8 center-align blue-grey-text">
+                <div class="input-field col s12 l6 offset-l3 blue-grey-text">
                     <i class="material-icons prefix">lock_outline</i>
                     <input id="password" name="password" type="password" class="validate" minlength="5" maxlength="15" required pattern="^[a-zA-Z0-9]{5,15}$">
                     <label for="password">

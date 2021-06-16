@@ -33,23 +33,23 @@
         <div class="section">
             <form method="POST" action="{{ url_for('contact_us') }}">        
                 <div class="row">
-                    <div class="input-field col s6">
+                    <div class="input-field col s6 l4 offset-l2">
                         <input name="contact_name" id="contact_name" type="text" class="validate" required>
                         <label class="active" for="contact_name">Name</label>
                     </div>
-                    <div class="input-field col s6">
+                    <div class="input-field col s6 l4">
                         <input name="company_name" id="company_name" type="text" class="validate" required>
                         <label class="active" for="company_name">Company Name</label>
                     </div>                                
-                    <div class="input-field col s6">
+                    <div class="input-field col s6 l4 offset-l2">
                         <input name="email_address" id="email_address" type="email" class="validate" required>
                         <label class="active" for="email_address">Email address</label>
                     </div> 
-                    <div class="input-field col s6">
+                    <div class="input-field col s6 l4">
                         <input name="phone_number" id="phone_number" type="tel" class="validate">
                         <label class="active" for="phone_number">Phone number</label>
                     </div>  
-                    <div class="input-field col s12">
+                    <div class="input-field col s12 l8 offset-l2">
                         <textarea id="message" name="message" class="materialize-textarea" data-length="200" required></textarea>
                         <label for="message">Message</label>
                     </div>                                                                                                 
