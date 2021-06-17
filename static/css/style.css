@@ -62,8 +62,19 @@ footer.page-footer {
 
 /***Account.html***/
 
+.account__update__warning {
+  margin: 0 auto;
+  margin-top: 20px;
+  width: 50%;
+}
+
+.account__update__warning a {
+  color:red !important;
+}
+
 .account__table {
   margin: 0 auto;
+  margin-top: 20px;
   width: 80%;
 }
 .account__table tr {
