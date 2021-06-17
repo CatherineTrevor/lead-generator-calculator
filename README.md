@@ -96,6 +96,19 @@ Campaigns can be created, read, edited, and deleted by the account owner, follow
 | Create a new campaign | Save new category listing listing  | N/A |
 | Currency exchange | For comparison purposes, data displayed on benchmark-data.html will be converted into Euros using an API. It will therefore be converted in the back-end before displayed in the front-end  | N/A |
 
+**Site warnings**
+
+Warnings within the account.html file have been included to ensure site users entered the information required to ensure data displays correctly on the graphs within benchmark_data.html.
+
+![Site warning example 1](supporting_docs/site_warning_1.jpg)
+
+Campaigns need campaign type and communication platform: the above warning is a link to the campaign that needs updating. This ensures that if a campaign type or communication platform is not available, the
+user knows to update it.
+
+![Site warning example 2](supporting_docs/site_warning_2.jpg)
+
+When an user signs into the site they are only requested to input an email address and password to ensure minimal information is requried on initial set up. The user is then encouraged to update their information, in particular industry as this is required for benchmark data. This warning remains until the user has selected an industry.
+
 ## Structure
 
 ### Site map
