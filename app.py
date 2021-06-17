@@ -129,16 +129,21 @@ def get_account_profile():
     accounts = list(mongo.db.accounts.find())
     campaigns = list(mongo.db.campaigns.find())
     calculations = list(mongo.db.calculations.find())
-    accountCalculation = list(mongo.db.accountCalculation.find())
     total_open_campaigns = mongo.db.campaigns.count_documents(
             {"owning_account": session['user']})
-    marketing_spend = list(mongo.db.campaigns.aggregate([{"$match": {"owning_account": {"$eq": session['user']}}}, {"$group": {"_id": "$owning_account", "marketing_spend": {"$sum": "$total_campaign_cost"}}}]))
+    total_marketing_spend = list(mongo.db.campaigns.aggregate([{"$match": {"owning_account": {"$eq": session['user']}}}, {"$group": {"_id": "$owning_account", "marketing_spend": {"$sum": "$total_campaign_cost"}}}]))
+    total_marketing_leads = list(mongo.db.campaigns.aggregate([{"$match": {"owning_account": {"$eq": session['user']}}}, {"$group": {"_id": "$owning_account", "marketing_leads": {"$sum": "$marketing_qualified_leads"}}}]))
+    total_sales_leads = list(mongo.db.campaigns.aggregate([{"$match": {"owning_account": {"$eq": session['user']}}}, {"$group": {"_id": "$owning_account", "sales_leads": {"$sum": "$sales_qualified_leads"}}}]))
+    total_converted_leads = list(mongo.db.campaigns.aggregate([{"$match": {"owning_account": {"$eq": session['user']}}}, {"$group": {"_id": "$owning_account", "converted_leads": {"$sum": "$converted_leads"}}}]))
     return render_template("account.html",
-                           accounts=accounts, campaigns=campaigns,
+                           accounts=accounts,
+                           campaigns=campaigns,
                            calculations=calculations,
                            total_open_campaigns=total_open_campaigns,
-                           marketing_spend=marketing_spend,
-                           accountCalculation=accountCalculation)
+                           total_marketing_spend=total_marketing_spend,
+                           total_marketing_leads=total_marketing_leads,
+                           total_sales_leads=total_sales_leads,
+                           total_converted_leads=total_converted_leads)
 
 
 @app.route("/account_update/<account_id>", methods=["GET", "POST"])

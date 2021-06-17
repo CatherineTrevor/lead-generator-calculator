@@ -99,8 +99,8 @@
                                         Total Marketing Spend
                                     </th>
                                     <td>
-                                        {% for i in marketing_spend %}
-                                            {{ account.currency }} {{ i }}
+                                        {% for i in total_marketing_spend %}
+                                            {{ account.currency }} {{ i.marketing_spend }}
                                         {% endfor %}
                                     </td>
                                 </tr>
@@ -109,7 +109,9 @@
                                         Total Marketing Leads
                                     </th>
                                     <td>
-                                        15                                     
+                                        {% for i in total_marketing_leads %}
+                                            {{ i.marketing_leads }}
+                                        {% endfor %}                                
                                     </td>
                                 </tr>
                                 <tr>
@@ -117,25 +119,21 @@
                                         Total Sales Leads
                                     </th>
                                     <td>
-                                        6                                       
+                                        {% for i in total_sales_leads %}
+                                            {{ i.sales_leads }}
+                                        {% endfor %}                                    
                                     </td>
-                                </tr>  
+                                </tr>
                                 <tr>
                                     <th>
-                                        Av. cost per MQL
+                                        Total Converted Leads
                                     </th>
                                     <td>
-                                        {{ account.currency }} 10                                  
+                                        {% for i in total_converted_leads %}
+                                            {{ i.converted_leads }}
+                                        {% endfor %}                                    
                                     </td>
-                                </tr>   
-                                <tr>
-                                    <th>
-                                        Av. cost per SQL
-                                    </th>
-                                    <td>
-                                        {{ account.currency }} 36                                      
-                                    </td>
-                                </tr>                                                                                  
+                                </tr>
                             </table>
                         </div>
                     </div>
