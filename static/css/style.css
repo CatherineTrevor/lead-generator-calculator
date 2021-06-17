@@ -7,8 +7,7 @@
  * Modified for lead-generation-calculator
  */
 
-
- /***Navigation***/
+/***Navigation***/
 nav ul a,
 nav .brand-logo {
   color: #444;
@@ -28,6 +27,14 @@ footer.page-footer {
 
 /***General***/
 
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+main {
+  flex: 1 0 auto;
+}
 .icon-block {
   padding: 0 15px;
 }
