@@ -43,6 +43,7 @@ main {
 }
 .btn-large {
   margin-bottom: 10px;
+  margin-top: 20px;
 }
 .btn-small {
   margin-left: 10px;
@@ -73,6 +74,13 @@ main {
 
 /***Account.html***/
 
+.modal-content {
+  height: 400px;
+}
+
+.action__buttons__section {
+  vertical-align: middle;
+}
 .account__update__warning {
   margin: 0 auto;
   margin-top: 20px;

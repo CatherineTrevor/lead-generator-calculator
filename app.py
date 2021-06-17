@@ -162,6 +162,13 @@ def account_update(account_id):
         "account_update.html", account=account, categories=categories)
 
 
+@app.route("/delete_account/<account_id>/")
+def delete_account(account_id):
+    mongo.db.accounts.remove({"_id": ObjectId(account_id)})
+    session.clear()
+    return redirect(url_for("sign_up"))
+
+
 # Campaign management
 
 
