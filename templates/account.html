@@ -99,7 +99,9 @@
                                         Total Marketing Spend
                                     </th>
                                     <td>
-                                        {{ account.currency }} {{ marketing_spend }}    
+                                        {% for i in marketing_spend %}
+                                            {{ account.currency }} {{ i }}
+                                        {% endfor %}
                                     </td>
                                 </tr>
                                 <tr>

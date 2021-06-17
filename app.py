@@ -132,10 +132,12 @@ def get_account_profile():
     accountCalculation = list(mongo.db.accountCalculation.find())
     total_open_campaigns = mongo.db.campaigns.count_documents(
             {"owning_account": session['user']})
+    marketing_spend = list(mongo.db.campaigns.aggregate([{"$match": {"owning_account": {"$eq": session['user']}}}, {"$group": {"_id": "$owning_account", "marketing_spend": {"$sum": "$total_campaign_cost"}}}]))
     return render_template("account.html",
                            accounts=accounts, campaigns=campaigns,
                            calculations=calculations,
                            total_open_campaigns=total_open_campaigns,
+                           marketing_spend=marketing_spend,
                            accountCalculation=accountCalculation)
 
 
@@ -177,12 +179,12 @@ def create_campaign(account_id):
                 "communication_platform"),
             "start_date": request.form.get("start_date"),
             "end_date": request.form.get("end_date"),
-            "marketing_qualified_leads": request.form.get(
-                "marketing_qualified_leads"),
-            "sales_qualified_leads": request.form.get(
-                "sales_qualified_leads"),
-            "converted_leads": request.form.get("converted_leads"),
-            "total_campaign_cost": request.form.get("total_campaign_cost"),
+            "marketing_qualified_leads": int(request.form.get(
+                "marketing_qualified_leads")),
+            "sales_qualified_leads": int(request.form.get(
+                "sales_qualified_leads")),
+            "converted_leads": int(request.form.get("converted_leads")),
+            "total_campaign_cost": int(request.form.get("total_campaign_cost")),
             "owning_account": session["user"],
             "account_id": account["_id"],
             "company_industry": account["company_industry"]
@@ -219,11 +221,12 @@ def edit_campaign(campaign_id, account_id, calculation_id):
                 "communication_platform"),
             "start_date": request.form.get("start_date"),
             "end_date": request.form.get("end_date"),
-            "marketing_qualified_leads": request.form.get(
-                "marketing_qualified_leads"),
-            "sales_qualified_leads": request.form.get("sales_qualified_leads"),
-            "converted_leads": request.form.get("converted_leads"),
-            "total_campaign_cost": request.form.get("total_campaign_cost"),
+            "marketing_qualified_leads": int(request.form.get(
+                "marketing_qualified_leads")),
+            "sales_qualified_leads": int(request.form.get(
+                "sales_qualified_leads")),
+            "converted_leads": int(request.form.get("converted_leads")),
+            "total_campaign_cost": int(request.form.get("total_campaign_cost")),
             "owning_account": session["user"],
             "account_id": account["_id"],
             "company_industry": account["company_industry"]
