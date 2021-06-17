@@ -37,6 +37,10 @@ footer.page-footer {
 .btn-large {
   margin-bottom: 10px;
 }
+.btn-small {
+  margin-left: 10px;
+  margin-right: 10px;
+}
 
 /***Top image and header section***/
 
@@ -67,11 +71,9 @@ footer.page-footer {
   margin-top: 20px;
   width: 50%;
 }
-
 .account__update__warning a {
   color:red !important;
 }
-
 .account__table {
   margin: 0 auto;
   margin-top: 20px;
@@ -99,7 +101,7 @@ footer.page-footer {
   height: 150px;
 }
 .category__management__title {
-  font-size: 22px !important;
+  font-size: 20px !important;
   font-weight: 400 !important;
   text-transform: uppercase;
 }

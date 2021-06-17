@@ -40,9 +40,9 @@
     <div class="section">
         <!--Campaign type categories-->
         <div class="row">
-            <h5 class="header center blue-grey-text">
+            <h4 class="header center blue-grey-text">
                 Campaign type
-            </h5>
+            </h4>
             {% for category in categories %}
                 {% if category.category_type|lower == "campaign type"|lower %}
                     <div class="col s12 m4 l2">
@@ -61,9 +61,9 @@
         </div> 
         <!--Communication platform categories-->
         <div class="row">
-            <h5 class="header center blue-grey-text">
+            <h4 class="header center blue-grey-text">
                 Communication platform
-            </h5>
+            </h4>
             {% for category in categories %}
                 {% if category.category_type|lower == "communication platform"|lower %}
                     <div class="col s12 m4 l2">
@@ -82,9 +82,9 @@
         </div> 
         <!--Account industry categories-->        
         <div class="row">
-            <h5 class="header center blue-grey-text">
+            <h4 class="header center blue-grey-text">
                 Industries
-            </h5>
+            </h4>
             {% for category in categories %}
                 {% if category.category_type|lower == "industry"|lower %}
                     <div class="col s12 m4 l2">
