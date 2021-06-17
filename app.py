@@ -101,14 +101,6 @@ def sign_up():
         session["password"] = generate_password_hash(
             request.form.get("password"))
 
-        # create account overview from which to count campaigns and totals
-        overview = {
-            "account_owner": session["user"],
-            "company_industry": "industry",
-            "total_open_campaigns": "0"
-        }
-        mongo.db.accountCalculation.insert_one(overview)
-
         return redirect(url_for("account", email_address=session["user"],))
     return render_template("sign_up.html")
 

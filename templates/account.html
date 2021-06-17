@@ -31,7 +31,7 @@
         {% for campaign in campaigns %}
             {% for calculation in calculations %}
                 {% if campaign.campaign_type == "" %}
-                    {% if calculation.campaign_name == campaign.campaign_name %}
+                    {% if calculation.campaign_name == campaign.campaign_name and session.user == campaign.owning_account %}
                         <div class="collection account__update__warning">
                             <a href="{{ url_for('edit_campaign', campaign_id=campaign._id, account_id=account._id, calculation_id=calculation._id) }}" class="collection-item">
                                 <span class="new badge red" data-badge-caption="IMPORTANT!"></span>
@@ -46,7 +46,7 @@
         {% for campaign in campaigns %}
             {% for calculation in calculations %}
                 {% if campaign.communication_platform == "" %}
-                    {% if calculation.campaign_name == campaign.campaign_name %}
+                    {% if calculation.campaign_name == campaign.campaign_name and session.user == campaign.owning_account %}
                         <div class="collection account__update__warning">
                             <a href="{{ url_for('edit_campaign', campaign_id=campaign._id, account_id=account._id, calculation_id=calculation._id) }}" class="collection-item">
                                 <span class="new badge red" data-badge-caption="IMPORTANT!"></span>
