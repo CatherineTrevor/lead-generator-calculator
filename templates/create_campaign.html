@@ -4,7 +4,7 @@
         <h1 class="header center blue-grey-text text-lighten-4">
             Campaign Profile
         </h1>
-    </div>
+    </div>    
     <div class="container">
         <form class="col l6" method="POST" action="{{ url_for('create_campaign', account_id=account._id) }}">
             <div class="row">
@@ -64,5 +64,10 @@
                 </a>                   
             </div>            
         </form>    
+        <div>
+            <p class="light">
+                Wondering about the difference between a marketing, sales, and converted lead? <a href="{{ url_for('about') }}">Visit the FAQ section on the About page for more information.</a>
+            </p>
+        </div>
     </div>
 {% endblock %}

@@ -199,7 +199,12 @@
                                             <input value="{{ campaign.end_date }}" name="end_date" type="text" readonly>
                                             <label for="end_date">End Date</label>
                                         </div>  
-                                    </div>                                 
+                                    </div>  
+                                    <div class="row">
+                                        <h5 class="blue-grey-text header center">
+                                            Lead Information
+                                        </h5>
+                                    </div>                                                                   
                                     <div class="row">
                                         <div class="input-field col l3 s12">
                                             <input value="{{ account.currency }} {{ campaign.total_campaign_cost }}" name="total_campaign_cost" type="text" readonly>
@@ -222,6 +227,11 @@
                                     {% for calculation in calculations %}
                                         {% if session.user == calculation.owning_account and campaign.campaign_name == calculation.campaign_name %}
                                             <form action="{{ url_for('calculate_results', calculation_id=calculation._id, campaign_id=campaign._id, account_id=account._id) }}" method="POST">
+                                                <div class="row">
+                                                    <h5 class="blue-grey-text header center">
+                                                        Results
+                                                    </h5>
+                                                </div>
                                                 <div class="row">
                                                     <div class="input-field col l3 s12">
                                                         <input value="{{ calculation.hit_rate }} %" name="hit_rate" type="text" readonly>

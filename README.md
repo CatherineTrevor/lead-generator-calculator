@@ -94,7 +94,10 @@ Campaigns can be created, read, edited, and deleted by the account owner, follow
 | Create a new category | Save new category listing  | N/A |
 | Account profile | Campaign management: create, read, edit and delete | Create new campaign or edit existing category link |
 | Create a new campaign | Save new category listing listing  | N/A |
-| Currency exchange | For comparison purposes, data displayed on benchmark-data.html will be converted into Euros using an API. It will therefore be converted in the back-end before displayed in the front-end  | N/A |
+
+**Future features**
+
+1. Currency exchange: For comparison purposes, data displayed on benchmark-data.html will be converted into Euros using an API. It will therefore be converted in the back-end before displayed in the front-end
 
 **Site warnings**
 
@@ -194,7 +197,7 @@ The project was created on GitHub and uses the following libraries and framework
  - [Balsamiq](https://balsamiq.cloud/) - used to create all wireframes
  - [Materialize](https://materializecss.com/about.html) - the site layout uses the Parallax template from Materialize, which has been heavily modified
  - [Google Fonts](https://fonts.google.com/specimen/Permanent+Marker?preview.text=Gothenburg%20Netball%20Club%20Est.%202019%20Fun,%20fitness%20and%20friendship!&preview.text_type=custom) - Permanent Marker and Lato
- - [MongoDB]
+ - [MongoDB](https://www.mongodb.com/) - used for the database management, and charts on benchmark_data.html
  - [Heroku]
  - [Creately]
  - [PEP 8](https://www.python.org/dev/peps/pep-0008/#indentation) - help following PEP 8 styling guidelines
