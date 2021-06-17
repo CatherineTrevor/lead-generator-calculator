@@ -44,7 +44,7 @@
                         <input value="{{ account.company_industry}}" type="text" readonly>                        
                     </div>                      
                     <div class="input-field col l5 s12">
-                        <select id="company_industry" name="company_industry" class="validate" type="text" required>
+                        <select id="company_industry" name="company_industry" class="validate" type="text">
                             <option class="blue-grey-text" value="" selected></option>
                             {% for category in categories %}
                                 <option value="{{ category.category_name }}">{{ category.category_name }}</option>

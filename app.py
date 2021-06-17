@@ -92,7 +92,7 @@ def sign_up():
             "company_name": "Enter your company name",
             "account_owner": "Please update your details!",
             "company_country_name": "Enter your country",
-            "company_industry": "Select your industry",
+            "company_industry": "Update your industry",
             "currency": "€"
         }
         mongo.db.accounts.insert_one(register)

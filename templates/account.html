@@ -18,12 +18,15 @@
         </div>
     </div>
     <section>
-        <div class="collection account__update__warning">
-            <a href="{{ url_for('account_update', account_id=account._id) }}" class="collection-item">
-                <span class="new badge red" data-badge-caption="IMPORTANT!"></span>
-                Don't forget to update your account information
-            </a>
-        </div>
+        <!--update account warning-->
+        {% if account.company_industry == "Update your industry" %}
+            <div class="collection account__update__warning">
+                <a href="{{ url_for('account_update', account_id=account._id) }}" class="collection-item">
+                    <span class="new badge red" data-badge-caption="IMPORTANT!"></span>
+                    Don't forget to update your account information
+                </a>
+            </div>
+        {% endif %}
         <!--flash messages-->
         {% with messages = get_flashed_messages() %}
             {% if messages %}
