@@ -51,7 +51,7 @@ def log_in():
                     updating the password - issue #14
                 '''
                 session["password"] = generate_password_hash(
-                                                            request.form.get("password"))
+                                        request.form.get("password"))
                 session["user"] = request.form.get("email_address").lower()
                 return redirect(url_for(
                                 "account", email_address=session["user"]))
@@ -250,7 +250,7 @@ def edit_campaign(campaign_id, account_id, calculation_id):
             "account_id": account["_id"],
             "company_industry": account["company_industry"]
         }
-        update_calculate_results(campaign_id, calculation_id)
+        update_calculate_results(account_id, campaign_id, calculation_id)
         mongo.db.campaigns.update({"_id": ObjectId(campaign_id)}, submit)
         flash("Campaign successfully updated")
         return redirect(url_for("get_account_profile"))
@@ -320,9 +320,9 @@ def calculate_results(account_id):
                            campaign=campaign, account=account)
 
 
-@app.route("/update_calculate_results/<campaign_id>/<calculation_id>",
+@app.route("/update_calculate_results/<account_id>/<campaign_id>/<calculation_id>",
            methods=["GET", "POST"])
-def update_calculate_results(campaign_id, calculation_id):
+def update_calculate_results(account_id, campaign_id, calculation_id):
     if request.method == "POST":
         total_campaign_cost = int(request.form.get("total_campaign_cost"))
         mql = int(request.form.get("marketing_qualified_leads"))
@@ -333,6 +333,7 @@ def update_calculate_results(campaign_id, calculation_id):
         calc_cost_per_conversion = int(
             total_campaign_cost / converted_leads) if converted_leads != 0 else 0
         calc_hit_rate = int(sql / mql * 100) if mql != 0 else 0
+        account = mongo.db.accounts.find_one({"_id": ObjectId(account_id)})
         campaign = mongo.db.campaigns.find_one({"_id": ObjectId(campaign_id)})
         calculation = {
             "owning_account": session["user"],
@@ -356,10 +357,12 @@ def update_calculate_results(campaign_id, calculation_id):
     calculation = mongo.db.calculations.find_one({"_id": ObjectId(
         calculation_id)})
     campaign = mongo.db.campaigns.find_one({"_id": ObjectId(campaign_id)})
+    account = mongo.db.accounts.find_one({"_id": ObjectId(account_id)})
 
     return redirect(url_for("get_account_profile",
                             campaign=campaign,
-                            calculation=calculation))
+                            calculation=calculation,
+                            account=account))
 
 
 # Administration

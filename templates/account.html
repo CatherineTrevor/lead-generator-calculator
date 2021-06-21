@@ -62,7 +62,7 @@
             {% if messages %}
                 {% for message in messages %}
                     <div class="row flashes">
-                        <p class="blue-grey-text lighten-4 center-align">{{ message }}</p>
+                        <h5 class="blue-grey-text lighten-4 center-align">{{ message }}</h5>
                     </div>
                 {% endfor %}
             {% endif %}
@@ -168,12 +168,12 @@
                     </div>
                     <div class="row center">
                         <!-- Modal Trigger -->
-                        <a href="#modal2" id="download-button" class="btn-large waves-effect waves-light blue-grey lighten-1 modal-trigger">
+                        <a href="#modal1" id="download-button" class="btn-large waves-effect waves-light red lighten-1 modal-trigger">
                             Delete Account
                         </a> 
                         <!-- Modal Structure -->
                     </div>
-                    <div id="modal2" class="modal modal__content__delete__account">
+                    <div id="modal1" class="modal modal__content__delete__account">
                         <div class="modal-content">
                             <h5 class="blue-grey-text lighten-4 center-align">
                                 Are you sure you want to delete this account?   
@@ -252,71 +252,71 @@
                                             <label for="converted_leads">Converted Leads</label>
                                         </div>                                                              
                                     </div>
-                                    <!--campaign calculation section-->
-                                    {% for calculation in calculations %}
-                                        {% if session.user == calculation.owning_account and campaign.campaign_name == calculation.campaign_name %}
-                                            <form action="{{ url_for('calculate_results', calculation_id=calculation._id, campaign_id=campaign._id, account_id=account._id) }}" method="POST">
-                                                <div class="row">
-                                                    <h5 class="blue-grey-text header center">
-                                                        Results
-                                                    </h5>
+                                <!--campaign calculation section-->
+                                {% for calculation in calculations %}
+                                    {% if session.user == calculation.owning_account and campaign.campaign_name == calculation.campaign_name %}
+                                        <form action="{{ url_for('calculate_results', calculation_id=calculation._id, campaign_id=campaign._id, account_id=account._id) }}" method="POST">
+                                            <div class="row">
+                                                <h5 class="blue-grey-text header center">
+                                                    Results
+                                                </h5>
+                                            </div>
+                                            <div class="row">
+                                                <div class="input-field col l3 s12">
+                                                    <input value="{{ calculation.hit_rate }} %" name="hit_rate" type="text" readonly>
+                                                    <label for="hit_rate">Hit rate (from marketing to sales lead)</label>
+                                                </div>                                                    
+                                                <div class="input-field col l3 s12">
+                                                    <input value="{{ account.currency }} {{ calculation.cost_per_marketing_lead }}" name="cost_per_marketing_lead" type="text" readonly>
+                                                    <label for="cost_per_marketing_lead">Cost per marketing lead</label>
                                                 </div>
-                                                <div class="row">
-                                                    <div class="input-field col l3 s12">
-                                                        <input value="{{ calculation.hit_rate }} %" name="hit_rate" type="text" readonly>
-                                                        <label for="hit_rate">Hit rate (from marketing to sales lead)</label>
-                                                    </div>                                                    
-                                                    <div class="input-field col l3 s12">
-                                                        <input value="{{ account.currency }} {{ calculation.cost_per_marketing_lead }}" name="cost_per_marketing_lead" type="text" readonly>
-                                                        <label for="cost_per_marketing_lead">Cost per marketing lead</label>
-                                                    </div>
-                                                    <div class="input-field col l3 s12">
-                                                        <input value="{{ account.currency }} {{ calculation.cost_per_sales_lead }}" name="cost_per_sales_lead" type="text" readonly>
-                                                        <label for="cost_per_sales_lead">Cost per sales lead</label>
-                                                    </div>  
-                                                    <div class="input-field col l3 s12">
-                                                        <input value="{{ account.currency }} {{ calculation.cost_per_converted_lead }}" name="cost_per_converted_lead" type="text" readonly>
-                                                        <label for="cost_per_converted_lead">Cost per converted lead</label>
-                                                    </div>                                                                                                                                                                                                        
-                                                </div>
-                                            </form>
+                                                <div class="input-field col l3 s12">
+                                                    <input value="{{ account.currency }} {{ calculation.cost_per_sales_lead }}" name="cost_per_sales_lead" type="text" readonly>
+                                                    <label for="cost_per_sales_lead">Cost per sales lead</label>
+                                                </div>  
+                                                <div class="input-field col l3 s12">
+                                                    <input value="{{ account.currency }} {{ calculation.cost_per_converted_lead }}" name="cost_per_converted_lead" type="text" readonly>
+                                                    <label for="cost_per_converted_lead">Cost per converted lead</label>
+                                                </div>                                                                                                                                                                                                        
+                                            </div>
+                                        </form>
                                     <!--campaign editing-->
-                                            {% if session.user == campaign.owning_account %}
-                                                <div class="row edit__campaign__icon">
-                                                    <a href="{{ url_for('edit_campaign', campaign_id=campaign._id, account_id=account._id, calculation_id=calculation._id) }}">
-                                                        <i class="material-icons blue-grey-text">
-                                                            edit
-                                                        </i>
-                                                    </a>
-                                                    <!-- Modal Trigger -->
-                                                    <a class="modal-trigger" href="#modal1">
-                                                        <i class="material-icons red-text">
-                                                            delete_forever
-                                                        </i>
-                                                    </a>
-                                                    <!-- Modal Structure -->
-                                                    <div id="modal1" class="modal">
-                                                        <div class="modal-content">
-                                                            <h5 class="blue-grey-text lighten-4 center-align">
-                                                                Are you sure you want to delete {{ campaign.campaign_name }}?   
-                                                            </h5>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <a href="{{ url_for('delete_campaign', campaign_id=campaign._id, calculation_id=calculation._id) }}" 
-                                                            class="white-text modal-close blue-grey waves-effect waves-green btn-flat">
-                                                                Yes, delete
-                                                            </a>
-                                                            <a href="{{ url_for('get_account_profile') }}" class="white-text modal-close blue-grey waves-effect waves-green btn-flat">
-                                                                No, take me back
-                                                            </a>                                                    
-                                                        </div>
-                                                    </div>                                      
-                                                </div>
-                                            {% endif %}
-                                        {% endif %}                                        
-                                    {% endfor %}
-                                </div>
-                            </li>
+                                        {% if session.user == campaign.owning_account %}
+                                            <div class="row edit__campaign__icon">
+                                                <a href="{{ url_for('edit_campaign', campaign_id=campaign._id, account_id=account._id, calculation_id=calculation._id) }}">
+                                                    <i class="material-icons blue-grey-text">
+                                                        edit
+                                                    </i>
+                                                </a>
+                                                <!-- Modal Trigger -->
+                                                <a href="#modal2" id="download-button" class="modal-trigger">
+                                                    <i class="material-icons red-text">
+                                                        delete_forever
+                                                    </i>
+                                                </a>
+                                                <!-- Modal Structure -->
+                                            </div>                                      
+                                        </div>
+                                    </li>
+                                    <div id="modal2" class="modal">
+                                        <div class="modal-content">
+                                            <h5 class="blue-grey-text lighten-4 center-align">
+                                                Are you sure you want to delete {{ campaign.campaign_name }}?   
+                                            </h5>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a href="{{ url_for('delete_campaign', campaign_id=campaign._id, calculation_id=calculation._id) }}" 
+                                            class="white-text modal-close blue-grey waves-effect waves-green btn-flat">
+                                                Yes, delete
+                                            </a>
+                                            <a href="{{ url_for('get_account_profile') }}" class="white-text modal-close blue-grey waves-effect waves-green btn-flat">
+                                                No, take me back
+                                            </a>                                                    
+                                        </div>
+                                    </div>                                    
+                                {% endif %}
+                            {% endif %}                                        
+                        {% endfor %}                            
                     {% endif %}
                 {% endfor %}                                            
             </ul>
