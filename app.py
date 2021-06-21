@@ -41,19 +41,18 @@ def log_in():
         existing_user = mongo.db.accounts.find_one(
             {"email_address": request.form.get("email_address").lower()})
 
-        '''
-            put the new user and password into session cookie
-            to allow for account_updates after log-in without
-            updating the password - issue #14
-        '''
-        session["user"] = request.form.get("email_address")
-        session["password"] = generate_password_hash(
-            request.form.get("password"))
 
         if existing_user:
             # ensure hashed password matches user input
             if check_password_hash(existing_user["password"],
                                    request.form.get("password")):
+                '''
+                    put the new user and password into session cookie
+                    to allow for account_updates after log-in without
+                    updating the password - issue #14
+                '''
+                session["password"] = generate_password_hash(
+                                                            request.form.get("password"))
                 session["user"] = request.form.get("email_address").lower()
                 return redirect(url_for(
                                 "account", email_address=session["user"]))
@@ -72,6 +71,7 @@ def log_in():
 @app.route("/log_out")
 def log_out():
     session.clear()
+    flash("See you again soon!")
     return redirect(url_for("log_in"))
 
 
