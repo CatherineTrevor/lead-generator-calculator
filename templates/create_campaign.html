@@ -4,7 +4,17 @@
         <h1 class="header center blue-grey-text text-lighten-4">
             Campaign Profile
         </h1>
-    </div>    
+    </div>
+        <!--flash messages-->
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="row flashes">
+                        <h3 class="blue-grey-text lighten-4 center-align">{{ message }}</h4>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}        
     <div class="container">
         <form class="col l6" method="POST" action="{{ url_for('create_campaign', account_id=account._id) }}">
             <div class="row">
@@ -37,22 +47,33 @@
                 <div class="input-field col s6">
                     <input id="end_date" name="end_date" type="text" class="datepicker validate">
                     <label class="active" for="end_date">End Date</label>
-                </div>  
-                <div class="input-field col l3 s12">
-                    <input id="total_campaign_cost" name="total_campaign_cost" type="text" pattern="\d*" class="validate">
-                    <label class="active" for="total_campaign_cost">Total Campaign Cost {{ account.currency }}</label>
+                </div>
+                <div class="row">
+                    <div class="col l8 s12">
+                        <p class="blue-grey-text lighten-4 para__margin__top">
+                            If you have not started this campaign yet, leave the following fields as 0: can you always come back and edit a campaign as you receive more leads or your costs change.
+                        </p>
+                    </div>  
                 </div>
                 <div class="input-field col l3 s12">
-                    <input id="marketing_qualified_leads" name="marketing_qualified_leads" type="text" pattern="\d*"  class="validate">
+                    <input id="total_campaign_cost" name="total_campaign_cost" type="text" pattern="\d*" class="validate" value="0" required>
+                    <label class="active" for="total_campaign_cost">Total Campaign Cost {{ account.currency }}</label>
+                    <span class="helper-text" data-error="This field must contain a number"></span>                          
+                </div>
+                <div class="input-field col l3 s12">
+                    <input id="marketing_qualified_leads" name="marketing_qualified_leads" type="text" pattern="\d*" class="validate" value="0" required>
                     <label class="active" for="marketing_qualified_leads">Marketing Qualified Leads</label>
+                    <span class="helper-text" data-error="This field must contain a number"></span>                       
                 </div>    
                 <div class="input-field col l3 s12">
-                    <input id="sales_qualified_leads" name="sales_qualified_leads" type="text" pattern="\d*" class="validate">
+                    <input id="sales_qualified_leads" name="sales_qualified_leads" type="text" pattern="\d*" class="validate" value="0" required>
                     <label class="active" for="sales_qualified_leads">Sales Qualified Leads</label>
+                    <span class="helper-text" data-error="This field must contain a number"></span>                       
                 </div>
                 <div class="input-field col l3 s12">
-                    <input id="converted_leads" name="converted_leads" type="text" pattern="\d*" class="validate">
+                    <input id="converted_leads" name="converted_leads" type="text" pattern="\d*" class="validate" value="0" required>
                     <label class="active" for="converted_leads">Converted Leads</label>
+                    <span class="helper-text" data-error="This field must contain a number"></span>                       
                 </div>                                                                                                                                                          
             </div>
             <div class="row center">

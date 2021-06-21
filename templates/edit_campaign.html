@@ -54,20 +54,24 @@
                             <label class="active" for="end_date">End Date</label>
                         </div>  
                         <div class="input-field col s3">
-                            <input id="total_campaign_cost" name="total_campaign_cost" value="{{ campaign.total_campaign_cost }}" type="text" pattern="\d*" class="validate">
+                            <input id="total_campaign_cost" name="total_campaign_cost" value="{{ campaign.total_campaign_cost }}" type="text" pattern="\d*" class="validate" required>
                             <label class="active" for="total_campaign_cost">Total Campaign Cost (€)</label>
+                            <span class="helper-text" data-error="This field must contain a number"></span>                             
                         </div>
                         <div class="input-field col s3">
-                            <input id="marketing_qualified_leads" name="marketing_qualified_leads" value="{{ campaign.marketing_qualified_leads}}" type="text" pattern="\d*"  class="validate">
+                            <input id="marketing_qualified_leads" name="marketing_qualified_leads" value="{{ campaign.marketing_qualified_leads}}" type="text" pattern="\d*"  class="validate" required>
                             <label class="active" for="marketing_qualified_leads">Marketing Qualified Leads</label>
+                            <span class="helper-text" data-error="This field must contain a number"></span>                             
                         </div>    
                         <div class="input-field col s3">
-                            <input id="sales_qualified_leads" name="sales_qualified_leads" value="{{ campaign.sales_qualified_leads }}" type="text" pattern="\d*" class="validate">
+                            <input id="sales_qualified_leads" name="sales_qualified_leads" value="{{ campaign.sales_qualified_leads }}" type="text" pattern="\d*" class="validate" required>
                             <label class="active" for="sales_qualified_leads">Sales Qualified Leads</label>
+                            <span class="helper-text" data-error="This field must contain a number"></span>                             
                         </div> 
                         <div class="input-field col s3">
-                            <input id="converted_leads" name="converted_leads" value="{{ campaign.converted_leads }}"  type="text" pattern="\d*" class="validate">
+                            <input id="converted_leads" name="converted_leads" value="{{ campaign.converted_leads }}"  type="text" pattern="\d*" class="validate" required>
                             <label class="active" for="converted_leads">Converted Leads</label>
+                            <span class="helper-text" data-error="This field must contain a number"></span>                             
                         </div>                                                                                                                                                                  
                     </div>
                     <div class="row center">

@@ -274,10 +274,10 @@ def calculate_results(account_id):
         mql = int(request.form.get("marketing_qualified_leads"))
         sql = int(request.form.get("sales_qualified_leads"))
         converted_leads = int(request.form.get("converted_leads"))
-        calc_cost_mql = int(total_campaign_cost / mql)
-        calc_cost_sql = int(total_campaign_cost / sql)
-        calc_cost_per_conversion = int(total_campaign_cost / converted_leads)
-        calc_hit_rate = int(sql / mql * 100)
+        calc_cost_mql = int(total_campaign_cost / mql) if mql != 0 else 0
+        calc_cost_sql = int(total_campaign_cost / sql) if sql != 0 else 0
+        calc_cost_per_conversion = int(total_campaign_cost / converted_leads) if converted_leads != 0 else 0
+        calc_hit_rate = int(sql / mql * 100) if mql != 0 else 0
         account = mongo.db.accounts.find_one({"_id": ObjectId(account_id)})
         calculation = {
             "owning_account": session["user"],
@@ -311,11 +311,11 @@ def update_calculate_results(campaign_id, calculation_id):
         mql = int(request.form.get("marketing_qualified_leads"))
         sql = int(request.form.get("sales_qualified_leads"))
         converted_leads = int(request.form.get("converted_leads"))
-        calc_cost_mql = int(total_campaign_cost / mql)
-        calc_cost_sql = int(total_campaign_cost / sql)
+        calc_cost_mql = int(total_campaign_cost / mql) if mql != 0 else 0
+        calc_cost_sql = int(total_campaign_cost / sql) if sql != 0 else 0
         calc_cost_per_conversion = int(
-            total_campaign_cost / converted_leads)
-        calc_hit_rate = int(sql / mql * 100)
+            total_campaign_cost / converted_leads) if converted_leads != 0 else 0
+        calc_hit_rate = int(sql / mql * 100) if mql != 0 else 0
         campaign = mongo.db.campaigns.find_one({"_id": ObjectId(campaign_id)})
         calculation = {
             "owning_account": session["user"],

@@ -49,6 +49,10 @@ main {
   margin-left: 10px;
   margin-right: 10px;
 }
+.para__margin__top {
+  margin-bottom: 40px;
+  margin-top: 30px;
+}
 
 /***Top image and header section***/
 
