@@ -168,4 +168,7 @@ main {
   #logo-container {
     display: none;
   }  
+  .btn-large {
+    font-size: 12px;
+  }
 }

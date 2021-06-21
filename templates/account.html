@@ -62,7 +62,7 @@
             {% if messages %}
                 {% for message in messages %}
                     <div class="row flashes">
-                        <p class="blue-grey-text lighten-4 center-align collection-item">{{ message }}</p>
+                        <p class="blue-grey-text lighten-4 center-align">{{ message }}</p>
                     </div>
                 {% endfor %}
             {% endif %}
@@ -138,7 +138,7 @@
                         </div>
                         <div class="row center">
                             <a href="{{ url_for('benchmark_data') }}" id="download-button" class="btn-large waves-effect waves-light blue-grey lighten-1">
-                                Looking for comparative data? Click here                                 
+                                Click here for comparative data                               
                             </a>
                         </div>                        
                     </div>
