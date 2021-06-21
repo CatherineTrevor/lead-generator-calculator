@@ -185,6 +185,7 @@ def delete_account(account_id):
 def create_campaign(account_id):
     if request.method == "POST":
         account = mongo.db.accounts.find_one({"_id": ObjectId(account_id)})
+        existing_campaign_name = mongo.db.campaigns.find_one({"account_id": account["_id"], "campaign_name": {"$eq": request.form.get("campaign_name")}})
         campaign = {
             "campaign_name": request.form.get("campaign_name"),
             "campaign_type": request.form.get("campaign_type"),
@@ -202,6 +203,9 @@ def create_campaign(account_id):
             "account_id": account["_id"],
             "company_industry": account["company_industry"]
         }
+        if existing_campaign_name:
+            flash("This campaign name is already in use, please use a different one")
+            return redirect(url_for("create_campaign", account_id=account_id))
         mongo.db.campaigns.insert_one(campaign)
         try:
             calculate_results(account_id)
