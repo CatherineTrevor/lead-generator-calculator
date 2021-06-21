@@ -141,6 +141,9 @@ def get_account_profile():
 @app.route("/account_update/<account_id>", methods=["GET", "POST"])
 def account_update(account_id):
     if request.method == "POST":
+        account = mongo.db.accounts.find_one({"_id": ObjectId(account_id)})
+        calculation_id = mongo.db.calculations.find({"owning_account": session["user"]})
+        campaign_id = mongo.db.campaigns.find({"owning_account": session["user"]})
         submit = {
             "email_address": session["user"],
             "password": session["password"],
@@ -151,15 +154,21 @@ def account_update(account_id):
             "currency": "€"
         }
         mongo.db.accounts.update({"_id": ObjectId(account_id)}, submit)
+        if calculation_id:
+            mongo.db.calculations.update_many({"owning_account": session["user"]}, {"$set": {"company_industry": request.form.get("company_industry")}})
+            mongo.db.campaigns.update_many({"owning_account": session["user"]}, {"$set": {"company_industry": request.form.get("company_industry")}})
         flash("Account successfully updated")
         return redirect(url_for("get_account_profile"))
 
     account = mongo.db.accounts.find_one({"_id": ObjectId(account_id)})
+    calculation_id = mongo.db.calculations.find({"owning_account": session["user"]})
+    campaign_id = mongo.db.campaigns.find({"owning_account": session["user"]})
     categories = mongo.db.categories.find(
         {"category_type": "Industry"}).sort("category_name", 1)
 
     return render_template(
-        "account_update.html", account=account, categories=categories)
+        "account_update.html", account=account, categories=categories,
+        calculation_id=calculation_id, campaign_id=campaign_id)
 
 
 @app.route("/delete_account/<account_id>/")

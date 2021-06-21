@@ -236,10 +236,10 @@ The Github repo is connected to MongoDB:
 
 # Credits
 
-* [Geeks for Geeks: help with count_document calculation](https://www.geeksforgeeks.org/count-the-number-of-documents-in-mongodb-using-python/)
+* [Geeks for Geeks: help with count_document calculation](https://www.geeksforgeeks.org/count-the-number-of-documents-in-mongodb-using-python/); [help with update_many](https://www.geeksforgeeks.org/mongodb-update-multiple-documents-using-mongoshell/?ref=rp)
 * [Stackoverflow](http://stackoverflow.com) - general help including PyMongo, MongoDB and [numbers only input field](https://stackoverflow.com/questions/8808590/number-input-type-that-takes-only-integers); [reverse Jinja template order](https://stackoverflow.com/questions/12680691/loop-backwards-using-django-template/12680719); [error handling for calculation](https://stackoverflow.com/questions/1841565/valueerror-invalid-literal-for-int-with-base-10)
-* [Analytics Vidhya](https://www.analyticsvidhya.com/blog/2020/08/how-to-create-aggregation-pipelines-in-a-mongodb-database-using-pymongo/) - help with pymongo aggregataion
-* [Yawin Tutor](https://www.yawintutor.com/zerodivisionerror-division-by-zero/) - help with handling 0 in calculate_results function
+* [Analytics Vidhya - help with pymongo aggregation](https://www.analyticsvidhya.com/blog/2020/08/how-to-create-aggregation-pipelines-in-a-mongodb-database-using-pymongo/)
+* [Yawin Tutor - help with handling 0 in calculate_results function](https://www.yawintutor.com/zerodivisionerror-division-by-zero/)
 * Code Institute Slack community
 * Narender Singh, Code Institute mentor
 * Code Institute tutors
