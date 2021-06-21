@@ -34,11 +34,11 @@ Site users also have access to average cost per lead information from other comp
 
 ## Strategy
 
-Developed for those involved in strategic marketing decisions, the site allows for better-informed decisions about marketing campaigns, based on the cost per marketing lead, and cost per converted sales lead per marketing activity / campaign.
+Developed for those involved in strategic marketing decisions at mainly Small-Medium Enterprises (SMEs), the site allows for better-informed decisions about marketing campaigns, based on the cost per marketing lead, and cost per converted sales lead per marketing activity / campaign.
 
-Companies open an account and create a campaign profile, which includes the cost of the campaign, number of Marketing Qualified Leads (MQL), number of Sales Qualified Leads (SQL) and leads that converted into business. They are then presented with the cost per MQL and SQL, as well as a conversion hit rate to understand which activities provide the most converted leads as the best cost. This information gives the foundation for better-informed decisions for marketing strategies and budget planning.
+Companies open an account and create campaign profiles, which include the cost of the campaign, number of Marketing Qualified Leads (MQL), number of Sales Qualified Leads (SQL) and leads that converted into business. They are then presented with the cost per MQL and SQL, as well as a conversion hit rate from marketing to sales lead, to understand which activities provide the most converted leads as the best cost. This information gives the foundation for better-informed decisions for marketing strategies and budget planning.
 
-Site users will have access to anonymous comparable data, so they have a benchmark.
+Site users have access to anonymous comparable data, so they have a benchmark. This information is based on the accounts using the site and is annonymous.
 
 The site is free-to-use and mobile responsive.
 
@@ -62,19 +62,20 @@ Campaigns can be created, read, edited, and deleted by the account owner, follow
 **Returning visitors**
 
     a. As a returning visitor I want to quickly and easily log into my account profile
-    b. As a returning visitor I want to see all open / live and closed campaigns
+    b. As a returning visitor I want to see all open campaigns
     c. As a returning visitor I want to quickly create a new campaign
     d. As a returning visitor I want to read existing campaign data
-    e. As a returning visitor I want to easily update existing campaign and / or account profile data
+    e. As a returning visitor I want to easily update existing campaign and / or the account profile information
     f. As a returning visitor I want to delete campaign information with confidence
 
 **Site administrator**
 
     a. As a site administrator I want to quickly and easily log into the admin area
-    b. As a site administrator I want to create a new industry / communications platform category
+    b. As a site administrator I want to create a new industry / communications platform / campaign type category
     c. As a site administrator I want to read information about existing categories
     d. As a site administrator I want to easily update existing category information
     e. As a site administrator I want to delete category information with ease
+    f. As a site administrator I want to create, edit and delete campaigns, the same as a "normal" user
 
 ## Scope
 
@@ -97,20 +98,20 @@ Campaigns can be created, read, edited, and deleted by the account owner, follow
 
 **Future features**
 
-1. Currency exchange: For comparison purposes, data displayed on benchmark-data.html will be converted into Euros using an API. It will therefore be converted in the back-end before displayed in the front-end
+1. Currency exchange: In the future, users will be able to enter information in currency other than Euros. For comparison purposes, the financial data will be converted into Euros using an API.
+2. Country dropdown: A dropdown selection connection to currency to country, rather than a free text field for country selection, as it is now.
 
 **Site warnings**
 
-Warnings within the account.html file have been included to ensure site users entered the information required to ensure data displays correctly on the graphs within benchmark_data.html.
+Warnings within the account.html file ensure site users enter the information required to ensure data displays correctly on the graphs within benchmark_data.html.
 
 ![Site warning example 1](supporting_docs/site_warning_1.jpg)
 
-Campaigns need campaign type and communication platform: the above warning is a link to the campaign that needs updating. This ensures that if a campaign type or communication platform is not available, the
-user knows to update it.
+Campaigns need campaign type and communication platform: the above warning is a link to the campaign that needs updating. This ensures that if a campaign type or communication platform is not available, the user knows to update it.
 
 ![Site warning example 2](supporting_docs/site_warning_2.jpg)
 
-When an user signs into the site they are only requested to input an email address and password to ensure minimal information is requried on initial set up. The user is then encouraged to update their information, in particular industry as this is required for benchmark data. This warning remains until the user has selected an industry.
+When an user signs into the site they are only requested to input an email address and password to ensure minimal information is requried on initial set up. The user is then encouraged to update their information, in particular industry as this is required for benchmark data. This warning remains until the user has selected an industry. Other information does not need to be updated.
 
 ## Structure
 
@@ -126,11 +127,7 @@ For wireframes see separate [SKELETON.md file](SKELETON.md).
 
 The database schema was created using [Creately](https://creately.com/) to generate a database schema. 
 
-Industry and country are dropdown fields to reduce the risk of misspellings - this data is required to populate graphs displayed on benchmark-data.html, so the input must be uniformed, rather than free-text. The Industry listing will be managed by Administration who will have access to create, edit and delete the industry options.
-
-The Country field is dropdown using the [Exchange Rate API](https://www.exchangerate-api.com/docs/supported-currencies) who maintain country and currency code listings. Again the importance of pre-defined fields for these options must be stressed, so the countries can be used for data comparison in benchmark-data.html. Free text fields will not allow for such data comparison. For example Sweden, Sverige, SWE or SE are all common terms, but cannot be grouped as the same country so the risk is they are appear as four different countries where the data should be displayed as one.
-
-[Exchange Rate API](https://www.exchangerate-api.com/docs/supported-currencies) also provides currency exchange. At present the site is focused on European businesses, therefore all data for comparison purposes will be converted into Euros.
+Industry field is dropdown to reduce the risk of misspellings - this data is required to populate graphs displayed on benchmark-data.html, so the input must be uniformed, rather than free-text. The Industry listing will be managed by Administration who will have access to create, edit and delete the industry options.
 
 Calculations were input into a separate collection, to allow for data to be further manipulated and displayed in the graph on benchmark-data.html.
 
@@ -198,8 +195,8 @@ The project was created on GitHub and uses the following libraries and framework
  - [Materialize](https://materializecss.com/about.html) - the site layout uses the Parallax template from Materialize, which has been heavily modified
  - [Google Fonts](https://fonts.google.com/specimen/Permanent+Marker?preview.text=Gothenburg%20Netball%20Club%20Est.%202019%20Fun,%20fitness%20and%20friendship!&preview.text_type=custom) - Permanent Marker and Lato
  - [MongoDB](https://www.mongodb.com/) - used for the database management, and charts on benchmark_data.html
- - [Heroku]
- - [Creately]
+ - [Heroku](https://id.heroku.com/login) - for site deployment
+ - [Creately](https://creately.com/) - used to generate the database schema layout
  - [PEP 8](https://www.python.org/dev/peps/pep-0008/#indentation) - help following PEP 8 styling guidelines
  - **[Free Formatter HTML](https://www.freeformatter.com/html-formatter.html) - for HTML code formatting
  - **[Free Formatter CSS](https://www.freeformatter.com/css-beautifier.html) - to beautify CSS code
