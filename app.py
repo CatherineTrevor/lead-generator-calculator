@@ -41,7 +41,6 @@ def log_in():
         existing_user = mongo.db.accounts.find_one(
             {"email_address": request.form.get("email_address").lower()})
 
-
         if existing_user:
             # ensure hashed password matches user input
             if check_password_hash(existing_user["password"],
@@ -174,7 +173,10 @@ def account_update(account_id):
 @app.route("/delete_account/<account_id>/")
 def delete_account(account_id):
     mongo.db.accounts.remove({"_id": ObjectId(account_id)})
+    mongo.db.campaigns.remove({"account_id": ObjectId(account_id)})
+    mongo.db.calculations.remove({"account_id": ObjectId(account_id)})
     session.clear()
+    flash("Your account has been deleted")
     return redirect(url_for("sign_up"))
 
 
@@ -292,8 +294,10 @@ def calculate_results(account_id):
         calc_cost_per_conversion = int(total_campaign_cost / converted_leads) if converted_leads != 0 else 0
         calc_hit_rate = int(sql / mql * 100) if mql != 0 else 0
         account = mongo.db.accounts.find_one({"_id": ObjectId(account_id)})
+        campaign = mongo.db.campaigns.find_one({"_id": ObjectId()})
         calculation = {
             "owning_account": session["user"],
+            "account_id": account["_id"],
             "campaign_name": request.form.get("campaign_name"),
             "company_industry": account["company_industry"],
             "marketing_qualified_leads": request.form.get(
@@ -332,6 +336,7 @@ def update_calculate_results(campaign_id, calculation_id):
         campaign = mongo.db.campaigns.find_one({"_id": ObjectId(campaign_id)})
         calculation = {
             "owning_account": session["user"],
+            "account_id": account["_id"],
             "campaign_name": request.form.get("campaign_name"),
             "company_industry": campaign["company_industry"],
             "marketing_qualified_leads": request.form.get(
