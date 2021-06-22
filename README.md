@@ -101,16 +101,24 @@ Campaigns can be created, read, edited, and deleted by the account owner, follow
 
 **Site warnings**
 
-Warnings within the account.html file have been included to ensure site users entered the information required to ensure data displays correctly on the graphs within benchmark_data.html.
+Warnings within the account.html file have been included to encourage site users enter the information required to ensure data displays correctly on the graphs within benchmark_data.html.
 
-![Site warning example 1](supporting_docs/site_warning_1.jpg)
+Example 1
+
+<div>
+    <img src="supporting_docs/site_warning_1.jpg" width=500>
+</div>
+
+When an user signs into the site they are only requested to input an email address and password to ensure minimal information is requried on initial set up. The user is then encouraged to update their information, in particular industry as this is required for benchmark data. This warning remains until the user has selected an industry.
+
+Example 2
+
+<div>
+    <img src="supporting_docs/site_warning_2.jpg" width=500>
+</div>
 
 Campaigns need campaign type and communication platform: the above warning is a link to the campaign that needs updating. This ensures that if a campaign type or communication platform is not available, the
 user knows to update it.
-
-![Site warning example 2](supporting_docs/site_warning_2.jpg)
-
-When an user signs into the site they are only requested to input an email address and password to ensure minimal information is requried on initial set up. The user is then encouraged to update their information, in particular industry as this is required for benchmark data. This warning remains until the user has selected an industry.
 
 ## Structure
 
@@ -128,13 +136,9 @@ The database schema was created using [Creately](https://creately.com/) to gener
 
 Industry and country are dropdown fields to reduce the risk of misspellings - this data is required to populate graphs displayed on benchmark-data.html, so the input must be uniformed, rather than free-text. The Industry listing will be managed by Administration who will have access to create, edit and delete the industry options.
 
-The Country field is dropdown using the [Exchange Rate API](https://www.exchangerate-api.com/docs/supported-currencies) who maintain country and currency code listings. Again the importance of pre-defined fields for these options must be stressed, so the countries can be used for data comparison in benchmark-data.html. Free text fields will not allow for such data comparison. For example Sweden, Sverige, SWE or SE are all common terms, but cannot be grouped as the same country so the risk is they are appear as four different countries where the data should be displayed as one.
-
-[Exchange Rate API](https://www.exchangerate-api.com/docs/supported-currencies) also provides currency exchange. At present the site is focused on European businesses, therefore all data for comparison purposes will be converted into Euros.
-
 Calculations were input into a separate collection, to allow for data to be further manipulated and displayed in the graph on benchmark-data.html.
 
-![database_schema](https://user-images.githubusercontent.com/76033080/119633631-3b638a00-be12-11eb-8377-2c917a91c63f.jpg)
+![database_schema](supporting_docs/database_schema.jpg)
 
 ## Surface
 
@@ -156,31 +160,37 @@ Based on the blue-grey color scheme, with a combination of blue-grey lighten and
 
 **Background Image 1**
 
-Image by <a href="https://pixabay.com/users/geralt-9301/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1087845">Gerd Altmann</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1087845">Pixabay</a>
+<div>
+    <img src="static/assets/backgroundImage1.jpg" height=200>
+</div>
+
+Image by <a href="https://pixabay.com/illustrations/cyber-network-technology-futuristic-3400789/">The Digital Artist</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3400789">Pixabay</a>
 
 **Background Image 2**
 
-Image by <a href="https://pixabay.com/users/tumisu-148124/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=4168483">Tumisu</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=4168483">Pixabay</a>
+<div>
+    <img src="static/assets/backgroundImage2.jpg" height=200>
+</div>
+
+Image by <a href="https://pixabay.com/photos/smart-city-communication-network-4168483/">Tumisu</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=4168483">Pixabay</a>
 
 **Background Image 3**
 
-Image by <a href="https://pixabay.com/users/thedigitalartist-202249/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3400789">Pete Linforth</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3400789">Pixabay</a>
+<div>
+    <img src="static/assets/backgroundImage3.jpg" height=200>
+</div>
+
+Image by <a href="https://pixabay.com/illustrations/background-abstract-line-2462436/">Денис Марчук</a> from <a href="https://pixabay.com/illustrations/background-abstract-line-2462436/Image">Pixabay</a>
 
 
-Image by <a href="https://pixabay.com/users/manuchi-1728328/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2462436">Денис Марчук</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2462436">Pixabay</a>
+**Background Image 4**
 
-**Background Image 6**
+<div>
+    <img src="static/assets/backgroundImage4.jpg" height=200>
+</div>
 
-Image by <a href="https://pixabay.com/users/geralt-9301/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3539317">Gerd Altmann</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3539317">Pixabay</a>
+Image by <a href="https://pixabay.com/illustrations/mobile-phone-smartphone-app-1087845/">Gerd Altmann</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1087845">Pixabay</a>
 
-
-**Background Image 7**
-
-Image by <a href="https://pixabay.com/users/kiquebg-5133331/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=4256272">kiquebg</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=4256272">Pixabay</a>
-
-**Background image**
-
-Image by <a href="https://pixabay.com/users/geralt-9301/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2910663">Gerd Altmann</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2910663">Pixabay</a>
 
 # Technologies Used
 
@@ -198,7 +208,7 @@ The project was created on GitHub and uses the following libraries and framework
  - [Materialize](https://materializecss.com/about.html) - the site layout uses the Parallax template from Materialize, which has been heavily modified
  - [Google Fonts](https://fonts.google.com/specimen/Permanent+Marker?preview.text=Gothenburg%20Netball%20Club%20Est.%202019%20Fun,%20fitness%20and%20friendship!&preview.text_type=custom) - Permanent Marker and Lato
  - [MongoDB](https://www.mongodb.com/) - used for the database management, and charts on benchmark_data.html
- - [Heroku]
+ - [Heroku]()
  - [Creately]
  - [PEP 8](https://www.python.org/dev/peps/pep-0008/#indentation) - help following PEP 8 styling guidelines
  - **[Free Formatter HTML](https://www.freeformatter.com/html-formatter.html) - for HTML code formatting

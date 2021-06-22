@@ -187,10 +187,12 @@ def delete_account(account_id):
 def create_campaign(account_id):
     if request.method == "POST":
         account = mongo.db.accounts.find_one({"_id": ObjectId(account_id)})
+        category = mongo.db.categories.find_one({"category_type": "Campaign type", "category_name": {"$eq": request.form.get("campaign_type")}})
         existing_campaign_name = mongo.db.campaigns.find_one({"account_id": account["_id"], "campaign_name": {"$eq": request.form.get("campaign_name")}})
         campaign = {
             "campaign_name": request.form.get("campaign_name"),
             "campaign_type": request.form.get("campaign_type"),
+            "category_id": category["_id"],
             "communication_platform": request.form.get(
                 "communication_platform"),
             "start_date": request.form.get("start_date"),
@@ -393,8 +395,8 @@ def create_category():
 def edit_category(category_id):
     if request.method == "POST":
         submit = {
-            "category_name": request.form.get("category_name"),
-            "category_type": request.form.get("category_type")
+            "category_type": request.form.get("category_type"),
+            "category_name": request.form.get("category_name")
         }
         mongo.db.categories.update({"_id": ObjectId(category_id)}, submit)
         flash("Category successfully updated")
