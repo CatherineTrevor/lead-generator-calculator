@@ -99,7 +99,7 @@ Campaigns can be created, read, edited, and deleted by the account owner, follow
 **Future features**
 
 1. Currency exchange: In the future, users will be able to enter information in currency other than Euros. For comparison purposes, the financial data will be converted into Euros using an API.
-2. Country dropdown: A dropdown selection connecting the selected country to the relevant currency, rather than a free text field for country selection, as it is now.
+2. Country dropdown connected to currency: A dropdown selection connecting the selected country to the relevant currency, which is then connected to a currency converter.
 3. More in-depth comparison data based on campaign type and communication platform, not just industry. For the basic purposes of the site, the industry is more relevant as a benchmark. Comparing another company based purely on the communication platform does not give a clear picture, there are many other factors to consider. 
 
 **Site warnings**
@@ -138,6 +138,8 @@ For wireframes see separate [SKELETON.md file](SKELETON.md).
 The database schema was created using [Creately](https://creately.com/). 
 
 Industry field is dropdown to reduce the risk of misspellings - this data is required to populate graphs displayed on benchmark-data.html, so the input must be uniformed, rather than free-text. The Industry listing will be managed by Administration who will have access to create, edit and delete the industry options, in addition to campaign type and communication platform.
+
+Country field in the account profile is a dropdown connected to [REST Countries API](https://restcountries.eu/rest/v2/all) and saved in Mongo DB.
 
 Calculations are input into a separate collection, to allow for data to be further manipulated and displayed in the graph on benchmark-data.html.
 
@@ -213,6 +215,7 @@ The project was created on GitHub and uses the following libraries and framework
  - [Materialize](https://materializecss.com/about.html) - the site layout uses the Parallax template from Materialize, which has been heavily modified
  - [Google Fonts](https://fonts.google.com/) - Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif
  - [MongoDB](https://www.mongodb.com/) - used for the database management, and charts on benchmark_data.html
+ - [REST Countries API](https://restcountries.eu/rest/v2/all) - API used for the country dropdown in account profile
  - [Heroku](https://id.heroku.com/login) - for site deployment
  - [Creately](https://creately.com/) - used to generate the database schema layout
  - [PEP 8](https://www.python.org/dev/peps/pep-0008/#indentation) - help following PEP 8 styling guidelines
@@ -288,6 +291,7 @@ Forking the repository allows you to make a copy of the original in your GitHub 
 * [Analytics Vidhya - help with pymongo aggregation](https://www.analyticsvidhya.com/blog/2020/08/how-to-create-aggregation-pipelines-in-a-mongodb-database-using-pymongo/)
 * [Yawin Tutor - help with handling 0 in calculate_results function](https://www.yawintutor.com/zerodivisionerror-division-by-zero/)
 * [Table to Markdown](https://tabletomarkdown.com/convert-spreadsheet-to-markdown/) - convert excel testing file into markdown table for TESTING.md
+* [Code Pen](https://codepen.io/nikitahl/pen/PVVrYg) - country dropdown code copied and modified
 * Code Institute Slack community
 * Narender Singh, Code Institute mentor
 * Code Institute tutors

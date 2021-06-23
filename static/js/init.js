@@ -46,21 +46,35 @@
   });
 })(jQuery); // end of jQuery name space
 
-//jQuery(document).ready(function($){
-  //  var deviceAgent = navigator.userAgent.toLowerCase();
-    //var agentID = deviceAgent.match(/(iphone|ipod|ipad)/);
-      //  if (agentID) {
-     
-        //$('.update__browser').addClass('browser-default');
-        //$('.hide__element').hide();
-    
-        //}
-    //});
+// Country dropdown API
 
-// document.addEventListener('DOMContentLoaded', function() {
-//  var elems = document.querySelectorAll('.chips');
-//  var instances = M.Chips.init(elems, options);
-// });
+const xhttp = new XMLHttpRequest();
+const select = document.getElementById("company_country_name");
 
-// $('#message').val('');
-// M.textareaAutoResize($('#message')); 
+let countries;
+
+xhttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+    countries = JSON.parse(xhttp.responseText);
+    assignValues();
+    handleCountryChange();
+  }
+};
+xhttp.open("GET", "https://restcountries.eu/rest/v2/all", true);
+xhttp.send();
+
+function assignValues() {
+  countries.forEach(country => {
+    const option = document.createElement("option");
+    option.textContent = country.name;
+    select.appendChild(option);
+  });
+}
+
+function handleCountryChange() {
+  const countryData = countries.find(
+    country => select.value === country.alpha2Code
+  );
+}
+
+select.addEventListener("change", handleCountryChange.bind(this));

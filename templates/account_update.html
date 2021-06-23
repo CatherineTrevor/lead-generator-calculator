@@ -1,16 +1,23 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div class="container">
-        <div class="section">
-            <form class="col l10 s8" method="POST" action="{{ url_for('account_update', account_id=account._id) }}">        
-                <div class="icon-block">
-                    <h2 class="center blue-grey-text">
-                        <i class="material-icons">group</i>
-                    </h2>
-                    <h5 class="blue-grey-text center">
-                        Account information
-                    </h5>
+    <div class="row">
+        <h1 class="header center blue-grey-text text-lighten-4">
+            Account Information
+        </h1>
+    </div>
+    <!--flash messages-->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="row flashes">
+                    <p class="blue-grey-text lighten-4 center-align">{{ message }}</p>
                 </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}    
+    <div class="container">
+        <div class="row">
+            <form class="col l10 offset-l1" method="POST" action="{{ url_for('account_update', account_id=account._id) }}">        
                 <div class="row">
                     <div class="input-field col l6 s12">
                         <input value="{{ account.company_name }}" name="company_name" id="company_name" type="text" class="validate">
@@ -27,37 +34,51 @@
                             <label class="active" for="email_address">Email Address (used for log-in)</label>
                         </div>    
                     {% endif %}
-                    <div class="input-field col l3 s8">
-                        <input value="{{ account.company_country_name }}" name="company_country_name" id="country" type="text" class="validate" required>
-                        <label class="active" for="company_country_name">Country</label>
-                    </div> 
-                    <div class="input-field col l3 s4">
+                </div>
+                <div class="row">
+                    <div class="col l6 s12">
+                        <label for="company_country_name">Selected Country</label>
+                        <input value="{{ account.company_country_name}}" type="text" readonly>                        
+                    </div>                      
+                    <div class="col l6 s12">
+                        <span class="lighten-1 dropdown__span">
+                            Update Country
+                        </span>
+                        <select id="company_country_name"  name="company_country_name" class="browser-default countries" type="text">
+                            <option class="blue-grey-text" value="{{ account.company_country_name }}"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col l3 s12">
                         <input value="{{ account.currency }}" name="currency" id="currency" type="text" class="validate" readonly>
                         <label class="active" for="currency">Currency</label>
-                    </div> 
+                    </div>
+                    <div class="col l6">
                         <small class="vertical__align">
                             At present all currency is stated in Euros. Currency options will be added in the future.
-                        </small>    
-                </div>
+                        </small>   
+                    </div>
+                </div>                   
                 <div class="row">                                                                                                    
-                    <div class="col l3 s12">
+                    <div class="col l4 s12">
                         <label for="company_industry">Selected Industry</label>
                         <input value="{{ account.company_industry}}" type="text" readonly>                        
                     </div>                      
-                    <div class="col l3 s12">
+                    <div class="col l4 s12">
                         <span class="lighten-1 dropdown__span">
                             Update Industry
                         </span>
-                        <select id="company_industry" name="company_industry" class="browser-default validate" type="text" >
-                            <option class="blue-grey-text" value="{{ account.company_industry }}" disabled selected></option>
+                        <select id="company_industry" name="company_industry" class="browser-default" type="text" >
+                            <option class="blue-grey-text" value="{{ account.company_industry }}"></option>
                             {% for category in categories %}
                                 <option value="{{ category.category_name }}">{{ category.category_name }}</option>
                             {% endfor %}
                         </select>
                     </div>
-                        <small class="vertical__align">
-                            If your industry is not displayed, please <a href="{{ url_for('contact_us') }}">get in touch.</a>
-                        </small>   
+                    <small class="vertical__align">
+                        If your industry is not displayed, please <a href="{{ url_for('contact_us') }}">get in touch.</a>
+                    </small>   
                 </div>                                                                                                              
                 <div class="row center">
                     <div class="col s12 center-align">
@@ -70,6 +91,6 @@
                     </div>            
                 </form>   
             </div>
-        </div>
+        </div>     
     </div>    
 {% endblock %}
