@@ -5,90 +5,116 @@
             Campaign Profile
         </h1>
     </div>
-        <!--flash messages-->
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                {% for message in messages %}
-                    <div class="row flashes">
-                        <p class="blue-grey-text lighten-4 center-align">{{ message }}</p>
-                    </div>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}        
+    <!--flash messages-->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="row flashes">
+                    <p class="blue-grey-text lighten-4 center-align">{{ message }}</p>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}        
     <div class="container">
-        <form class="col l6" method="POST" action="{{ url_for('create_campaign', account_id=account._id) }}">
-            <div class="row">
-                <div class="input-field col s12">
-                    <input id="campaign_name" name="campaign_name" type="text" class="validate" required>
-                    <label class="active" for="campaign_name">Campaign Name</label>
-                </div>
-                <div class="input-field col l6 s12">
-                    <select id="campaign_type" name="campaign_type" type="text" class="validate" required>
-                        <option class="blue-grey-text" value="" selected></option>
-                        {% for campaign in campaign_type %}
-                            <option value="{{ campaign.category_name }}">{{ campaign.category_name }}</option>
-                        {% endfor %}
-                    </select>
-                    <label id="category_type" class="blue-grey-text">Select campaign type</label>
-                </div>
-                <div class="input-field col l6 s12">
-                    <select id="communication_platform" name="communication_platform" type="text" class="validate" required>
-                        <option class="blue-grey-text" value="" selected></option>
-                        {% for communication in communication_platform %}
-                            <option value="{{ communication.category_name }}">{{ communication.category_name }}</option>
-                        {% endfor %}
-                    </select>
-                    <label id="communication_platform" class="blue-grey-text">Select communication platform</label>
-                </div>                                 
-                <div class="input-field col s6">
-                    <input id="start_date" name="start_date" type="text" class="datepicker validate" required>
-                    <label class="active" for="start_date">Start Date</label>
-                </div> 
-                <div class="input-field col s6">
-                    <input id="end_date" name="end_date" type="text" class="datepicker validate">
-                    <label class="active" for="end_date">End Date</label>
+        <div class="row">
+            <form class="col l10 offset-l1" method="POST" action="{{ url_for('create_campaign', account_id=account._id) }}">
+                <div class="row">
+                    <div class="input-field col l12 s12">
+                        <input id="campaign_name" name="campaign_name" type="text" class="validate" required>
+                        <label class="active" for="campaign_name">Campaign Name</label>
+                    </div>
                 </div>
                 <div class="row">
-                    <div class="col l8 s12">
+                    <div class="input-field col l6 s12">
+                        <span class="lighten-1 dropdown__span">
+                            Select campaign type
+                        </span>
+                        <select id="campaign_type" name="campaign_type" type="text" class="browser-default" required>
+                            <option class="blue-grey-text" value="" selected></option>
+                            {% for campaign in campaign_type %}
+                                <option value="{{ campaign.category_name }}">{{ campaign.category_name }}</option>
+                            {% endfor %}
+                        </select>                  
+                    </div>
+                    <div class="input-field col l6 s12">
+                        <span class="lighten-1 dropdown__span">
+                            Select communication platform
+                        </span>                    
+                        <select id="communication_platform" name="communication_platform" type="text" class="browser-default" required>
+                            <option class="blue-grey-text" value="" selected></option>
+                            {% for communication in communication_platform %}
+                                <option value="{{ communication.category_name }}">{{ communication.category_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col l12 s12">
+                        <p class="blue-grey-text lighten-4 para__margin__top">
+                            If your campaign type or communication platform is not available, please select Other and then <a href="{{ url_for('contact_us') }}">get in touch</a> and we will add your category as requested.
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col l6 s12">
+                        <input id="start_date" name="start_date" type="text" class="datepicker validate" required>
+                        <label class="active" for="start_date">Start Date</label>
+                    </div> 
+                    <div class="input-field col l6 s12">
+                        <input id="end_date" name="end_date" type="text" class="datepicker validate">
+                        <label class="active" for="end_date">End Date</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col l12 s12">
                         <p class="blue-grey-text lighten-4 para__margin__top">
                             If you have not started this campaign yet, leave the following fields as 0: can you always come back and edit a campaign as you receive more leads or your costs change.
                         </p>
-                    </div>  
+                    </div>
+                    <div class="input-field col xl3 l6 s12">
+                        <input id="total_campaign_cost" name="total_campaign_cost" type="text" pattern="\d*" class="validate" value="0" required>
+                        <label class="active" for="total_campaign_cost">
+                            Total Campaign Cost {{ account.currency }}
+                        </label>
+                        <span class="helper-text" data-error="This field must contain a number"></span>                          
+                    </div>
+                    <div class="input-field col xl3 l6 s12">
+                        <input id="marketing_qualified_leads" name="marketing_qualified_leads" type="text" pattern="\d*" class="validate" value="0" required>
+                        <label class="active" for="marketing_qualified_leads">
+                            Marketing Qualified Leads
+                        </label>
+                        <span class="helper-text" data-error="This field must contain a number"></span>                       
+                    </div>    
+                    <div class="input-field col xl3 l6 s12">
+                        <input id="sales_qualified_leads" name="sales_qualified_leads" type="text" pattern="\d*" class="validate" value="0" required>
+                        <label class="active" for="sales_qualified_leads">
+                            Sales Qualified Leads
+                        </label>
+                        <span class="helper-text" data-error="This field must contain a number"></span>                       
+                    </div>
+                    <div class="input-field col xl3 l6 s12">
+                        <input id="converted_leads" name="converted_leads" type="text" pattern="\d*" class="validate" value="0" required>
+                        <label class="active" for="converted_leads">
+                            Converted Leads
+                        </label>
+                        <span class="helper-text" data-error="This field must contain a number"></span>                       
+                    </div>                                                                                                                                                          
                 </div>
-                <div class="input-field col l3 s12">
-                    <input id="total_campaign_cost" name="total_campaign_cost" type="text" pattern="\d*" class="validate" value="0" required>
-                    <label class="active" for="total_campaign_cost">Total Campaign Cost {{ account.currency }}</label>
-                    <span class="helper-text" data-error="This field must contain a number"></span>                          
-                </div>
-                <div class="input-field col l3 s12">
-                    <input id="marketing_qualified_leads" name="marketing_qualified_leads" type="text" pattern="\d*" class="validate" value="0" required>
-                    <label class="active" for="marketing_qualified_leads">Marketing Qualified Leads</label>
-                    <span class="helper-text" data-error="This field must contain a number"></span>                       
-                </div>    
-                <div class="input-field col l3 s12">
-                    <input id="sales_qualified_leads" name="sales_qualified_leads" type="text" pattern="\d*" class="validate" value="0" required>
-                    <label class="active" for="sales_qualified_leads">Sales Qualified Leads</label>
-                    <span class="helper-text" data-error="This field must contain a number"></span>                       
-                </div>
-                <div class="input-field col l3 s12">
-                    <input id="converted_leads" name="converted_leads" type="text" pattern="\d*" class="validate" value="0" required>
-                    <label class="active" for="converted_leads">Converted Leads</label>
-                    <span class="helper-text" data-error="This field must contain a number"></span>                       
-                </div>                                                                                                                                                          
-            </div>
-            <div class="row center">
-                <button type="submit" class="btn-large waves-effect waves-light blue-grey lighten-1">
-                    Save
-                </button>
-                <a href="{{ url_for('get_account_profile') }}" id="download-button" class="btn-large waves-effect waves-light blue-grey lighten-1">
-                    Cancel
-                </a>                   
-            </div>            
-        </form>    
-        <div>
-            <p class="light">
-                Wondering about the difference between a marketing, sales, and converted lead? <a href="{{ url_for('about') }}">Visit the FAQ section on the About page for more information.</a>
-            </p>
+                <div class="row center">
+                    <p class="col l10 offset-l1 light">
+                        Wondering about the difference between a marketing qualified lead, sales qualified lead, and converted lead?
+                    </p>
+                    <p class="col l10 offset-l1 light">
+                        <a href="{{ url_for('about') }}">Visit the FAQ section on the About page for more information.</a>
+                    </p>
+                </div>  
+                <div class="row center">
+                    <button type="submit" class="btn-large waves-effect waves-light blue-grey lighten-1">
+                        Save
+                    </button>
+                    <a href="{{ url_for('get_account_profile') }}" id="download-button" class="btn-large waves-effect waves-light blue-grey lighten-1">
+                        Cancel
+                    </a>                   
+                </div>            
+            </form>
         </div>
     </div>
 {% endblock %}
