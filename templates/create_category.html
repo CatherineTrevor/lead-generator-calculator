@@ -9,13 +9,15 @@
         <form class="col l6" method="POST" action="{{ url_for('create_category') }}">
             <div class="row">
                 <div class="input-field col l6 s6">
-                    <select id="category_type" name="category_type" class="validate" required>
+                    <span class="lighten-1 dropdown__span">
+                        Select category type
+                    </span>
+                    <select id="category_type" name="category_type" class="browser-default" required>
                         <option class="blue-grey-text" value="" selected></option>
                         {% for option in options %}
                             <option value="{{ option.category_type }}">{{ option.category_type }}</option>
                         {% endfor %}
                     </select>
-                    <label id="category_type" class="blue-grey-text">Select category type</label>
                 </div>
             </div>
             <div class="row">
