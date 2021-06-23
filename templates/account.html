@@ -235,20 +235,20 @@
                                         </h5>
                                     </div>                                                                   
                                     <div class="row">
-                                        <div class="input-field col l3 s12">
+                                        <div class="input-field col xl3 l6 m6 s12">
                                             <input value="{{ account.currency }} {{ campaign.total_campaign_cost }}" name="total_campaign_cost" type="text" readonly>
                                             <label for="total_campaign_cost">Total Campaign Cost</label>
                                         </div>                                                
-                                        <div class="input-field col l3 s12">
+                                        <div class="input-field col xl3 l6 m6 s12">
                                             <input value="{{ campaign.marketing_qualified_leads }}" name="marketing_qualified_leads" type="number" readonly>
                                             <label for="marketing_qualified_leads">Marketing Qualified Leads</label>
                                         </div>    
-                                        <div class="input-field col l3 s12">
+                                        <div class="input-field col xl3 l6 m6 s12">
                                             <input value="{{ campaign.sales_qualified_leads }}" name="sales_qualified_leads" type="number" readonly>
                                             <label for="sales_qualified_leads">Sales Qualified Leads</label>
                                         </div>
-                                        <div class="input-field col l3 s12">
-                                            <input value="{{ campaign.converted_leads }}" id="converted_leads" name="converted_leads" type="number" readonly>
+                                        <div class="input-field col xl3 l6 m6 s12">
+                                            <input value="{{ campaign.converted_leads }}" name="converted_leads" type="number" readonly>
                                             <label for="converted_leads">Converted Leads</label>
                                         </div>                                                              
                                     </div>
@@ -262,19 +262,19 @@
                                                 </h5>
                                             </div>
                                             <div class="row">
-                                                <div class="input-field col l3 s12">
+                                                <div class="input-field col xl3 l6 m6 s12">
                                                     <input value="{{ calculation.hit_rate }} %" name="hit_rate" type="text" readonly>
                                                     <label for="hit_rate">Hit rate (from marketing to sales lead)</label>
                                                 </div>                                                    
-                                                <div class="input-field col l3 s12">
+                                                <div class="input-field col xl3 l6 m6 s12">
                                                     <input value="{{ account.currency }} {{ calculation.cost_per_marketing_lead }}" name="cost_per_marketing_lead" type="text" readonly>
                                                     <label for="cost_per_marketing_lead">Cost per marketing lead</label>
                                                 </div>
-                                                <div class="input-field col l3 s12">
+                                                <div class="input-field col xl3 l6 m6 s12">
                                                     <input value="{{ account.currency }} {{ calculation.cost_per_sales_lead }}" name="cost_per_sales_lead" type="text" readonly>
                                                     <label for="cost_per_sales_lead">Cost per sales lead</label>
                                                 </div>  
-                                                <div class="input-field col l3 s12">
+                                                <div class="input-field col xl3 l6 m6 s12">
                                                     <input value="{{ account.currency }} {{ calculation.cost_per_converted_lead }}" name="cost_per_converted_lead" type="text" readonly>
                                                     <label for="cost_per_converted_lead">Cost per converted lead</label>
                                                 </div>                                                                                                                                                                                                        

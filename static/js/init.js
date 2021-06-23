@@ -46,6 +46,17 @@
   });
 })(jQuery); // end of jQuery name space
 
+//jQuery(document).ready(function($){
+  //  var deviceAgent = navigator.userAgent.toLowerCase();
+    //var agentID = deviceAgent.match(/(iphone|ipod|ipad)/);
+      //  if (agentID) {
+     
+        //$('.update__browser').addClass('browser-default');
+        //$('.hide__element').hide();
+    
+        //}
+    //});
+
 // document.addEventListener('DOMContentLoaded', function() {
 //  var elems = document.querySelectorAll('.chips');
 //  var instances = M.Chips.init(elems, options);
