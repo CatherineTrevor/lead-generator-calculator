@@ -4,6 +4,7 @@ from flask import (
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
+
 if os.path.exists("env.py"):
     import env
 
@@ -121,11 +122,59 @@ def get_account_profile():
     campaigns = list(mongo.db.campaigns.find())
     calculations = list(mongo.db.calculations.find())
     total_open_campaigns = mongo.db.campaigns.count_documents(
-            {"owning_account": session['user']})
-    total_marketing_spend = list(mongo.db.campaigns.aggregate([{"$match": {"owning_account": {"$eq": session['user']}}}, {"$group": {"_id": "$owning_account", "marketing_spend": {"$sum": "$total_campaign_cost"}}}]))
-    total_marketing_leads = list(mongo.db.campaigns.aggregate([{"$match": {"owning_account": {"$eq": session['user']}}}, {"$group": {"_id": "$owning_account", "marketing_leads": {"$sum": "$marketing_qualified_leads"}}}]))
-    total_sales_leads = list(mongo.db.campaigns.aggregate([{"$match": {"owning_account": {"$eq": session['user']}}}, {"$group": {"_id": "$owning_account", "sales_leads": {"$sum": "$sales_qualified_leads"}}}]))
-    total_converted_leads = list(mongo.db.campaigns.aggregate([{"$match": {"owning_account": {"$eq": session['user']}}}, {"$group": {"_id": "$owning_account", "converted_leads": {"$sum": "$converted_leads"}}}]))
+        {"owning_account": session['user']})
+    total_marketing_spend = list(
+        mongo.db.campaigns.aggregate(
+            [
+                {"$match": {"owning_account": {"$eq": session['user']}}},
+                {
+                    "$group": {
+                        "_id": "$owning_account",
+                        "marketing_spend": {"$sum": "$total_campaign_cost"},
+                    }
+                },
+            ]
+        )
+    )
+    total_marketing_leads = list(
+        mongo.db.campaigns.aggregate(
+            [
+                {"$match": {"owning_account": {"$eq": session['user']}}},
+                {
+                    "$group": {
+                        "_id": "$owning_account",
+                        "marketing_leads": {"$sum": "$marketing_qualified_leads"},
+                    }
+                },
+            ]
+        )
+    )
+    total_sales_leads = list(
+        mongo.db.campaigns.aggregate(
+            [
+                {"$match": {"owning_account": {"$eq": session['user']}}},
+                {
+                    "$group": {
+                        "_id": "$owning_account",
+                        "sales_leads": {"$sum": "$sales_qualified_leads"},
+                    }
+                }
+            ]
+        )
+    )
+    total_converted_leads = list(
+        mongo.db.campaigns.aggregate(
+            [
+                {"$match": {"owning_account": {"$eq": session['user']}}},
+                {
+                    "$group": {
+                        "_id": "$owning_account",
+                        "converted_leads": {"$sum": "$converted_leads"},
+                    }
+                },
+            ]
+        )
+    )
     return render_template("account.html",
                            accounts=accounts,
                            campaigns=campaigns,
@@ -141,8 +190,10 @@ def get_account_profile():
 def account_update(account_id):
     if request.method == "POST":
         account = mongo.db.accounts.find_one({"_id": ObjectId(account_id)})
-        calculation_id = mongo.db.calculations.find({"owning_account": session["user"]})
-        campaign_id = mongo.db.campaigns.find({"owning_account": session["user"]})
+        calculation_id = mongo.db.calculations.find(
+            {"owning_account": session["user"]})
+        campaign_id = mongo.db.campaigns.find(
+            {"owning_account": session["user"]})
         submit = {
             "email_address": session["user"],
             "password": session["password"],
@@ -154,13 +205,24 @@ def account_update(account_id):
         }
         mongo.db.accounts.update({"_id": ObjectId(account_id)}, submit)
         if calculation_id:
-            mongo.db.calculations.update_many({"owning_account": session["user"]}, {"$set": {"company_industry": request.form.get("company_industry")}})
-            mongo.db.campaigns.update_many({"owning_account": session["user"]}, {"$set": {"company_industry": request.form.get("company_industry")}})
+            mongo.db.calculations.update_many(
+                {"owning_account": session["user"]},
+                {
+                    "$set": {"company_industry": request.form.get("company_industry")}
+                }
+            )
+            mongo.db.campaigns.update_many(
+                {"owning_account": session["user"]},
+                {
+                    "$set": {"company_industry": request.form.get("company_industry")}
+                }
+            )
         flash("Account successfully updated")
         return redirect(url_for("get_account_profile"))
 
     account = mongo.db.accounts.find_one({"_id": ObjectId(account_id)})
-    calculation_id = mongo.db.calculations.find({"owning_account": session["user"]})
+    calculation_id = mongo.db.calculations.find(
+        {"owning_account": session["user"]})
     campaign_id = mongo.db.campaigns.find({"owning_account": session["user"]})
     categories = mongo.db.categories.find(
         {"category_type": "Industry"}).sort("category_name", 1)
@@ -187,8 +249,24 @@ def delete_account(account_id):
 def create_campaign(account_id):
     if request.method == "POST":
         account = mongo.db.accounts.find_one({"_id": ObjectId(account_id)})
-        category = mongo.db.categories.find_one({"category_type": "Campaign type", "category_name": {"$eq": request.form.get("campaign_type")}})
-        existing_campaign_name = mongo.db.campaigns.find_one({"account_id": account["_id"], "campaign_name": {"$eq": request.form.get("campaign_name")}})
+        category = mongo.db.categories.find_one(
+            {
+                "category_type": "Campaign type",
+                "category_name": {"$eq": request.form.get("campaign_type")},
+            }
+        )
+        existing_campaign_name = mongo.db.campaigns.find_one(
+            {
+                "account_id": account["_id"],
+                "campaign_name": {"$eq": request.form.get("campaign_name")},
+            }
+        )
+        account_industry = mongo.db.accounts.find_one(
+            {
+                "_id": ObjectId(account_id),
+                "company_industry": {"$eq": "Update your industry"},
+            }
+        )
         campaign = {
             "campaign_name": request.form.get("campaign_name"),
             "campaign_type": request.form.get("campaign_type"),
@@ -202,13 +280,21 @@ def create_campaign(account_id):
             "sales_qualified_leads": int(request.form.get(
                 "sales_qualified_leads")),
             "converted_leads": int(request.form.get("converted_leads")),
-            "total_campaign_cost": int(request.form.get("total_campaign_cost")),
+            "total_campaign_cost": int(
+                request.form.get("total_campaign_cost")),
             "owning_account": session["user"],
             "account_id": account["_id"],
             "company_industry": account["company_industry"]
         }
         if existing_campaign_name:
-            flash("This campaign name is already in use, please use a different one")
+            flash(
+                "This campaign name is already in use, please use a different one"
+                )
+            return redirect(url_for("create_campaign", account_id=account_id))
+        if account_industry:
+            flash(
+                "Please update the industry information in your account profile before creating a campaign"
+                )
             return redirect(url_for("create_campaign", account_id=account_id))
         mongo.db.campaigns.insert_one(campaign)
         try:
@@ -233,8 +319,16 @@ def create_campaign(account_id):
 def edit_campaign(campaign_id, account_id, calculation_id):
     if request.method == "POST":
         account = mongo.db.accounts.find_one({"_id": ObjectId(account_id)})
-        calculation = mongo.db.calculations.find_one({"_id": ObjectId(
-            calculation_id)})
+        calculation = mongo.db.calculations.find_one(
+            {
+                "_id": ObjectId(calculation_id)},
+            )
+        account_industry = mongo.db.accounts.find_one(
+            {
+                "_id": ObjectId(account_id),
+                "company_industry": {"$eq": "Update your industry"},
+            }
+        )
         submit = {
             "campaign_name": request.form.get("campaign_name"),
             "campaign_type": request.form.get("campaign_type"),
@@ -247,11 +341,17 @@ def edit_campaign(campaign_id, account_id, calculation_id):
             "sales_qualified_leads": int(request.form.get(
                 "sales_qualified_leads")),
             "converted_leads": int(request.form.get("converted_leads")),
-            "total_campaign_cost": int(request.form.get("total_campaign_cost")),
+            "total_campaign_cost": int(request.form.get(
+                "total_campaign_cost")),
             "owning_account": session["user"],
             "account_id": account["_id"],
             "company_industry": account["company_industry"]
         }
+        if account_industry:
+            flash(
+                "Please update the industry information in your account profile before creating a campaign"
+                )
+            return redirect(url_for("create_campaign", account_id=account_id))
         update_calculate_results(account_id, campaign_id, calculation_id)
         mongo.db.campaigns.update({"_id": ObjectId(campaign_id)}, submit)
         flash("Campaign successfully updated")
@@ -293,7 +393,8 @@ def calculate_results(account_id):
         converted_leads = int(request.form.get("converted_leads"))
         calc_cost_mql = int(total_campaign_cost / mql) if mql != 0 else 0
         calc_cost_sql = int(total_campaign_cost / sql) if sql != 0 else 0
-        calc_cost_per_conversion = int(total_campaign_cost / converted_leads) if converted_leads != 0 else 0
+        calc_cost_per_conversion = int(
+            total_campaign_cost / converted_leads) if converted_leads != 0 else 0
         calc_hit_rate = int(sql / mql * 100) if mql != 0 else 0
         account = mongo.db.accounts.find_one({"_id": ObjectId(account_id)})
         campaign = mongo.db.campaigns.find_one({"_id": ObjectId()})

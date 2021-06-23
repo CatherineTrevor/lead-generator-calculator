@@ -221,6 +221,7 @@ The project was created on GitHub and uses the following libraries and framework
  - [PEP 8](https://www.python.org/dev/peps/pep-0008/#indentation) - help following PEP 8 styling guidelines
  - **[Free Formatter HTML](https://www.freeformatter.com/html-formatter.html) - for HTML code formatting
  - **[Free Formatter CSS](https://www.freeformatter.com/css-beautifier.html) - to beautify CSS code
+ - [Code Beautify](https://codebeautify.org/python-formatter-beautifier) - help with line indentation in Python
  - [Grammarly](https://app.grammarly.com/) [(Example)](supporting-docs/grammarly-example.jpg) - the free service to double check grammar and spelling 
  - [Monday.com](https://view.monday.com/1287064588-3df266aa3259485edf2c68ed782207b8?r=use1) - used for project/task management 
  - [Am I responsive](http://ami.responsivedesign.is/) - supplied the responsive image for the top of README.md
