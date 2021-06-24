@@ -23,13 +23,13 @@
                         <input value="{{ account.company_name }}" name="company_name" id="company_name" type="text" class="validate">
                         <label class="active" for="company_name">Company Name</label>
                     </div>
-                    <div class="input-field col l3 s12">
+                    <div class="input-field col l6 s12">
                         <input value="{{ account.account_owner }} " name="account_owner" id="account_owner" type="text" class="validate">
                         <label class="active" for="account_owner">Account Owner</label>
                     </div>
                     <!--admin should not change the log in email address-->
                     {% if session.user|lower != "admin@admin.com"|lower %}
-                        <div class="input-field col l3 s12">
+                        <div class="input-field col l6 s12">
                             <input value="{{ account.email_address }} " name="email_address" id="email_address" type="email" class="validate">
                             <label class="active" for="email_address">Email Address (used for log-in)</label>
                         </div>    
@@ -45,7 +45,7 @@
                             Update Country
                         </span>
                         <select id="company_country_name"  name="company_country_name" class="browser-default countries" type="text">
-                            <option class="blue-grey-text" value="{{ account.company_country_name }}"></option>
+                            <option class="blue-grey-text" value=""></option>
                         </select>
                     </div>
                 </div>
