@@ -245,6 +245,21 @@ def delete_account(account_id):
 # Campaign management
 
 
+@app.route("/is_industry_updated/<account_id>")
+def is_industry_updated(account_id):
+    account = mongo.db.accounts.find_one({"_id": ObjectId(account_id)})    
+    account_industry = mongo.db.accounts.find_one(
+        {
+            "_id": ObjectId(account_id),
+            "company_industry": {"$eq": "Update your industry"},
+        }
+    )
+    if account_industry:
+        flash("Please update the account industry before creating a campaign")
+        return redirect(url_for("get_account_profile"))
+    return redirect(url_for("create_campaign", account_id=account_id))
+
+
 @app.route("/create_campaign/<account_id>", methods=["GET", "POST"])
 def create_campaign(account_id):
     if request.method == "POST":
