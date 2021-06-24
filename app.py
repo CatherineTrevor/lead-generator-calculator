@@ -249,12 +249,18 @@ def delete_account(account_id):
 def create_campaign(account_id):
     if request.method == "POST":
         account = mongo.db.accounts.find_one({"_id": ObjectId(account_id)})
-        category = mongo.db.categories.find_one(
+        campaign_type = mongo.db.categories.find_one(
             {
                 "category_type": "Campaign type",
                 "category_name": {"$eq": request.form.get("campaign_type")},
             }
         )
+        comm_platform = mongo.db.categories.find_one(
+            {
+                "category_type": "Communication platform",
+                "category_name": {"$eq": request.form.get("communication_platform")},
+            }
+        )        
         existing_campaign_name = mongo.db.campaigns.find_one(
             {
                 "account_id": account["_id"],
@@ -270,9 +276,10 @@ def create_campaign(account_id):
         campaign = {
             "campaign_name": request.form.get("campaign_name"),
             "campaign_type": request.form.get("campaign_type"),
-            "category_id": category["_id"],
+            "campaign_type_id": campaign_type["_id"],
             "communication_platform": request.form.get(
                 "communication_platform"),
+            "comm_platform_id": comm_platform["_id"],
             "start_date": request.form.get("start_date"),
             "end_date": request.form.get("end_date"),
             "marketing_qualified_leads": int(request.form.get(
@@ -329,11 +336,25 @@ def edit_campaign(campaign_id, account_id, calculation_id):
                 "company_industry": {"$eq": "Update your industry"},
             }
         )
+        campaign_type = mongo.db.categories.find_one(
+            {
+                "category_type": "Campaign type",
+                "category_name": {"$eq": request.form.get("campaign_type")},
+            }
+        )
+        comm_platform = mongo.db.categories.find_one(
+            {
+                "category_type": "Communication platform",
+                "category_name": {"$eq": request.form.get("communication_platform")},
+            }
+        )         
         submit = {
             "campaign_name": request.form.get("campaign_name"),
             "campaign_type": request.form.get("campaign_type"),
+            "campaign_type_id": campaign_type["_id"],
             "communication_platform": request.form.get(
                 "communication_platform"),
+            "comm_platform_id": comm_platform["_id"],
             "start_date": request.form.get("start_date"),
             "end_date": request.form.get("end_date"),
             "marketing_qualified_leads": int(request.form.get(
@@ -495,10 +516,21 @@ def create_category():
 @app.route("/edit_category/<category_id>", methods=["GET", "POST"])
 def edit_category(category_id):
     if request.method == "POST":
+        category = mongo.db.categories.find_one({"_id": ObjectId(category_id)})
+        match_campaign_type = mongo.db.campaigns.find(
+            {"campaign_type_id": {"$eq": ObjectId(category_id)}})
+        match_campaign_comm_platform = mongo.db.campaigns.find(
+            {"comm_platform_id": {"$eq": ObjectId(category_id)}})            
         submit = {
             "category_type": request.form.get("category_type"),
             "category_name": request.form.get("category_name")
         }
+        if match_campaign_type:
+            mongo.db.campaigns.update_many(
+                {"campaign_type_id": {"$eq": ObjectId(category_id)}}, {"$set": {"campaign_type": request.form.get("category_name")}})
+        if match_campaign_comm_platform:
+            mongo.db.campaigns.update_many(
+                {"comm_platform_id": {"$eq": ObjectId(category_id)}}, {"$set": {"communication_platform": request.form.get("category_name")}})                
         mongo.db.categories.update({"_id": ObjectId(category_id)}, submit)
         flash("Category successfully updated")
         return redirect(url_for("admin"))
