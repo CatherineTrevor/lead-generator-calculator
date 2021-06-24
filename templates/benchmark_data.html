@@ -18,49 +18,34 @@
         </div>
     </div>
     <div class="container">
-        <div class="section">
-            <div class="row">
-                <div class="col s12 center">
-                    <h3>
-                        <i class="mdi-content-send brown-text"></i>
-                    </h3>
-                    <p class="left-align">
-                        Add context to your decision making by understanding how much it costs your competitors to generate leads. The information provided below is taken from companies with 
-                        accounts on this site. All information is aggregated and an average provided. It is not possible to see specific company information, other than your own by logging into your account.
-                    </p>
-                    <p class="left-align">
-                        Comparative data is given based on industry. 
-                        At the moment, it is not possible to collate these types of data to compare one industry’s specific platform or campaign type.
-                    </p>
-                    <p class="left-align">
-                        Refresh your browser if the charts are not loading. It can take a minute to upload the information...</a>
-                    </p>                    
-                    <p class="left-align">
-                        Don't yet have an account? <a href="{{ (url_for('sign_up')) }}">Sign up and manage your data.</a>
-                    </p>
-                </div>
+        <div class="row center">
+            <div class="col l12">
+                <p class="left-align">
+                    Add context to your decision making by understanding how much it costs your competitors to generate leads. The information provided below is taken from companies with 
+                    accounts on this site. All information is aggregated and an average provided. It is not possible to see specific company information, other than your own by logging into your account.
+                </p>
+                <p class="left-align">
+                    Comparative data is given based on industry. 
+                    At the moment, it is not possible to collate these types of data to compare one industry’s specific platform or campaign type.
+                </p>
+                <p class="left-align">
+                    Refresh your browser if the charts are not loading. It can take a minute to upload the information...</a>
+                </p>                    
+                <p class="left-align">
+                    Don't yet have an account? <a href="{{ (url_for('sign_up')) }}">Sign up and manage your data.</a>
+                </p>
             </div>
         </div>
-    </div>
-    <div class="container">
-        <div class="section">
-            <div class="row">
-                <div class="col l6 offset-l3">
-                    <iframe style="background: #FFFFFF;border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2); margin-bottom: 30px;" 
-                    width="640" height="480" src="https://charts.mongodb.com/charts-lead-generator-calculator-rwyjx/embed/charts?id=1f9c5c1c-cab2-4204-b54b-4e47cf7d314f&autoRefresh=60&theme=light">
-                    </iframe>
-                </div>
-                <div class="col l6 offset-l3">
-                    <iframe style="background: #FFFFFF;border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2); margin-bottom: 30px;" 
-                    width="640" height="480" src="https://charts.mongodb.com/charts-lead-generator-calculator-rwyjx/embed/charts?id=164dccf8-8a63-4f45-8ab1-be634f9312a5&autoRefresh=60&theme=light">
-                </iframe>
-                </div>
-                <div class="col l6 offset-l3">
-                    <iframe style="background: #FFFFFF;border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2); margin-bottom: 30px;" 
-                    width="640" height="480" src="https://charts.mongodb.com/charts-lead-generator-calculator-rwyjx/embed/charts?id=7848831a-d0ed-4793-b8fb-0cb01e3a46d9&autoRefresh=60&theme=light">
-                </iframe>
-                </div>
-            </div> 
-        </div>
+        <div class="row center">
+            <div class="col l12 m12 s12 graph__container">
+                <iframe class="graph__resize" src="https://charts.mongodb.com/charts-lead-generator-calculator-rwyjx/embed/charts?id=1f9c5c1c-cab2-4204-b54b-4e47cf7d314f&autoRefresh=60&theme=light"></iframe>
+            </div>
+            <div class="col l12 m12 s12 graph__container">
+                <iframe class="center-align graph__resize" src="https://charts.mongodb.com/charts-lead-generator-calculator-rwyjx/embed/charts?id=164dccf8-8a63-4f45-8ab1-be634f9312a5&autoRefresh=60&theme=light"></iframe>
+            </div>
+            <div class="col l12 m12 s12 graph__container">
+                <iframe class="center-align graph__resize" src="https://charts.mongodb.com/charts-lead-generator-calculator-rwyjx/embed/charts?id=7848831a-d0ed-4793-b8fb-0cb01e3a46d9&autoRefresh=60&theme=light"></iframe>
+            </div>
+        </div>        
     </div>
 {% endblock %}
