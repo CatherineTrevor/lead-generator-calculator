@@ -101,6 +101,7 @@ Campaigns can be created, read, edited, and deleted by the account owner, follow
 1. Currency exchange: In the future, users will be able to enter information in currency other than Euros. For comparison purposes, the financial data will be converted into Euros using an API.
 2. Country dropdown connected to currency: A dropdown selection connecting the selected country to the relevant currency, which is then connected to a currency converter.
 3. More in-depth comparison data based on campaign type and communication platform, not just industry. For the basic purposes of the site, the industry is more relevant as a benchmark. Comparing another company based purely on the communication platform does not give a clear picture, there are many other factors to consider. 
+4. Active contact us form: managed by admin
 
 **Site warnings**
 
@@ -137,15 +138,39 @@ For wireframes see separate [SKELETON.md file](SKELETON.md).
 
 The database schema was created using [Creately](https://creately.com/). 
 
-Industry field is dropdown to reduce the risk of misspellings - this data is required to populate graphs displayed on benchmark-data.html, so the input must be uniformed, rather than free-text. The Industry listing will be managed by Administration who will have access to create, edit and delete the industry options, in addition to campaign type and communication platform.
-
-Country field in the account profile is a dropdown connected to [REST Countries API](https://restcountries.eu/rest/v2/all) and saved in Mongo DB.
-
-Calculations are input into a separate collection, to allow for data to be further manipulated and displayed in the graph on benchmark-data.html.
-
-Contacts are not connected to any other collection.
-
 ![database_schema](supporting_docs/database_schema.jpg)
+
+Collections
+
+* Contacts
+
+Contains all contact messages sent to the site. In the future this will be accessed by Administration, will the ability to follow a communication thread, mark as read, and connect to an account if one exists. For now it is contains basic information from the user, which administration can access through Mongo DB.
+
+* Options
+
+Industry, Communication Platform and Campaign Type: this is to ensure that administration do not create new categories which the user cannot access, or that they create new ones using free text, which risk spelling mistakes, rendering them unusable by the site user.
+
+* Categories
+
+Connects to options, this collection contains the insutry, communication platform and campaign type as created, edited and deleted by administration. The category id for industry is connected to the calculations collection, to enable Mongo DB to create graphs based on the industry and a sum of all calculations in the collection.
+
+They are also connected to the campaigns collection, so should administration edit a category, this is reflected in the users' campaigns.
+
+* Accounts
+
+Basic account information, all, excluding the currency field and password, of which can be edited by the owning account. Administration cannot edit the email address for security reasons.
+
+Industry field is dropdown to reduce the risk of misspellings - this data is required to populate graphs displayed on benchmark-data.html, so the input must be uniformed, not free-text. The Industry listing is managed by Administration who have access to create, edit and delete the industry options, in addition to campaign type and communication platform.
+
+Country field in the account profile is a dropdown connected to [REST Countries API](https://restcountries.eu/rest/v2/all) and saved in Mongo DB. In the future, this will link to a currency selector, which will then connect to a currency convetor. As graphs are based on financials in the system, the only option at present is Euros.
+
+* Campaigns
+
+Basic information about the campaign, including name, start date and dropdown options for campaign type and communication platform. This is connected to the accounts collection using the id.
+
+* Calculations
+
+Connected to campaigns, all calculations are managed in an individual collection for ease regarding generating graphs for the comparative data.
 
 ## Surface
 
