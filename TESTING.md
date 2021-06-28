@@ -110,5 +110,42 @@ Testing conducted on the following browsers;
 
 ## Issues
 
+**[#9](https://github.com/CatherineTrevor/lead-generator-calculator/issues/9)**
+
+Upon creating a campaign, if the user left the calculation fields empty, this created an error. It was necessary to have the calculation created at the same time as the campaign, even without data, therefore a workaround has been to have all fields with 0 and if statements in the python file;
+
+        calc_cost_mql = int(total_campaign_cost / mql) if mql != 0 else 0
+        calc_cost_sql = int(total_campaign_cost / sql) if sql != 0 else 0
+        calc_cost_per_conversion = int(total_campaign_cost / converted_leads) if converted_leads != 0 else 0
+        calc_hit_rate = int(sql / mql * 100) if mql != 0 else 0
+
+The user must enter this information, or leave it as zero for the campaign to be created.
+
+**[#14](https://github.com/CatherineTrevor/lead-generator-calculator/issues/14)**
+
+Initially when a user updated their account information the password was being overwritten, so they were unable to log back in. The hashed password is put into a cookie, so it is no longer overwritten when the user updates account information.
+
+**[#15](https://github.com/CatherineTrevor/lead-generator-calculator/issues/15)**
+
+Materialize appears to cause a problem when reading the selected option in a dropdown, therefore a read only selected information is shown, next to a dropdown should the user want to change this information.
+
+This workaround is used for all relevant dropdown selections.
+
+**[#17](https://github.com/CatherineTrevor/lead-generator-calculator/issues/17)**
+
+Upon a campaign being edited, a new calculation was being created. As the campaign and calculation were being created simultaneously it was possible to connect the calculation to the campaign and vice versa using the id, as neither had been created.
+
+Therefore the user cannot create a campaign with a previously used campaign name, preventing this error from occuring.
+
+**[#18](https://github.com/CatherineTrevor/lead-generator-calculator/issues/18)**
+
+During testing, it was found that dropdowns did not work on a tablet or phone. After research it would appear this error is linked to Materialize. Materialize has created their own workaround: .browser-default. However this causes another problem where the dropdown options cover the label.
+
+Therefore the label for these dropdowns is actually a span element, styled to look like a label.
+
+            <span class="lighten-1 dropdown__span">
+                Select category type
+            </span>
+
 ## Code validators
 
