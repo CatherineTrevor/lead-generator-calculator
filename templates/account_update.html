@@ -44,8 +44,9 @@
                         <span class="lighten-1 dropdown__span">
                             Update Country
                         </span>
-                        <select id="company_country_name"  name="company_country_name" class="browser-default countries" type="text">
-                            <option class="blue-grey-text" name="company_country_name" value=""></option>
+                        <select id="company_country_name" name="company_country_name" class="browser-default countries" type="text">
+                            <option class="blue-grey-text" value="{{ account.company_country_name }}"></option>
+                                <option value=""></option>                          
                         </select>
                     </div>
                 </div>

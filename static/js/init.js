@@ -73,7 +73,7 @@ function assignValues() {
 
 function handleCountryChange() {
   const countryData = countries.find(
-    country => select.value === country.alpha2Code
+  country => select.value === country.alpha2Code
   );
 }
 

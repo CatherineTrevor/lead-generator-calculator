@@ -89,9 +89,9 @@ def sign_up():
         register = {
             "email_address": request.form.get("email_address"),
             "password": generate_password_hash(request.form.get("password")),
-            "company_name": "Enter your company name",
-            "account_owner": "Please update your details!",
-            "company_country_name": "Enter your country",
+            "company_name": "",
+            "account_owner": "",
+            "company_country_name": "",
             "company_industry": "Update your industry",
             "currency": "€"
         }
