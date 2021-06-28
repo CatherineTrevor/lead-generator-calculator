@@ -167,11 +167,9 @@
                         </a>   
                     </div>
                     <div class="row center">
-                        <!-- Modal Trigger -->
                         <a href="#modal1" id="download-button" class="btn-large waves-effect waves-light red lighten-1 modal-trigger">
                             Delete Account
                         </a> 
-                        <!-- Modal Structure -->
                     </div>
                     <div id="modal1" class="modal modal__content__delete__account">
                         <div class="modal-content">
@@ -221,11 +219,11 @@
                                     </div>
                                     <div class="row">
                                         <div class="input-field col l6 s12">
-                                            <input value="{{ campaign.start_date }}" name="start_date" type="text" readonly>
+                                            <input value="{{ campaign.start_date }}" name="start_date" type="date" readonly>
                                             <label for="start_date">Start Date</label>
                                         </div> 
                                         <div class="input-field col l6 s12">
-                                            <input value="{{ campaign.end_date }}" name="end_date" type="text" readonly>
+                                            <input value="{{ campaign.end_date }}" name="end_date" type="date" readonly>
                                             <label for="end_date">End Date</label>
                                         </div>  
                                     </div>  

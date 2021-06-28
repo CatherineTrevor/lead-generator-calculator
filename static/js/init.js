@@ -8,13 +8,21 @@
     $('textarea#message').characterCounter();
     $("select").formSelect();
     $('.modal').modal();
-    $(".datepicker").datepicker({
-      format: "dd/mm/yyyy",
-      yearRange: 3,
-      showClearBtn: true,        
-      i18n: {
-        done: "Select"
-      }
+    $('#end_date').on('change', function () {
+        var date1 = new Date($('#start_date').val());
+        var date2 = new Date($('#end_date').val());
+        if (date1 > date2) {
+            $('#end_date').val(null)
+            alert("Campaign end date must be after start date; please reselect");
+        }
+    });
+    $('#start_date').on('change', function () {
+        var date1 = new Date($('#start_date').val());
+        var date2 = new Date($('#end_date').val());
+        if (date1 > date2) {
+            $('#start_date').val(null)
+            alert("Campaign end date must be after start date; please reselect");
+        }
     });
     validateMaterializeSelect();
     function validateMaterializeSelect() {
