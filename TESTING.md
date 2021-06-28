@@ -2,7 +2,7 @@
 
 Testing was done throughout site development, with branches created for each feature before it was merged into the master file. 
 
-Usability was tested with the below workflow, sent to new users to ensure testing from different users, on different devices and browsers.
+Usability was tested with the below workflow, sent to new users to ensure testing from different users, on different devices and browsers to ensure issues were caught and fixed during development.
 
 |         | User Action                                                                              | Expected result                                                                                                                                                                       | Y/N |
 | ------- | ---------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- |
@@ -58,51 +58,53 @@ Usability was tested with the below workflow, sent to new users to ensure testin
 
 Testing conducted outside of the Chrome development tool on the following;
 
-iPhone SE2020
-iPhone 12
-iPad Pro 9.7"
+* iPhone SE2020
+* iPhone 12
+* iPad Pro 9.7"
+
 All on iOS 14.3.
+
 Testing conducted on the following browsers;
 
-Safari
-Chrome
-Microsoft Edge
-Firefox
+* Safari
+* Chrome
+* Microsoft Edge
+* Firefox
 
 ## User story testing
 
 **First-time visitors**
 
-| User story | Requirement met 
-|-----|----|
-| a. As a first-time visitor I want to quickly understand the purpose of the site | a |
-| b. As a first-time visitor I want to easily register an account | b |
-| c. As a first-time visitor I want to feel confident that the data I enter is secure | c |
-| d. As a first-time visitor I want to understand any cost associated with registration | d|
-| e. As a first-time visitor I want to quickly create a new campaign | e |
-| f. As a first-time visitor I want to easily obtain comparative benchmark data | f |
+| User story | Requirement met | Image
+|---|---|----|
+| a. As a first-time visitor I want to quickly understand the purpose of the site | Information provided on homepage, about page and within the FAQs. | <img src="supporting_docs/user_stories/user_story_a.jpg" height=200> |
+| b. As a first-time visitor I want to easily register an account | Sign up is accessible from the navbar, and log in page. The user needs to enter only an email address and password to register an account. | <img src="supporting_docs/user_stories/user_story_b.jpg" height=200>  |
+| c. As a first-time visitor I want to feel confident that the data I enter is secure | Benchmark data uses collections from existing accounts, but displayed anonymously to ensure company data is not accessible. Campaigns can only be seen by the owning account. |<img src="supporting_docs/user_stories/user_story_c.jpg" height=200>  |
+| d. As a first-time visitor I want to understand any cost associated with registration | The site is free to use is iterated in the FAQs and site footer. |<img src="supporting_docs/user_stories/user_story_d.jpg" height=200> |
+| e. As a first-time visitor I want to quickly create a new campaign | Campaigns are created from the Actions menu inside an account. |<img src="supporting_docs/user_stories/user_story_e.jpg" height=200>  |
+| f. As a first-time visitor I want to easily obtain comparative benchmark data | Benchmark links can be found in the navbar, or from the account profile page. |<img src="supporting_docs/user_stories/user_story_e.jpg" height=200>  |
 
 **Returning visitors**
 
-| User story | Requirement met 
-|-----|----|
-| a. As a returning visitor I want to quickly and easily log into my account profile | a |
-| b. As a returning visitor I want to see all open campaigns | a |
-| c. As a returning visitor I want to quickly create a new campaign | a |
-| d. As a returning visitor I want to read existing campaign data | a |
-| e. As a returning visitor I want to easily update existing campaign and / or the account profile information | a |
-| f. As a returning visitor I want to delete campaign information with confidence | a |
+| User story | Requirement met | Image
+|---|---|----|
+| a. As a returning visitor I want to quickly and easily log into my account profile | Log in links are available the navbar and from the floating action button at the bottom of every page. | <img src="supporting_docs/user_stories/user_story_f.jpg" height=200>  |
+| b. As a returning visitor I want to see all open campaigns | All campaigns are listed in the account page, until deleted when they are fully removed. | <img src="supporting_docs/user_stories/user_story_g.jpg" height=200>  |
+| c. As a returning visitor I want to quickly create a new campaign | Campaigns are created from the Actions menu inside an account. | <img src="supporting_docs/user_stories/user_story_e.jpg" height=200>  |
+| d. As a returning visitor I want to read existing campaign data | The user clicks the dropdown icon to open information about the individual campaign. | <img src="supporting_docs/user_stories/user_story_h.jpg" height=200>  |
+| e. As a returning visitor I want to easily update existing campaign and / or the account profile information | User opens the relevant campaign and selects the edit icon to open the campaign and update the information. | <img src="supporting_docs/user_stories/user_story_h.jpg" height=200>  |
+| f. As a returning visitor I want to delete campaign information with confidence | User opens the campaign and clicks the delete button: a warning opens with the name of the campaign to be deleted |<img src="supporting_docs/user_stories/user_story_i.jpg" height=200>  |
 
 **Site administrator**
 
-| User story | Requirement met 
-|-----|----|
-| a. As a site administrator I want to quickly and easily log into the admin area | a |
-| b. As a site administrator I want to create a new industry / communications platform / campaign type category | a |
-| c. As a site administrator I want to read information about existing categories | a |
-| d. As a site administrator I want to easily update existing category information | a |
-| e. As a site administrator I want to delete category information with ease | a |
-| f. As a site administrator I want to create, edit and delete campaigns, the same as a "normal" user | a |
+| User story | Requirement met | Image
+|---|---|----|
+| a. As a site administrator I want to quickly and easily log into the admin area | Administration logs in from the standard log in page |<img src="supporting_docs/user_stories/user_story_f.jpg" height=200>  |
+| b. As a site administrator I want to create a new industry / communications platform / campaign type category | Only Administration can access the Category Management option in top navbar |<img src="supporting_docs/user_stories/user_story_j.jpg" height=200>  |
+| c. As a site administrator I want to read information about existing categories | Category Management provides an overview of all Industries, Campaign types and Communication platform options | <img src="supporting_docs/user_stories/user_story_k.jpg" height=200>  |
+| d. As a site administrator I want to easily update existing category information | Edit button available on each category. When Administration update a category option, it is also updated on all campaigns that use that category | <img src="supporting_docs/user_stories/user_story_l.jpg" height=200>  |
+| e. As a site administrator I want to delete category information with ease | Simple delete button for each category, accessible by Adminstration only | <img src="supporting_docs/user_stories/user_story_m.jpg" height=200>  |
+| f. As a site administrator I want to create, edit and delete campaigns, the same as a "normal" user | Administration also have the ability to create campaigns |<img src="supporting_docs/user_stories/user_story_n.jpg" height=200>  |
 
 ## Lighthouse report
 
