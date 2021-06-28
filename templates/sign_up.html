@@ -1,16 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="row">
-    <h1 class="header center blue-grey-text text-lighten-2">
-        Sign-up
-    </h1>
-    <div class="row center">
-        <h5 class="header col s12 blue-grey-text">
-            Create your free account and start monitoring your marketing campaigns
-        </h5>
-    </div>
-</div>   
-    <!--flash messages-->
+    <div class="row">
+        <h1 class="header center blue-grey-text text-lighten-2">
+            Sign-up
+        </h1>
+        <div class="row center">
+            <h5 class="header col s12 blue-grey-text">
+                Create your free account and start monitoring your marketing campaigns
+            </h5>
+        </div>
+    </div>   
     {% with messages = get_flashed_messages() %}
         {% if messages %}
             {% for message in messages %}

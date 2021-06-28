@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="{{ url_for('static', filename='css/materialize.min.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="{{ url_for('static', filename='css/materialize.min.css') }}" type="text/css" rel="stylesheet"/>
     <link href="{{ url_for('static', filename='css/style.css') }}" type="text/css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/314e917aa2.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous" defer></script>
@@ -17,8 +17,7 @@
   </head>
   <body>
     <header>
-      <!-- top navbar-->
-      <nav class="blue-grey lighten-3" role="navigation">
+      <nav class="blue-grey lighten-3">
         <div class="nav-wrapper container">
           <a id="logo-container" href="{{ url_for('index') }}" class="brand-logo">
             <i class="fas fa-database"></i>
@@ -38,7 +37,6 @@
                 <li><a class="nav-link white-text" href="{{ url_for('sign_up') }}">Sign Up</a></li> 
               {% endif %}
           </ul>
-          <!--mobile navbar-->
           <ul id="nav-mobile" class="sidenav">
               <li><a class="nav-link blue-grey-text" href="{{ url_for('index') }}">Home</a></li>
               <li><a class="nav-link blue-grey-text" href="{{ url_for('about') }}">About</a></li>
@@ -74,7 +72,6 @@
         </ul>
       </div>
     </main>
-    <!--footer-->
     <footer class="page-footer blue-grey">
       <div class="container">
         <div class="row">

@@ -77,4 +77,8 @@ function handleCountryChange() {
   );
 }
 
-select.addEventListener("change", handleCountryChange.bind(this));
+$(function(){
+  $('#company_country_name').on('click', function(){
+    select.addEventListener("change", handleCountryChange.bind(this));
+  });
+});
