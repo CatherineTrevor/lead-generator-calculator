@@ -23,7 +23,7 @@
         {% if messages %}
             {% for message in messages %}
                 <div class="row flashes">
-                    <p class="blue-grey-text lighten-4 center-align">{{ message }}</p>
+                    <h5 class="blue-grey-text lighten-4 center-align">{{ message }}</h5>
                 </div>
             {% endfor %}
         {% endif %}
@@ -46,7 +46,7 @@
                         <label class="active" for="email_address">Email address</label>
                     </div> 
                     <div class="input-field col s6 l4">
-                        <input name="phone_number" id="phone_number" type="tel" class="validate">
+                        <input name="phone_number" id="phone_number" type="tel" pattern="^[0-9-+\s()]*$" class="validate">
                         <label class="active" for="phone_number">Phone number</label>
                     </div>  
                     <div class="input-field col s12 l8 offset-l2">

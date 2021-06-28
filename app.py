@@ -247,7 +247,6 @@ def delete_account(account_id):
 
 @app.route("/is_industry_updated/<account_id>")
 def is_industry_updated(account_id):
-    account = mongo.db.accounts.find_one({"_id": ObjectId(account_id)})    
     account_industry = mongo.db.accounts.find_one(
         {
             "_id": ObjectId(account_id),
@@ -275,7 +274,7 @@ def create_campaign(account_id):
                 "category_type": "Communication platform",
                 "category_name": {"$eq": request.form.get("communication_platform")},
             }
-        )        
+        )
         existing_campaign_name = mongo.db.campaigns.find_one(
             {
                 "account_id": account["_id"],
@@ -362,7 +361,7 @@ def edit_campaign(campaign_id, account_id, calculation_id):
                 "category_type": "Communication platform",
                 "category_name": {"$eq": request.form.get("communication_platform")},
             }
-        )         
+        )
         submit = {
             "campaign_name": request.form.get("campaign_name"),
             "campaign_type": request.form.get("campaign_type"),
@@ -535,7 +534,7 @@ def edit_category(category_id):
         match_campaign_type = mongo.db.campaigns.find(
             {"campaign_type_id": {"$eq": ObjectId(category_id)}})
         match_campaign_comm_platform = mongo.db.campaigns.find(
-            {"comm_platform_id": {"$eq": ObjectId(category_id)}})            
+            {"comm_platform_id": {"$eq": ObjectId(category_id)}})
         submit = {
             "category_type": request.form.get("category_type"),
             "category_name": request.form.get("category_name")
@@ -545,7 +544,7 @@ def edit_category(category_id):
                 {"campaign_type_id": {"$eq": ObjectId(category_id)}}, {"$set": {"campaign_type": request.form.get("category_name")}})
         if match_campaign_comm_platform:
             mongo.db.campaigns.update_many(
-                {"comm_platform_id": {"$eq": ObjectId(category_id)}}, {"$set": {"communication_platform": request.form.get("category_name")}})                
+                {"comm_platform_id": {"$eq": ObjectId(category_id)}}, {"$set": {"communication_platform": request.form.get("category_name")}})
         mongo.db.categories.update({"_id": ObjectId(category_id)}, submit)
         flash("Category successfully updated")
         return redirect(url_for("admin"))
@@ -570,11 +569,11 @@ def contact_us():
             "contact_name": request.form.get("contact_name"),
             "company_name": request.form.get("company_name"),
             "email_address": request.form.get("email_address"),
-            "phone_number": request.form.get("phone_numer"),
+            "phone_number": request.form.get("phone_number"),
             "message": request.form.get("message"),
         }
         mongo.db.contacts.insert_one(message)
-        flash("We have received your message")
+        flash("Thank you for your message, we will reply shortly")
         return redirect(url_for("contact_us"))
 
     return render_template("contact_us.html")
