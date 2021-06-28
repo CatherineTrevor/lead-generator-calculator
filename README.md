@@ -4,7 +4,7 @@
     <img src="supporting_docs/am_i_responsive.jpg" width="600">
 </div>
 
-[View the live site here](https://lead-generation-calculator.herokuapp.com/)
+<a href="https://lead-generation-calculator.herokuapp.com/index" target="_blank">View the live site here</a>
 
 # Contents
 
