@@ -143,7 +143,8 @@ def get_account_profile():
                 {
                     "$group": {
                         "_id": "$owning_account",
-                        "marketing_leads": {"$sum": "$marketing_qualified_leads"},
+                        "marketing_leads":
+                        {"$sum": "$marketing_qualified_leads"},
                     }
                 },
             ]
@@ -208,13 +209,15 @@ def account_update(account_id):
             mongo.db.calculations.update_many(
                 {"owning_account": session["user"]},
                 {
-                    "$set": {"company_industry": request.form.get("company_industry")}
+                    "$set": {"company_industry": request.form.get(
+                        "company_industry")}
                 }
             )
             mongo.db.campaigns.update_many(
                 {"owning_account": session["user"]},
                 {
-                    "$set": {"company_industry": request.form.get("company_industry")}
+                    "$set": {"company_industry": request.form.get(
+                        "company_industry")}
                 }
             )
         flash("Account successfully updated")
@@ -272,7 +275,8 @@ def create_campaign(account_id):
         comm_platform = mongo.db.categories.find_one(
             {
                 "category_type": "Communication platform",
-                "category_name": {"$eq": request.form.get("communication_platform")},
+                "category_name": {"$eq": request.form.get(
+                    "communication_platform")},
             }
         )
         existing_campaign_name = mongo.db.campaigns.find_one(
@@ -359,7 +363,8 @@ def edit_campaign(campaign_id, account_id, calculation_id):
         comm_platform = mongo.db.categories.find_one(
             {
                 "category_type": "Communication platform",
-                "category_name": {"$eq": request.form.get("communication_platform")},
+                "category_name": {"$eq": request.form.get(
+                    "communication_platform")},
             }
         )
         submit = {
@@ -410,8 +415,8 @@ def edit_campaign(campaign_id, account_id, calculation_id):
 
 @app.route("/delete_campaign/<campaign_id>/<calculation_id>")
 def delete_campaign(campaign_id, calculation_id):
-    mongo.db.campaigns.remove_one({"_id": ObjectId(campaign_id)})
-    mongo.db.calculations.remove_one({"_id": ObjectId(calculation_id)})
+    mongo.db.campaigns.remove({"_id": ObjectId(campaign_id)})
+    mongo.db.calculations.remove({"_id": ObjectId(calculation_id)})
     flash("Campaign deleted")
     return redirect(url_for("get_account_profile"))
 
@@ -545,10 +550,27 @@ def edit_category(category_id):
         }
         if match_campaign_type:
             mongo.db.campaigns.update_many(
-                {"campaign_type_id": {"$eq": ObjectId(category_id)}}, {"$set": {"campaign_type": request.form.get("category_name")}})
+                {
+                    "campaign_type_id":
+                    {"$eq": ObjectId(category_id)}
+                },
+                {
+                    "$set":
+                    {"campaign_type": request.form.get("category_name")}
+                }
+            )
         if match_campaign_comm_platform:
             mongo.db.campaigns.update_many(
-                {"comm_platform_id": {"$eq": ObjectId(category_id)}}, {"$set": {"communication_platform": request.form.get("category_name")}})
+                {
+                    "comm_platform_id":
+                    {"$eq": ObjectId(category_id)}
+                },
+                {
+                    "$set":
+                    {"communication_platform": request.form.get(
+                        "category_name")}
+                }
+            )
         mongo.db.categories.update({"_id": ObjectId(category_id)}, submit)
         flash("Category successfully updated")
         return redirect(url_for("admin"))

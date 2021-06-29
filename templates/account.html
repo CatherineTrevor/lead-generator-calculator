@@ -196,116 +196,97 @@
             <ul class="collapsible">
                 {% for campaign in campaigns | reverse %}
                     {% if session.user == campaign.owning_account %}                
-                            <li>
-                                <div class="collapsible-header">
-                                    <i class="material-icons">expand_more</i>
-                                        {{ campaign.campaign_name }}            
-                                </div>
-                                <div class="collapsible-body">                                   
-                                    <div class="row">
-                                        <div class="input-field col l6 s12">
-                                            <label for="campaign_type">Campaign Type</label>
-                                            <input value="{{ campaign.campaign_type }}" name="campaign_type" type="text" readonly>
-                                        </div>  
-                                        <div class="input-field col l6 s12">
-                                            <label for="communication_platform">Communication Platform</label>
-                                            <input value="{{ campaign.communication_platform }}" name="communication_platform" type="text" readonly>
-                                        </div> 
-                                    </div>
-                                    <div class="row">
-                                        <div class="input-field col l6 s12">
-                                            <input value="{{ campaign.start_date }}" name="start_date" type="date" readonly>
-                                            <label for="start_date">Start Date</label>
-                                        </div> 
-                                        <div class="input-field col l6 s12">
-                                            <input value="{{ campaign.end_date }}" name="end_date" type="date" readonly>
-                                            <label for="end_date">End Date</label>
-                                        </div>  
+                        <li>
+                            <div class="collapsible-header blue-grey lighten-2">
+                                <i class="material-icons white-text">expand_more</i>
+                                <p class="white-text">
+                                    {{ campaign.campaign_name }} | Campaign cost: {{ account.currency }} {{ campaign.total_campaign_cost }} | Marketing leads received: {{ campaign.marketing_qualified_leads }}
+                                </p>       
+                            </div>
+                            <div class="collapsible-body">                                   
+                                <div class="row">
+                                    <div class="input-field col l6 s12">
+                                        <label for="campaign_type">Campaign Type</label>
+                                        <input value="{{ campaign.campaign_type }}" name="campaign_type" type="text" readonly>
                                     </div>  
-                                    <div class="row">
-                                        <h5 class="blue-grey-text header center">
-                                            Lead Information
-                                        </h5>
-                                    </div>                                                                   
-                                    <div class="row">
-                                        <div class="input-field col xl3 l6 m6 s12">
-                                            <input value="{{ account.currency }} {{ campaign.total_campaign_cost }}" name="total_campaign_cost" type="text" readonly>
-                                            <label for="total_campaign_cost">Total Campaign Cost</label>
-                                        </div>                                                
-                                        <div class="input-field col xl3 l6 m6 s12">
-                                            <input value="{{ campaign.marketing_qualified_leads }}" name="marketing_qualified_leads" type="number" readonly>
-                                            <label for="marketing_qualified_leads">Marketing Qualified Leads</label>
-                                        </div>    
-                                        <div class="input-field col xl3 l6 m6 s12">
-                                            <input value="{{ campaign.sales_qualified_leads }}" name="sales_qualified_leads" type="number" readonly>
-                                            <label for="sales_qualified_leads">Sales Qualified Leads</label>
-                                        </div>
-                                        <div class="input-field col xl3 l6 m6 s12">
-                                            <input value="{{ campaign.converted_leads }}" name="converted_leads" type="number" readonly>
-                                            <label for="converted_leads">Converted Leads</label>
-                                        </div>                                                              
+                                    <div class="input-field col l6 s12">
+                                        <label for="communication_platform">Communication Platform</label>
+                                        <input value="{{ campaign.communication_platform }}" name="communication_platform" type="text" readonly>
+                                    </div> 
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col l6 s12">
+                                        <input value="{{ campaign.start_date }}" name="start_date" type="date" readonly>
+                                        <label for="start_date">Start Date</label>
+                                    </div> 
+                                    <div class="input-field col l6 s12">
+                                        <input value="{{ campaign.end_date }}" name="end_date" type="date" readonly>
+                                        <label for="end_date">End Date</label>
+                                    </div>  
+                                </div>  
+                                <div class="row">
+                                    <h5 class="blue-grey-text header center">
+                                        Lead Information
+                                    </h5>
+                                </div>                                                                   
+                                <div class="row">
+                                    <div class="input-field col xl3 l6 m6 s12">
+                                        <input value="{{ account.currency }} {{ campaign.total_campaign_cost }}" name="total_campaign_cost" type="text" readonly>
+                                        <label for="total_campaign_cost">Total Campaign Cost</label>
+                                    </div>                                                
+                                    <div class="input-field col xl3 l6 m6 s12">
+                                        <input value="{{ campaign.marketing_qualified_leads }}" name="marketing_qualified_leads" type="number" readonly>
+                                        <label for="marketing_qualified_leads">Marketing Qualified Leads</label>
+                                    </div>    
+                                    <div class="input-field col xl3 l6 m6 s12">
+                                        <input value="{{ campaign.sales_qualified_leads }}" name="sales_qualified_leads" type="number" readonly>
+                                        <label for="sales_qualified_leads">Sales Qualified Leads</label>
                                     </div>
-                                {% for calculation in calculations %}
-                                    {% if session.user == calculation.owning_account and campaign.campaign_name == calculation.campaign_name %}
-                                        <form action="{{ url_for('calculate_results', calculation_id=calculation._id, campaign_id=campaign._id, account_id=account._id) }}" method="POST">
-                                            <div class="row">
-                                                <h5 class="blue-grey-text header center">
-                                                    Results
-                                                </h5>
-                                            </div>
-                                            <div class="row">
-                                                <div class="input-field col xl3 l6 m6 s12">
-                                                    <input value="{{ calculation.mark_hit_rate }} %" name="mark_hit_rate" type="text" readonly>
-                                                    <label for="hit_rate">Hit rate (from marketing to sales lead)</label>
-                                                </div>
-                                                <div class="input-field col xl3 l6 m6 s12">
-                                                    <input value="{{ calculation.conv_hit_rate }} %" name="conv_hit_rate" type="text" readonly>
-                                                    <label for="hit_rate">Hit rate (from marketing to converted lead)</label>
-                                                </div>                                                                                                          
-                                                <div class="input-field col xl2 l6 m6 s12">
-                                                    <input value="{{ account.currency }} {{ calculation.cost_per_marketing_lead }}" name="cost_per_marketing_lead" type="text" readonly>
-                                                    <label for="cost_per_marketing_lead">Cost per marketing lead</label>
-                                                </div>
-                                                <div class="input-field col xl2 l6 m6 s12">
-                                                    <input value="{{ account.currency }} {{ calculation.cost_per_sales_lead }}" name="cost_per_sales_lead" type="text" readonly>
-                                                    <label for="cost_per_sales_lead">Cost per sales lead</label>
-                                                </div>  
-                                                <div class="input-field col xl2 l6 m6 s12">
-                                                    <input value="{{ account.currency }} {{ calculation.cost_per_converted_lead }}" name="cost_per_converted_lead" type="text" readonly>
-                                                    <label for="cost_per_converted_lead">Cost per converted lead</label>
-                                                </div>                                                                                                                                                                                                        
-                                            </div>
-                                        </form>
-                                        <div class="row edit__campaign__icon">
-                                            <a href="{{ url_for('edit_campaign', campaign_id=campaign._id, account_id=account._id, calculation_id=calculation._id) }}">
-                                                <i class="material-icons blue-grey-text">
-                                                    edit
-                                                </i>
-                                            </a>
-                                            <a href="#modal2" id="download-button" class="modal-trigger">
-                                                <i class="material-icons red-text">
-                                                    delete_forever
-                                                </i>
-                                            </a>
-                                        </div>                                      
-                                    </div>
-                                    <div id="modal2" class="modal">
-                                        <div class="modal-content">
-                                            <h5 class="blue-grey-text lighten-4 center-align">
-                                                Are you sure you want to delete {{ campaign.campaign_name }}?   
+                                    <div class="input-field col xl3 l6 m6 s12">
+                                        <input value="{{ campaign.converted_leads }}" name="converted_leads" type="number" readonly>
+                                        <label for="converted_leads">Converted Leads</label>
+                                    </div>                                                              
+                                </div>
+                            {% for calculation in calculations %}
+                                {% if session.user == calculation.owning_account and campaign.campaign_name == calculation.campaign_name %}
+                                    <form action="{{ url_for('calculate_results', calculation_id=calculation._id, campaign_id=campaign._id, account_id=account._id) }}" method="POST">
+                                        <div class="row">
+                                            <h5 class="blue-grey-text header center">
+                                                Results
                                             </h5>
                                         </div>
-                                        <div class="modal-footer">
-                                            <a href="{{ url_for('delete_campaign', campaign_id=campaign._id, calculation_id=calculation._id) }}" 
-                                            class="white-text modal-close red waves-effect btn-flat">
-                                                Yes, delete
-                                            </a>
-                                            <a href="" class="white-text modal-close blue-grey waves-effect waves-green btn-flat">
-                                                No, take me back
-                                            </a>                                                    
+                                        <div class="row">
+                                            <div class="input-field col xl3 l6 m6 s12">
+                                                <input value="{{ calculation.mark_hit_rate }} %" name="mark_hit_rate" type="text" readonly>
+                                                <label for="hit_rate">Hit rate (from marketing to sales lead)</label>
+                                            </div>
+                                            <div class="input-field col xl3 l6 m6 s12">
+                                                <input value="{{ calculation.conv_hit_rate }} %" name="conv_hit_rate" type="text" readonly>
+                                                <label for="hit_rate">Hit rate (from marketing to converted lead)</label>
+                                            </div>                                                                                                          
+                                            <div class="input-field col xl2 l6 m6 s12">
+                                                <input value="{{ account.currency }} {{ calculation.cost_per_marketing_lead }}" name="cost_per_marketing_lead" type="text" readonly>
+                                                <label for="cost_per_marketing_lead">Cost per marketing lead</label>
+                                            </div>
+                                            <div class="input-field col xl2 l6 m6 s12">
+                                                <input value="{{ account.currency }} {{ calculation.cost_per_sales_lead }}" name="cost_per_sales_lead" type="text" readonly>
+                                                <label for="cost_per_sales_lead">Cost per sales lead</label>
+                                            </div>  
+                                            <div class="input-field col xl2 l6 m6 s12">
+                                                <input value="{{ account.currency }} {{ calculation.cost_per_converted_lead }}" name="cost_per_converted_lead" type="text" readonly>
+                                                <label for="cost_per_converted_lead">Cost per converted lead</label>
+                                            </div>                                                                                                                                                                                                        
                                         </div>
-                                    </div>                                    
-                                </li>                             
+                                    </form>
+                                <div class="row edit__campaign__icon">
+                                    <a href="{{ url_for('edit_campaign', campaign_id=campaign._id, account_id=account._id, calculation_id=calculation._id) }}">
+                                        <i class="material-icons blue-grey-text" title="Edit campaign data" >
+                                            edit
+                                        </i>
+                                    </a>
+                                </div>
+                            </div>                                    
+                        </li>                             
                     {% endif %}
                 {% endfor %}
             {% endif %}                                        

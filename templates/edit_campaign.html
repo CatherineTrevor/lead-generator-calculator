@@ -107,7 +107,29 @@
                         </button>
                         <a href="{{ url_for('get_account_profile') }}" id="download-button" class="btn-large waves-effect waves-light blue-grey lighten-1">
                             Cancel changes 
-                        </a>                        
+                        </a>  
+                        <div class="col s12"></div>
+                            <a href="#modal2" id="download-button" class="modal-trigger btn-large waves-effect waves-light red lighten-1">
+                                DELETE CAMPAIGN
+                            </a>
+                        </div>
+                    </div>                                      
+                </div>
+                <div id="modal2" class="modal">
+                    <div class="modal-content">
+                        <h5 class="blue-grey-text lighten-4 center-align">
+                            Are you sure you want to delete {{ campaign.campaign_name }}?   
+                        </h5>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="{{ url_for('delete_campaign', campaign_id=campaign._id, calculation_id=calculation._id) }}" 
+                        class="white-text modal-close red waves-effect btn-flat">
+                            Yes, delete
+                        </a>
+                        <a href="" class="white-text modal-close blue-grey waves-effect waves-green btn-flat">
+                            No, take me back
+                        </a>                                                    
+                    </div>                                              
                     </div>
                 </div>                                
             </form>
