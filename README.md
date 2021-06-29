@@ -246,10 +246,10 @@ The project was created on GitHub and uses the following libraries and framework
  - [Heroku](https://id.heroku.com/login) - for site deployment
  - [Creately](https://creately.com/) - used to generate the database schema layout
  - [PEP 8](https://www.python.org/dev/peps/pep-0008/#indentation) - help following PEP 8 styling guidelines
- - **[Free Formatter HTML](https://www.freeformatter.com/html-formatter.html) - for HTML code formatting
- - **[Free Formatter CSS](https://www.freeformatter.com/css-beautifier.html) - to beautify CSS code
+ - [Free Formatter HTML](https://www.freeformatter.com/html-formatter.html) - for HTML code formatting
+ - [Free Formatter CSS](https://www.freeformatter.com/css-beautifier.html) - to beautify CSS code
  - [Code Beautify](https://codebeautify.org/python-formatter-beautifier) - help with line indentation in Python
- - [Grammarly](https://app.grammarly.com/) [(Example)](supporting-docs/grammarly-example.jpg) - the free service to double check grammar and spelling 
+ - [Grammarly](https://app.grammarly.com/) [(Example)](supporting_docs/grammarly_example.jpg) - the free service to double check grammar and spelling 
  - [Monday.com](https://view.monday.com/1287064588-3df266aa3259485edf2c68ed782207b8?r=use1) - used for project/task management 
  - [Am I responsive](http://ami.responsivedesign.is/) - supplied the responsive image for the top of README.md
  - [Remove BG](https://www.remove.bg/) - remove background from Am I Responsive image
@@ -289,8 +289,9 @@ Forking the repository allows you to make a copy of the original in your GitHub 
 * [Yawin Tutor - help with handling 0 in calculate_results function](https://www.yawintutor.com/zerodivisionerror-division-by-zero/)
 * [Table to Markdown](https://tabletomarkdown.com/convert-spreadsheet-to-markdown/) - convert excel testing file into markdown table for TESTING.md
 * [Code Pen](https://codepen.io/nikitahl/pen/PVVrYg) - country dropdown code copied and modified
-* [Mongo DB Docs](https://docs.mongodb.com/guides/) - general help
+* [Mongo DB Docs](https://docs.mongodb.com/guides/) - general help and research
+* [W3 Schools](https://www.w3schools.com/python/default.asp) - general help and research
 * Code Institute Slack community
-* Narender Singh, Code Institute mentor
-* Code Institute tutors
+* Narender Singh, Code Institute mentor for his time, support and guidance
+* Code Institute tutors for their time and help
 * Ex-colleagues, friends and family for their support and time testing the site
