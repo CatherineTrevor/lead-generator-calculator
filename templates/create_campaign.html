@@ -72,32 +72,32 @@
                         </p>
                     </div>
                     <div class="input-field col xl3 l6 s12">
-                        <input id="total_campaign_cost" name="total_campaign_cost" type="text" pattern="\d*" class="validate" value="0" required>
+                        <input id="total_campaign_cost" name="total_campaign_cost" type="number" pattern="\d*" class="validate" value="0" max="10000" required>
                         <label class="active" for="total_campaign_cost">
                             Total Campaign Cost {{ account.currency }}
                         </label>
-                        <span class="helper-text" data-error="This field must contain a number"></span>                          
+                        <span class="helper-text" data-error="This field must contain a number up to 10000"></span>                          
                     </div>
                     <div class="input-field col xl3 l6 s12">
-                        <input id="marketing_qualified_leads" name="marketing_qualified_leads" type="text" pattern="\d*" class="validate" value="0" required>
+                        <input id="marketing_qualified_leads" name="marketing_qualified_leads" type="number" pattern="\d*" class="validate" value="0" max="10000" required>
                         <label class="active" for="marketing_qualified_leads">
                             Marketing Qualified Leads
                         </label>
-                        <span class="helper-text" data-error="This field must contain a number"></span>                       
+                        <span class="helper-text" data-error="This field must contain a number up to 10000"></span>                       
                     </div>    
                     <div class="input-field col xl3 l6 s12">
-                        <input id="sales_qualified_leads" name="sales_qualified_leads" type="text" pattern="\d*" class="validate" value="0" required>
+                        <input id="sales_qualified_leads" name="sales_qualified_leads" type="number" pattern="\d*" class="validate" value="0" max="10000" required>
                         <label class="active" for="sales_qualified_leads">
                             Sales Qualified Leads
                         </label>
-                        <span class="helper-text" data-error="This field must contain a number"></span>                       
+                        <span class="helper-text" data-error="This field must contain a number up to 10000"></span>                       
                     </div>
                     <div class="input-field col xl3 l6 s12">
-                        <input id="converted_leads" name="converted_leads" type="text" pattern="\d*" class="validate" value="0" required>
+                        <input id="converted_leads" name="converted_leads" type="number" pattern="\d*" class="validate" value="0" max="10000" required>
                         <label class="active" for="converted_leads">
                             Converted Leads
                         </label>
-                        <span class="helper-text" data-error="This field must contain a number"></span>                       
+                        <span class="helper-text" data-error="This field must contain a number up to 10000"></span>                       
                     </div>                                                                                                                                                          
                 </div>
                 <div class="row center">

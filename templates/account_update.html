@@ -44,7 +44,7 @@
                             Update Country
                         </span>
                         <select id="company_country_name" name="company_country_name" class="browser-default countries" type="text">
-                            <option class="blue-grey-text" value=""></option>
+                            <option class="blue-grey-text" value="{{ account.company_country_name }}"></option>
                                 <option value=""></option>                          
                         </select>
                     </div>
@@ -53,11 +53,6 @@
                     <div class="input-field col l3 s12">
                         <input value="{{ account.currency }}" name="currency" id="currency" type="text" readonly>
                         <label class="active" for="currency">Currency</label>
-                    </div>
-                    <div class="col l6">
-                        <small class="vertical__align">
-                            At present all currency is stated in Euros. Currency options will be added in the future.
-                        </small>   
                     </div>
                 </div>                   
                 <div class="row">                                                                                                    
@@ -75,11 +70,16 @@
                                 <option value="{{ category.category_name }}">{{ category.category_name }}</option>
                             {% endfor %}
                         </select>
-                    </div>
-                    <small class="vertical__align">
-                        If your industry is not displayed, please <a href="{{ url_for('contact_us') }}">get in touch.</a>
-                    </small>   
-                </div>                                                                                                              
+                    </div>  
+                </div>
+                <div class="col l12 s12">
+                    <p class="blue-grey-text lighten-4 para__margin__top">
+                        All campaigns are currently in Euros. More currency options will be added in the future.
+                    </p>
+                    <p class="blue-grey-text lighten-4 para__margin__top">
+                        If your industry is not available, please <a href="{{ url_for('contact_us') }}">get in touch.</a>
+                    </p>
+                </div>                                                                                                                              
                 <div class="row center">
                     <div class="col s12 center-align">
                         <button type="submit" class="btn-large waves-effect waves-light blue-grey lighten-1">                          

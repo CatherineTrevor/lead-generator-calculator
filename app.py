@@ -410,8 +410,8 @@ def edit_campaign(campaign_id, account_id, calculation_id):
 
 @app.route("/delete_campaign/<campaign_id>/<calculation_id>")
 def delete_campaign(campaign_id, calculation_id):
-    mongo.db.campaigns.remove({"_id": ObjectId(campaign_id)})
-    mongo.db.calculations.remove({"_id": ObjectId(calculation_id)})
+    mongo.db.campaigns.remove_one({"_id": ObjectId(campaign_id)})
+    mongo.db.calculations.remove_one({"_id": ObjectId(calculation_id)})
     flash("Campaign deleted")
     return redirect(url_for("get_account_profile"))
 
@@ -430,7 +430,8 @@ def calculate_results(account_id):
         calc_cost_sql = int(total_campaign_cost / sql) if sql != 0 else 0
         calc_cost_per_conversion = int(
             total_campaign_cost / converted_leads) if converted_leads != 0 else 0
-        calc_hit_rate = int(sql / mql * 100) if mql != 0 else 0
+        calc_mark_hit_rate = int(sql / mql * 100) if mql != 0 else 0
+        calc_conv_hit_rate = int(converted_leads / mql * 100) if mql != 0 else 0
         account = mongo.db.accounts.find_one({"_id": ObjectId(account_id)})
         campaign = mongo.db.campaigns.find_one({"_id": ObjectId()})
         calculation = {
@@ -445,7 +446,8 @@ def calculate_results(account_id):
             "cost_per_marketing_lead": calc_cost_mql,
             "cost_per_sales_lead": calc_cost_sql,
             "cost_per_converted_lead": calc_cost_per_conversion,
-            "hit_rate": calc_hit_rate
+            "mark_hit_rate": calc_mark_hit_rate,
+            "conv_hit_rate": calc_conv_hit_rate
         }
 
         mongo.db.calculations.insert_one(calculation)
@@ -470,7 +472,8 @@ def update_calculate_results(account_id, campaign_id, calculation_id):
         calc_cost_sql = int(total_campaign_cost / sql) if sql != 0 else 0
         calc_cost_per_conversion = int(
             total_campaign_cost / converted_leads) if converted_leads != 0 else 0
-        calc_hit_rate = int(sql / mql * 100) if mql != 0 else 0
+        calc_mark_hit_rate = int(sql / mql * 100) if mql != 0 else 0
+        calc_conv_hit_rate = int(converted_leads / mql * 100) if mql != 0 else 0
         account = mongo.db.accounts.find_one({"_id": ObjectId(account_id)})
         campaign = mongo.db.campaigns.find_one({"_id": ObjectId(campaign_id)})
         calculation = {
@@ -485,7 +488,8 @@ def update_calculate_results(account_id, campaign_id, calculation_id):
             "cost_per_marketing_lead": calc_cost_mql,
             "cost_per_sales_lead": calc_cost_sql,
             "cost_per_converted_lead": calc_cost_per_conversion,
-            "hit_rate": calc_hit_rate
+            "mark_hit_rate": calc_mark_hit_rate,
+            "conv_hit_rate": calc_conv_hit_rate
         }
 
         mongo.db.calculations.update({"_id": ObjectId(

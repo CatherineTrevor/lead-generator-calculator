@@ -67,7 +67,11 @@
         </a>
         <ul>
           <li><a href="{{ url_for('benchmark_data') }}" title="Go to Benchmark data" class="btn-floating orange lighten-3"><i class="material-icons">insert_chart</i></a></li>        
-          <li><a href="{{ url_for('log_in') }}" title="Log In to your account" class="btn-floating orange lighten-2"><i class="material-icons">account_circle</i></a></li>        
+          {% if session.user %}
+          <li><a href="{{ url_for('get_account_profile') }}" title="Log In to your account" class="btn-floating orange lighten-2"><i class="material-icons">account_circle</i></a></li>
+          {% else %} 
+          <li><a href="{{ url_for('log_in') }}" title="Log In to your account" class="btn-floating orange lighten-2"><i class="material-icons">account_circle</i></a></li>
+          {% endif %}        
           <li><a href="{{ url_for('contact_us') }}" class="btn-floating orange lighten-1" title="Get in touch"><i class="material-icons">mail</i></a></li>        
         </ul>
       </div>
