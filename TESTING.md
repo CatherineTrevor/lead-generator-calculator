@@ -106,8 +106,6 @@ Testing conducted on the following browsers;
 | e. As a site administrator I want to delete category information with ease | Simple delete button for each category, accessible by Administration only | <img src="supporting_docs/user_stories/user_story_m.jpg" width=600>  |
 | f. As a site administrator I want to create, edit and delete campaigns, the same as a "normal" user | Administration also have the ability to create campaigns |<img src="supporting_docs/user_stories/user_story_n.jpg" width=600>  |
 
-## Lighthouse report
-
 ## Issues
 
 **[#9](https://github.com/CatherineTrevor/lead-generator-calculator/issues/9)**
@@ -149,3 +147,10 @@ Therefore the label for these dropdowns is actually a span element, styled to lo
 
 ## Code validators
 
+**HTML**
+
+<img src="supporting_docs/html_validator.jpg" height=400>
+
+**CSS**
+
+<img src="supporting_docs/css_validator.jpg" height=400>
