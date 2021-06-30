@@ -42,7 +42,7 @@
             </h4>
             {% for category in categories %}
                 {% if category.category_type|lower == "campaign type"|lower %}
-                    <div class="col s12 m12 l2">
+                    <div class="col s12 m12 l4">
                         <div class="card medium blue-grey lighten-3 center-align category__management__card">
                             <div class="card-content white-text">
                                 <span class="card-title category__management__title">{{ category.category_name }}</span>
@@ -62,7 +62,7 @@
             </h4>
             {% for category in categories %}
                 {% if category.category_type|lower == "communication platform"|lower %}
-                    <div class="col s12 m12 l2">
+                    <div class="col s12 m12 l4">
                         <div class="card medium blue-grey lighten-3 center-align category__management__card">
                             <div class="card-content white-text">
                                 <span class="card-title category__management__title">{{ category.category_name }}</span>
@@ -82,7 +82,7 @@
             </h4>
             {% for category in categories %}
                 {% if category.category_type|lower == "industry"|lower %}
-                    <div class="col s12 m12 l2">
+                    <div class="col s12 m12 l4">
                         <div class="card medium blue-grey lighten-3 center-align category__management__card">
                             <div class="card-content white-text">
                                 <span class="card-title category__management__title">{{ category.category_name }}</span>
