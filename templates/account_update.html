@@ -36,7 +36,7 @@
                 </div>
                 <div class="row">
                     <div class="col l6 s12">
-                        <label for="company_country_name">Selected Country (read only) </label>
+                        <label for="company_country_name">Selected Country (read-only) </label>
                         <input value="{{ account.company_country_name}}" type="text" readonly>                        
                     </div>                      
                     <div class="col l6 s12">
@@ -45,7 +45,7 @@
                         </span>
                         <select id="company_country_name" name="company_country_name" class="browser-default countries" type="text">
                             <option class="blue-grey-text" value="{{ account.company_country_name }}"></option>
-                                <option value=""></option>                          
+                                <option value="{{ account.company_country_name }}"></option>                          
                         </select>
                     </div>
                 </div>
@@ -57,7 +57,7 @@
                 </div>                   
                 <div class="row">                                                                                                    
                     <div class="col l4 s12">
-                        <label for="company_industry">Selected Industry (read only)</label>
+                        <label for="company_industry">Selected Industry (read-only)</label>
                         <input value="{{ account.company_industry}}" type="text" readonly>                        
                     </div>                      
                     <div class="col l4 s12">
