@@ -91,8 +91,9 @@ def sign_up():
             "password": generate_password_hash(request.form.get("password")),
             "company_name": "",
             "account_owner": "",
-            "company_country_name": "",
+            "company_country_name": "Select your country",
             "company_industry": "Update your industry",
+            "industry_id": "",
             "currency": "€"
         }
         mongo.db.accounts.insert_one(register)
@@ -195,6 +196,13 @@ def account_update(account_id):
             {"owning_account": session["user"]})
         campaign_id = mongo.db.campaigns.find(
             {"owning_account": session["user"]})
+        industry = mongo.db.categories.find_one(
+            {
+                "category_type": "Industry",
+                "category_name": {"$eq": request.form.get(
+                    "company_industry")},
+            }
+        )
         submit = {
             "email_address": session["user"],
             "password": session["password"],
@@ -202,6 +210,7 @@ def account_update(account_id):
             "account_owner": request.form.get("account_owner"),
             "company_country_name": request.form.get("company_country_name"),
             "company_industry": request.form.get("company_industry"),
+            "industry_id": industry["_id"],
             "currency": "€"
         }
         mongo.db.accounts.update({"_id": ObjectId(account_id)}, submit)
@@ -544,6 +553,8 @@ def edit_category(category_id):
             {"campaign_type_id": {"$eq": ObjectId(category_id)}})
         match_campaign_comm_platform = mongo.db.campaigns.find(
             {"comm_platform_id": {"$eq": ObjectId(category_id)}})
+        match_account_industry = mongo.db.accounts.find(
+            {"industry_id": {"$eq": ObjectId(category_id)}})
         submit = {
             "category_type": request.form.get("category_type"),
             "category_name": request.form.get("category_name")
@@ -568,6 +579,18 @@ def edit_category(category_id):
                 {
                     "$set":
                     {"communication_platform": request.form.get(
+                        "category_name")}
+                }
+            )
+        if match_account_industry:
+            mongo.db.accounts.update_many(
+                {
+                    "industry_id":
+                    {"$eq": ObjectId(category_id)}
+                },
+                {
+                    "$set":
+                    {"company_industry": request.form.get(
                         "category_name")}
                 }
             )
