@@ -29,6 +29,7 @@
                 <li><a class="nav-link white-text" href="{{ url_for('get_account_profile') }}">My Account</a></li>          
                   {% if session.user|lower == "admin@admin.com"|lower %}
                     <li><a class="nav-link white-text" href="{{ url_for('admin') }}">Category Management</a></li>
+                    <li><a class="nav-link white-text" href="{{ url_for('view_messages') }}">View Messages</a></li>                       
                   {% endif %}
                 <li><a class="nav-link white-text" href="{{ url_for('log_out') }}">Log Out</a></li>              
               {% else %}
@@ -44,6 +45,7 @@
                 <li><a class="nav-link blue-grey-text" href="{{ url_for('get_account_profile') }}">My Account</a></li>          
                   {% if session.user|lower == "admin@admin.com"|lower %}
                     <li><a class="nav-link blue-grey-text" href="{{ url_for('admin') }}">Category Management</a></li>
+                    <li><a class="nav-link blue-grey-text" href="{{ url_for('view_messages') }}">View Messages</a></li>                    
                   {% endif %}
                 <li><a class="nav-link blue-grey-text" href="{{ url_for('log_out') }}">Log Out</a></li>              
               {% else %}

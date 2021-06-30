@@ -101,7 +101,7 @@ f. As a site administrator I want to create, edit and delete campaigns, the same
 1. Currency exchange: In the future, users will be able to enter information in currency other than Euros. For comparison purposes, the financial data will be converted into Euros using an API.
 2. Country dropdown connected to currency: A dropdown selection connecting the selected country to the relevant currency, which is then connected to a currency converter.
 3. More in-depth comparison data based on campaign type and communication platform, not just industry. For the basic purposes of the site, the industry is more relevant as a benchmark. Comparing another company based purely on the communication platform does not give a clear picture, there are many other factors to consider. 
-4. Active contact us form: managed by admin
+4. Active contact us form: managed by admin. At present admin can only view and delete received messages through the site.
 
 **Site warnings**
 
@@ -146,7 +146,7 @@ Collections
 
 * Contacts
 
-Contains all contact messages sent to the site. In the future this will be accessed by Administration, with the ability to follow a communication thread, mark as read, and connect to an account if one exists. At present contains basic information from the user, which administration can access through Mongo DB.
+Contains all contact messages sent to the site. In the future this will be accessed by Administration, with the ability to follow a communication thread, mark as read, and connect to an account if one exists. At present contains basic information from the user, which administration can read and delete.
 
 * Options
 

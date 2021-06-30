@@ -611,6 +611,19 @@ def delete_category(category_id):
     return redirect(url_for("admin"))
 
 
+@app.route("/view_messages/")
+def view_messages():
+    contacts = list(mongo.db.contacts.find().sort("_id", -1))
+    return render_template("view_messages.html", contacts=contacts)
+
+
+@app.route("/delete_message/<contact_id>")
+def delete_message(contact_id):
+    mongo.db.contacts.remove({"_id": ObjectId(contact_id)})
+    flash("Message deleted")
+    return redirect(url_for("view_messages"))
+
+
 @app.route("/contact_us", methods=["GET", "POST"])
 def contact_us():
     if request.method == "POST":

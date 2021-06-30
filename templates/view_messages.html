@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+<div id="index-banner" class="parallax-container">
+    <div class="section no-pad-bot">
+        <div class="container">             
+            <h1 class="header center blue-grey-text text-lighten-4">
+                View Messages                        
+            </h1>                         
+        </div>
+    </div>
+    <div class="parallax">
+        <img src="{{ url_for('static', filename='assets/backgroundImage1.jpg') }}" alt="Data background image 1 sourced from Pixaby">
+    </div>
+</div>
+<div class="container">
+    <div class="section">
+        <ul class="collapsible">
+            {% for contact in contacts %}
+            <li>
+                <div class="collapsible-header blue-grey lighten-2">
+                    <i class="material-icons white-text">expand_more</i>
+                    <p class="white-text">
+                        {{ contact.contact_name }}
+                    </p>       
+                </div>
+                <div class="collapsible-body">                                   
+                    <div class="row">
+                        <div class="input-field col l6 s12">
+                            <label for="company_name">Company Name</label>
+                            <input value="{{ contact.company_name }}" name="company_name" type="text" readonly>
+                        </div>
+                        <div class="input-field col l6 s12">
+                            <label for="email_address">Email Address</label>
+                            <input value="{{ contact.email_address }}" name="email_address" type="text" readonly>
+                        </div> 
+                        <div class="input-field col l6 s12">
+                            <label for="phone_number">Phone Number</label>
+                            <input value="{{ contact.phone_number }}" name="phone_number" type="text" readonly>
+                        </div>     
+                    <div class="row">
+                        <div class="input-field col l6 s12">
+                            <label for="message">Message</label>
+                            <input value="{{ contact.message }}" name="message" type="text" readonly>
+                        </div> 
+                    </div>
+                    <div class="row">
+                        <a href="{{ url_for('delete_message', contact_id=contact._id) }}">
+                            <i class="material-icons red-text" title="Delete message" >
+                                delete_forever
+                            </i>
+                        </a>
+                    </div>                                                             
+                </div>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}
